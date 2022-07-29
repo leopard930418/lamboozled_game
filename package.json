@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next dev -p 4000",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start": "next start -p 4000"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
