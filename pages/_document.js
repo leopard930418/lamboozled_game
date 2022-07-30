@@ -18,7 +18,7 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/assets/logo.svg" />
           {/* <title>Course</title> */}
         </Head>
-        <body className="bg-white dark:bg-slate-900">
+        <body className="">
           <Main />
           <NextScript />
         </body>

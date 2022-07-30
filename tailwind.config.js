@@ -36,10 +36,6 @@ module.exports = {
         "6x": "calc(600%)",
         "7x": "calc(700%)",
       },
-      backgroundImage: {
-        // logo: "url('/src/assets/logo/logo_360.png')",
-        background: "url('/images/background.svg')",
-      },
       colors: {
         primary: "#dbfff1",
         secondary: "#228df3",
@@ -61,7 +57,8 @@ module.exports = {
       },
       backgroundImage: {
         // logo: "url('/src/assets/logo/logo_360.png')",
-        background: "url('/public/images/HistoryImage3.svg')",
+        background: "url('/images/background.svg')",
+        tabletlayout: "url('/images/tabletlayout.svg')",
       },
     },
   },
