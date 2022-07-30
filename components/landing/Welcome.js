@@ -15,7 +15,7 @@ export default function Welcome() {
               <CustomImage src="/images/sticker2.svg" className="h-8" />
             </div>
             <div className="w-1/6">
-              <CustomImage src="/images/help.svg" className="h-8" />
+              <CustomImage src="/images/help.svg" className="h-8" />AAAAAAAAAAAAAAAAAAAAAA
             </div>
           </div>
         </div>
