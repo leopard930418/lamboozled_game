@@ -12,18 +12,16 @@ import {
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { flexbox } from "@mui/system";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  width: 600,
+  bgcolor: "#C4C4C4",
   boxShadow: 24,
-  p: 4,
+  p: 2,
 };
 export default function Basic() {
   const contentData = content;
@@ -37,9 +35,7 @@ export default function Basic() {
   const [guideOpen, setGuideOpen] = React.useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
   const handleGuideClose = () => setGuideOpen(false);
-  useEffect(() => {
-    handleGuideOpen();
-  }, [unlock===false]);
+
   return (
     <>
       <div
@@ -88,6 +84,7 @@ export default function Basic() {
                   <button
                     onClick={() => {
                       console.log("help clicked");
+                      handleGuideOpen()
                     }}
                   >
                     <CustomImage src="/images/help.svg" className="h-8" />
@@ -127,14 +124,39 @@ export default function Basic() {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-          </Box>
+          {/* <Box sx={style}> */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
+            <div className="flex flex-row space-x-8">
+              <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
+                1
+              </div>
+              <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
+                2
+              </div>
+              <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
+                3
+              </div>
+            </div>
+            <div className="pt-6 px-4">
+              <div className="text-black text-3xl">
+                Show GIFs one by one, player can click from top left corner to
+                switch
+              </div>
+              <div className="text-black text-3xl">
+                1) Drag a sticker to mark an issue
+              </div>
+              <div className="text-black text-3xl">
+                2) Drag back to remove it
+              </div>
+              <div className="text-black text-3xl">
+                3) Drag a sticker to the (?) to learn more about it
+              </div>
+            </div>
+            <div className="flex justify-end pt-4">
+              <button className="px-4 py-2 bg-white text-3xl" onClick={handleGuideClose}>Got it!</button>
+            </div>
+          </div>
+          {/* </Box> */}
         </Modal>
 
         <div className="fixed bottom-0 w-full flex flex-row justify-between">
