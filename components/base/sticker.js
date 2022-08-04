@@ -1,0 +1,86 @@
+[
+  {
+    index: 0,
+    image: "0.jpg",
+    issue: "The title is all capitalized!",
+    description:
+      "When an article’s title is all-capitalized, it becomes more eye-catching... So we should be cautious: does this article aim for facts or something else?",
+  },
+  {
+    index: 1,
+    image: "1.jpg",
+    issue: "The title uses dramatic punctuation!!!",
+    description:
+      "When an article’s title uses dramatic punctuations, it stirs up sheep's emotion... When we're emotional, we tend to neglect the validity of evidence and the flow of logic.",
+  },
+  {
+    index: 2,
+    image: "2.jpg",
+    issue: "There are typo(s) or grammar mistake(s) in this story!",
+    description:
+      "News should be accurate and rigorous. If there are typo(s) or grammar mistake(s) in the story, we should question: Are the author and the article trustworthy?",
+  },
+  {
+    index: 3,
+    image: "3.jpg",
+    issue: "No author is listed!",
+    description:
+      "If you cannot find the author of an article, no sheep has to be responsible for the content. So the story is more likely to be fake, and we cannot find whom to blame.",
+  },
+  {
+    index: 4,
+    image: "4.jpg",
+    issue: "The domain name looks suspicious!",
+    description:
+      "The domain name should be consistent with the source's name, usually without any additional character. Otherwise, it might be a phishing website despite having the official layout!",
+  },
+  {
+    index: 5,
+    image: "5.jpg",
+    issue: "The website link is broken!",
+    description:
+      "A broken link indicates the carelessness of the publisher. They might put the wrong link or forget to update it. Such mistakes make the article less trustworthy.",
+  },
+  {
+    index: 6,
+    image: "6.jpg",
+    issue: "It has a questionable social media account!",
+    description:
+      "If a social media account has few followers or posts, the sheep behind this account might not be real and traceable. Its posts might be fake then.",
+  },
+  {
+    index: 7,
+    image: "7.jpg",
+    issue: "This is a satirical news site!",
+    description:
+      "Satirical news sites post a lot of fake news for humorous purposes. It's ok to consume such hilarious stories, but some sheep consider them real because they cannot recognize the satire.",
+  },
+  {
+    index: 8,
+    image: "8.jpg",
+    issue: "This source has a factual reporting score lower than 90!",
+    description:
+      "The factual reporting score is calculated by a fact-checking hub based on the accuracy of a source's historical news. If the score is low, we should be careful about the source.",
+  },
+  {
+    index: 9,
+    image: "9.jpg",
+    issue: "The image is photoshopped!",
+    description:
+      "The sheep might be attached to the background, or the group of sheep might be manually put together!",
+  },
+  {
+    index: 10,
+    image: "10.jpg",
+    issue: "This image is out-of-context!",
+    description:
+      "Some sheep use movie posters or unrelated images to make up fake news. Let's first verify where these images are actually from.",
+  },
+  {
+    index: 11,
+    image: "11.jpg",
+    issue: "Nobody else has written about this!",
+    description:
+      "If nobody else has written about a story, perhaps it's really new or it might be fake. Reports from different sources help you verify one story from different angles.",
+  },
+];

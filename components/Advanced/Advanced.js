@@ -12,6 +12,10 @@ import LinearProgress, {
 } from "@mui/material/LinearProgress";
 import { Card } from "@mui/material";
 import { withStyles, makeStyles } from "@mui/styles";
+import { styled, alpha } from "@mui/material/styles";
+
+import SearchIcon from "@mui/icons-material/Search";
+import InputBase from "@mui/material/InputBase";
 
 const BorderLinearProgress = withStyles((theme) => {
   return {
@@ -58,14 +62,7 @@ const style = {
 };
 export default function Advanced() {
   const contentData = content;
-  const [unlock, setUnlock] = useState(true);
-  const [isFeedback, setIsFeedback] = useState(false);
-  // const StyleTooltip = withStyles({
-  //   tooltip: {
-  //     color: "#FF0000",
-  //     backgroundColor: "#FFE0E0",
-  //   },
-  // })(Tooltip);
+  const [unlock, setUnlock] = useState(false);
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
   const handleGuideClose = () => setGuideOpen(false);
@@ -88,6 +85,46 @@ export default function Advanced() {
     return () => clearInterval(timer);
   }, [counter]);
   console.log("countdown", counter);
+
+  const Search = styled("div")(({ theme }) => ({
+    position: "relative",
+    borderRadius: "30px",
+    border: "solid 1px white",
+    backgroundColor: alpha("#EAEAEA", 1),
+    "&:hover": {
+      backgroundColor: alpha("#EAEAEA", 1),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: "70%",
+    },
+  }));
+
+  const SearchIconWrapper = styled("div")(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }));
+  const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: "inherit",
+    "& .MuiInputBase-input": {
+      padding: theme.spacing(1, 1, 1, 0),
+      // vertical padding + font size from searchIcon
+      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      transition: theme.transitions.create("width"),
+      width: "100%",
+      [theme.breakpoints.up("md")]: {
+        width: "46ch",
+      },
+    },
+  }));
   return (
     <div className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <div
@@ -98,166 +135,118 @@ export default function Advanced() {
       >
         <div className="absolute w-full h-full">
           <img
-            src={`${
-              isFeedback
-                ? "/images/feedback.svg"
-                : "/images/backgroundBasic.svg"
-            }`}
+            src="/images/backgroundAdvanced.svg"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-50 transition-opacity"
           />
         </div>
-        {isFeedback&&<div className="absolute bottom-40 right-20">
-          <div className="flex flex-col justify-center items-center pt-12">
-            <div
-              className="w-3/4 bg-white flex flex-row items-center justify-center rounded-sm"
-              onClick={handleMarkedIssuesOpen}
-            >
-              <label>2 article(s) left</label>
-            </div>
-            <button
-              className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
-              onClick={() => {
-                setIsFeedback(false);
-              }}
-            >
-              Next
-            </button>
-          </div>
-        </div>}
+
         <div className={classes.root}>
           <div className={classes.stats}>
-            {!isFeedback && (
-              <BorderLinearProgress variant="determinate" value={77} />
-            )}
+            <BorderLinearProgress variant="determinate" value={77} />
           </div>
         </div>
 
         <div className="flex flex-row">
-          <div
-            className={`relative translate-x-20 w-${
-              isFeedback ? 7 : 5
-            }/12 grid justify-items-stretch`}
-          >
+          <div className="relative translate-x-20 w-5/12 grid justify-items-stretch">
             <img
               src="/images/tabletlayout.svg"
               className="absolute w-full h-[720px] top-0 left-0 -z-10 object-cover"
             ></img>
-            {isFeedback ? (
-              <>
-                <div className="w-3/4 justify-self-center pt-12">
-                  <div>
-                    <div className="absolute top-20 right-20 w-16 h-16 rounded-full bg-[#C7C7C7]">
-                      <div className="h-full flex justify-center items-center text-black text-3xl font-bold">
-                        0
-                      </div>
-                    </div>
-                    <div className="flex justify-center pt-12">
-                      <label className="bg-black rounded-3xl px-16 py-2 text-white font-bold text-lg text-center">
-                        Correct Marks (1/2)
-                      </label>
-                    </div>
-                    <div className="text-lg text-[#0DA71C] font-semibold text-center py-4">
-                      The title is all-capitalized
-                    </div>
-                    <div className="flex justify-center pt-12">
-                      <label className="bg-black rounded-3xl px-16 py-2 text-white font-bold text-lg">
-                        Missed Or Mismarked
-                      </label>
-                    </div>{" "}
-                    <div className="flex flex-row justify-between items-center">
-                      <div className="text-lg text-[#FC5757] font-semibold text-center py-4">
-                        The title uses dramatic punctations!
-                      </div>
-                      <div>
-                        <button className="bg-[#FC5757] px-4 py-2 text-white ">
-                          View
-                        </button>
-                      </div>
-                    </div>
-                    <div className="flex flex-row justify-between items-center">
-                      <div className="text-lg text-[#FC5757] font-semibold text-center py-4">
-                        There are typo(s) or grammar mistake(s) in this story!
-                      </div>
-                      <div>
-                        <button className="bg-[#FC5757] px-4 py-2 text-white ">
-                          View
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <div className="w-3/4 justify-self-center pt-24">
-                <Grid container columns={10}>
-                  <Grid
-                    item
-                    container
-                    lg={8}
-                    className="border-2 border-black flex justify-center p-2"
-                  >
-                    <Grid item lg={3}>
-                      <Tooltip
-                        title="The title is all captitalized!"
-                        placement="top"
-                        arrow
-                      >
-                        <CustomImage
-                          src="/images/Icon1.svg"
-                          className="h-8"
-                          onClick={handleSticker1Open}
-                        />
-                      </Tooltip>
-                    </Grid>
-                    <Grid item lg={3}>
-                      <CustomImage src="/images/Icon2.svg" className="h-8" />
-                    </Grid>
-                    <Grid item lg={3}>
-                      <CustomImage src="/images/Icon3.svg" className="h-8" />
-                    </Grid>
-                    <Grid item lg={3}>
-                      <CustomImage src="/images/Icon4.svg" className="h-8" />
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    item
-                    lg={2}
-                    className="border-2 border-black flex justify-center"
-                  >
-                    <button
-                      onClick={() => {
-                        console.log("help clicked");
-                        handleGuideOpen();
-                      }}
+
+            <div className="w-3/4 justify-self-center pt-24">
+              <Grid container columns={10}>
+                <Grid
+                  item
+                  container
+                  lg={8}
+                  className="border-2 border-black flex justify-center p-2"
+                >
+                  <Grid item lg={3}>
+                    <Tooltip
+                      title="The title is all captitalized!"
+                      placement="top"
+                      arrow
                     >
-                      <CustomImage src="/images/help.svg" className="h-8" />
-                    </button>
+                      <CustomImage
+                        src="/images/Icon1.svg"
+                        className="h-8"
+                        onClick={handleSticker1Open}
+                      />
+                    </Tooltip>
+                  </Grid>
+                  <Grid item lg={3}>
+                    <CustomImage src="/images/Icon2.svg" className="h-8" />
+                  </Grid>
+                  <Grid item lg={3}>
+                    <CustomImage src="/images/Icon3.svg" className="h-8" />
+                  </Grid>
+                  <Grid item lg={3}>
+                    <CustomImage src="/images/Icon4.svg" className="h-8" />
                   </Grid>
                 </Grid>
+                <Grid
+                  item
+                  lg={2}
+                  className="border-2 border-black flex justify-center"
+                >
+                  <button
+                    onClick={() => {
+                      console.log("help clicked");
+                      handleGuideOpen();
+                    }}
+                  >
+                    <CustomImage src="/images/help.svg" className="h-8" />
+                  </button>
+                </Grid>
+              </Grid>
 
-                <div className="flex justify-center pt-4">
-                  <CustomImage src="/images/contentImage1.svg" />
+              <div className="flex justify-center pt-4">
+                <CustomImage src="/images/contentImage1.svg" />
+              </div>
+              <div className="pr-4">
+                <div className="text-2xl text-black font-bold text-center pt-2 ">
+                  {contentData[0].title}
                 </div>
-                <div className="pr-4">
-                  <div className="text-2xl text-black font-bold text-center pt-2 ">
-                    {contentData[0].title}
+                <div className="flex flex-row justify-between">
+                  <div className="text-xl text-black pt-2 ">
+                    {contentData[0].author}
                   </div>
-                  <div className="flex flex-row justify-between">
-                    <div className="text-xl text-black pt-2 ">
-                      {contentData[0].author}
-                    </div>
-                    <div className="text-xl text-black pt-2 ">
-                      {contentData[0].source}
-                    </div>
+                  <div className="text-xl text-black pt-2 ">
+                    {contentData[0].source}
                   </div>
-                  <div className="text-xl text-black pt-2 overflow-auto h-32">
-                    {contentData[0].content}
-                  </div>
+                </div>
+                <div className="text-xl text-black pt-2 overflow-auto h-32">
+                  {contentData[0].content}
                 </div>
               </div>
-            )}
+            </div>
           </div>
           <div className="w-7/12 relative">
+            <div className="flex justify-center pt-40 pl-8">
+              <Search>
+                <StyledInputBase
+                  placeholder="Click the bar to begin your search"
+                  inputProps={{ "aria-label": "search" }}
+                />
+                <SearchIcon />
+              </Search> 
+            </div>
+            <div className="flex justify-center pl-8 pt-10">
+              <div className="w-7/12 shadow-lg p-4 flex flex-col space-y-4">
+                <div className="text-black text-lg">
+                  Contextual Clue - Analysis of News Source
+                </div> 
+                <div className="flex flex-row justify-between">
+                  <button className="bg-black rounded-full text-white text-lg px-4 py-1">
+                    Social Media Account
+                  </button>
+                  <button className="bg-black rounded-full text-white text-lg px-4 py-1">
+                    Source Website
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <img
               src="/images/unlock.svg"
               className={`absolute top-1/3 left-1/2 -translate-x-1/3 -translate-y-1/3 ${
@@ -387,7 +376,6 @@ export default function Advanced() {
                 className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                 onClick={() => {
                   setCounter(100);
-                  setIsFeedback(true);
                 }}
               >
                 SUBMIT
@@ -397,37 +385,29 @@ export default function Advanced() {
           {/* </Box> */}
         </Modal>
 
-        <div
-          className={`fixed bottom-0 w-full flex flex-row justify-${
-            isFeedback ? "end" : "between"
-          } translate-y-2`}
-        >
-          {!isFeedback && (
-            <div>
-              <CustomImage src="/images/bottomlogo.svg" className="h-24" />
-            </div>
-          )}
+        <div className="fixed bottom-0 w-full flex flex-row justify-between translate-y-2">
+          <div>
+            <CustomImage src="/images/bottomlogo.svg" className="h-24" />
+          </div>
 
-          {!isFeedback && (
-            <div className="flex flex-col justify-center items-center">
-              <div
-                className="w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md"
-                onClick={handleMarkedIssuesOpen}
-              >
-                <label>10 issue(s)</label>
-                <CustomImage src="/images/eye.svg" className="h-8 px-2" />
-              </div>
-              <button
-                className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
-                onClick={() => {
-                  setCounter(100);
-                  setIsFeedback(true);
-                }}
-              >
-                SUBMIT
-              </button>
+          <div className="flex flex-col justify-center items-center">
+            <div
+              className="w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md"
+              onClick={handleMarkedIssuesOpen}
+            >
+              <label>10 issue(s)</label>
+              <CustomImage src="/images/eye.svg" className="h-8 px-2" />
             </div>
-          )}
+            <button
+              className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+              onClick={() => {
+                setCounter(100);
+              }}
+            >
+              SUBMIT
+            </button>
+          </div>
+
           <div>
             <CustomImage src="/images/bottomlambmeter.svg" className="h-24" />
           </div>
