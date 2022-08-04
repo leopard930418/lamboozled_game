@@ -56,7 +56,7 @@ const style = {
   boxShadow: 24,
   p: 2,
 };
-export default function Intro() {
+export default function IntroMain() {
   const contentData = content;
   const [unlock, setUnlock] = useState(true);
   const [isFeedback, setIsFeedback] = useState(false);
