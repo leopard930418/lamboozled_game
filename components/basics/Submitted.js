@@ -12,9 +12,6 @@ import { withStyles, makeStyles } from "@mui/styles";
 import LinearProgress from "@mui/material/LinearProgress";
 import Modal from '@mui/material/Modal';
 // MODULES FOR DRAG&DROP
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { DragDropContainer } from "../dragdrop/DragDropContainer";
 import Router from "next/router";
 // import MyToolTip from "../base/MyToolTip";
 
@@ -105,7 +102,8 @@ export default function Submitted(){
                                                     <div>
                                                         <CustomImage
                                                         src="/images/Icon1.svg"
-                                                        className="h-8"
+                                                        className="h-8 "
+                                                        style={{backgroundColor: '#000000', }}
                                                         />
                                                     </div>
                                                 </Grid>
@@ -113,10 +111,10 @@ export default function Submitted(){
                                                     <CustomImage src="/images/Icon2.svg" className="h-8" />
                                                 </Grid>
                                                 <Grid item lg={3}>
-                                                    <CustomImage src="/images/Icon3.svg" className="h-8" />
+                                                    <CustomImage src="/images/Icon3.svg" className="h-8" style={{backgroundColor: '#000000', }}/>
                                                 </Grid>
                                                 <Grid item lg={3}>
-                                                    <CustomImage src="/images/Icon4.svg" className="h-8" />
+                                                    <CustomImage src="/images/Icon4.svg" className="h-8" style={{backgroundColor: '#000000', }}/>
                                                 </Grid>
                                             </Grid>
                                             <Grid
@@ -137,9 +135,30 @@ export default function Submitted(){
                                                 </button>
                                             </Grid>
                                         </Grid>
+
                                         <div className="flex justify-center pt-4">
                                             <MyImage src="/images/contentImage1.svg" className="w-60 h-36"/>
                                         </div>
+                                        <div>
+                                            <div className="absolute top-20  right-[77%] w-16 h-16 rounded-full border-4 border-red-600 ">
+                                            </div>
+                                            <MyImage src="/images/BossSmall.svg" className="absolute right-[55%] top-10 w-[134px] h-[170px]"/>
+                                            
+
+                                            <MyImage src="/images/AlertPanel.svg" className="absolute right-[10%] top-48 w-[769px] h-[238px]  break-words p-8"
+                                            >
+                                                <span className=" text-3xl">When an article’s title uses dramatic punctuations, it stirs up sheep's emotion...
+                                                             When we're emotional, we tend to neglect the validity of evidence and the flow of logic. 
+                                                </span>
+                                            </MyImage>
+                                            <MyImage src="/images/ArrowYellow.svg" className="absolute right-[5.5%] top-[54%]  w-[80px] h-[79px]"
+                                                    onClick={()=>{setReviewMode(false);
+                                                                console.log("arrow yellow clicked");}}        
+                                            />
+
+                                            
+                                        </div>
+                                        
                                         <div className="pr-4">
                                             <div className="text-2xl text-black font-bold text-center pt-2 ">
                                                 {contentData[0].title}
@@ -193,7 +212,9 @@ export default function Submitted(){
                                                         The title uses dramatic punctations!
                                                     </div>
                                                     <div>
-                                                        <button className="bg-[#FC5757] px-4 py-2 text-white ">
+                                                        <button className="bg-[#FC5757] px-4 py-2 text-white " 
+                                                            onClick={()=>{setReviewMode(true);}}
+                                                        >
                                                         View
                                                         </button>
                                                     </div>
@@ -203,7 +224,8 @@ export default function Submitted(){
                                                         There are typo(s) or grammar mistake(s) in this story!
                                                     </div>
                                                     <div>
-                                                        <button className="bg-[#FC5757] px-4 py-2 text-white ">
+                                                        <button className="bg-[#FC5757] px-4 py-2 text-white "
+                                                        onClick={()=>{setReviewMode(true);}}>
                                                         View
                                                         </button>
                                                     </div>
@@ -242,8 +264,8 @@ export default function Submitted(){
                                              <button
                                                 className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                                                 onClick={() => {
-                                                setReviewMode(true);
-                                                
+                                                // setReviewMode(true);
+                                                Router.push("/");
                                                 }}
                                             >
                                                 END THE DAY
@@ -315,13 +337,18 @@ export default function Submitted(){
                             </Grid>
                             
                             <Grid item xs={4}>
-                                <div
-                                    className={` fixed bottom-0 flexd-bottom w-[30%] `}
-                                >
-                                    <div className="translate-y-2 translate-x-11">
-                                    <MyImage src="/images/bottomlambmeter.svg" className="h-24" />
-                                </div>
-                                </div>
+                                {!reviewMode&&(
+                                    <div
+                                        className={` fixed bottom-0 flexd-bottom w-[30%] `}
+                                    >
+                                        <div className="translate-y-2 translate-x-11">
+                                            <MyImage src="/images/bottomlambmeter.svg" className="h-24" />
+                                        </div>
+                                    </div>
+                                )
+
+                                }
+                                
                             </Grid>
                         </Grid>
                     </Grid>

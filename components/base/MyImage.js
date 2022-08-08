@@ -15,7 +15,9 @@ export default function MyImage({
     className= "bg-no-repeat bg-center bg-cover"
       onLoad={(e) => onLoad(e)}
       {...props}
-    />
+    >
+      {props.children}
+    </div>
     
   );
 }
