@@ -57,9 +57,9 @@ module.exports = {
       },
       backgroundImage: {
         // logo: "url('/src/assets/logo/logo_360.png')",
-        background: "url('/images/background.svg')",
-        backgroundBasic: "url('/images/backgroundBasic.svg')",
-        tabletlayout: "url('/images/tabletlayout.svg')",
+        // background: "url('/images/background.svg')",
+        // backgroundBasic: "url('/images/backgroundBasic.svg')",
+        // tabletlayout: "url('/images/tabletlayout.svg')",
       },
     },
   },

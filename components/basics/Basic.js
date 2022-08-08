@@ -10,8 +10,14 @@ import Modal from "@mui/material/Modal";
 import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
+
 import { Card } from "@mui/material";
 import { withStyles, makeStyles } from "@mui/styles";
+import { Container } from "postcss";
+
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DragDropContainer } from "../dragdrop/DragDropContainer";
 
 const BorderLinearProgress = withStyles((theme) => {
   return {
@@ -70,9 +76,9 @@ export default function Basic() {
   const handleGuideOpen = () => setGuideOpen(true);
   const handleGuideClose = () => setGuideOpen(false);
 
-  const [sticker1Open, setSticker1Open] = useState(false);
-  const handleSticker1Open = () => setSticker1Open(true);
-  const handleSticker1Close = () => setSticker1Open(false);
+  // const [sticker1Open, setSticker1Open] = useState(false);
+  // const handleSticker1Open = () => setSticker1Open(true);
+  // const handleSticker1Close = () => setSticker1Open(false);
 
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
@@ -106,24 +112,26 @@ export default function Basic() {
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-50 transition-opacity"
           />
         </div>
-        {isFeedback&&<div className="absolute bottom-40 right-20">
-          <div className="flex flex-col justify-center items-center pt-12">
-            <div
-              className="w-3/4 bg-white flex flex-row items-center justify-center rounded-sm"
-              onClick={handleMarkedIssuesOpen}
-            >
-              <label>2 article(s) left</label>
+        {isFeedback && (
+          <div className="absolute bottom-40 right-20">
+            <div className="flex flex-col justify-center items-center pt-12">
+              <div
+                className="w-3/4 bg-white flex flex-row items-center justify-center rounded-sm"
+                onClick={handleMarkedIssuesOpen}
+              >
+                <label>2 article(s) left</label>
+              </div>
+              <button
+                className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                onClick={() => {
+                  setIsFeedback(false);
+                }}
+              >
+                Next
+              </button>
             </div>
-            <button
-              className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
-              onClick={() => {
-                setIsFeedback(false);
-              }}
-            >
-              Next
-            </button>
           </div>
-        </div>}
+        )}
         <div className={classes.root}>
           <div className={classes.stats}>
             {!isFeedback && (
@@ -188,73 +196,86 @@ export default function Basic() {
                 </div>
               </>
             ) : (
-              <div className="w-3/4 justify-self-center pt-24">
-                <Grid container columns={10}>
-                  <Grid
-                    item
-                    container
-                    lg={8}
-                    className="border-2 border-black flex justify-center p-2"
-                  >
-                    <Grid item lg={3}>
-                      <Tooltip
-                        title="The title is all captitalized!"
-                        placement="top"
-                        arrow
-                      >
-                        <CustomImage
-                          src="/images/Icon1.svg"
-                          className="h-8"
-                          onClick={handleSticker1Open}
-                        />
-                      </Tooltip>
-                    </Grid>
-                    <Grid item lg={3}>
-                      <CustomImage src="/images/Icon2.svg" className="h-8" />
-                    </Grid>
-                    <Grid item lg={3}>
-                      <CustomImage src="/images/Icon3.svg" className="h-8" />
-                    </Grid>
-                    <Grid item lg={3}>
-                      <CustomImage src="/images/Icon4.svg" className="h-8" />
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    item
-                    lg={2}
-                    className="border-2 border-black flex justify-center"
-                  >
-                    <button
-                      onClick={() => {
-                        console.log("help clicked");
-                        handleGuideOpen();
-                      }}
-                    >
-                      <CustomImage src="/images/help.svg" className="h-8" />
-                    </button>
-                  </Grid>
-                </Grid>
+              <>
+                <div className="w-3/4 justify-self-center pt-24">
+                  <DndProvider backend={HTML5Backend}>
+                    <DragDropContainer hideSourceOnDrag={true}>
+                      <Grid container columns={10}>
+                        <Grid
+                          item
+                          container
+                          lg={8}
+                          className="border-2 border-black flex justify-center p-2"
+                        >
+                          <Grid item lg={3}>
+                            {/* <Tooltip
+                              title="The title is all captitalized!"
+                              placement="top"
+                              arrow
+                            > */}
+                              <div>
+                                <CustomImage
+                                  src="/images/Icon1.svg"
+                                  className="h-8"
+                                  // onClick={handleSticker1Open}
+                                />
+                              </div>
+                            {/* </Tooltip> */}
+                          </Grid>
+                          <Grid item lg={3}>
+                            {/* <CustomImage src="/images/Icon2.svg" className="h-8" /> */}
+                          </Grid>
+                          <Grid item lg={3}>
+                            {/* <CustomImage src="/images/Icon3.svg" className="h-8" /> */}
+                          </Grid>
+                          <Grid item lg={3}>
+                            {/* <CustomImage src="/images/Icon4.svg" className="h-8" /> */}
+                          </Grid>
+                        </Grid>
+                        <Grid
+                          item
+                          lg={2}
+                          className="border-2 border-black flex justify-center"
+                        >
+                          <Tooltip title="AAAAAAAAA" arrow>
+                            <button
+                              onClick={() => {
+                                console.log("help clicked");
+                                handleGuideOpen();
+                              }}
+                            >
+                              <CustomImage
+                                src="/images/help.svg"
+                                className="h-8"
+                              />
+                            </button>
+                          </Tooltip>
+                        </Grid>
+                      </Grid>
 
-                <div className="flex justify-center pt-4">
-                  <CustomImage src="/images/contentImage1.svg" />
+                      <div className="flex justify-center pt-4">
+                        <CustomImage src="/images/contentImage1.svg" />
+                      </div>
+                      <div className="pr-4">
+                        <div className="text-2xl text-black font-bold text-center pt-2 ">
+                          {contentData[0].title}
+                        </div>
+                        <div className="flex flex-row justify-between">
+                          <div className="text-xl text-black pt-2 ">
+                            {contentData[0].author}
+                          </div>
+                          <div className="text-xl text-black pt-2 ">
+                            {contentData[0].source}
+                          </div>
+                        </div>
+                        <div className="text-xl text-black pt-2 overflow-auto h-32">
+                          {contentData[0].content}
+                        </div>
+                      </div>
+                    </DragDropContainer>
+                  </DndProvider>
                 </div>
-                <div className="pr-4">
-                  <div className="text-2xl text-black font-bold text-center pt-2 ">
-                    {contentData[0].title}
-                  </div>
-                  <div className="flex flex-row justify-between">
-                    <div className="text-xl text-black pt-2 ">
-                      {contentData[0].author}
-                    </div>
-                    <div className="text-xl text-black pt-2 ">
-                      {contentData[0].source}
-                    </div>
-                  </div>
-                  <div className="text-xl text-black pt-2 overflow-auto h-32">
-                    {contentData[0].content}
-                  </div>
-                </div>
-              </div>
+              </>
             )}
           </div>
           <div className="w-7/12 relative">
@@ -275,13 +296,13 @@ export default function Basic() {
             ></img>
           </div>
         </div>
+        {/* this part have to be deleted */}
         <Modal
           open={guideOpen}
           onClose={handleGuideClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          {/* <Box sx={style}> */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
             <div className="flex flex-row space-x-8">
               <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
@@ -294,6 +315,8 @@ export default function Basic() {
                 3
               </div>
             </div>
+
+            
             <div className="pt-6 px-4">
               <div className="text-black text-3xl">
                 Show GIFs one by one, player can click from top left corner to
@@ -309,6 +332,8 @@ export default function Basic() {
                 3) Drag a sticker to the (?) to learn more about it
               </div>
             </div>
+
+
             <div className="flex justify-end pt-4">
               <button
                 className="px-4 py-2 bg-white text-3xl"
@@ -318,49 +343,19 @@ export default function Basic() {
               </button>
             </div>
           </div>
-          {/* </Box> */}
         </Modal>
+
         <Modal
-          open={sticker1Open}
-          onClose={handleSticker1Close}
+          // open={markedIssuesOpen}
+          // onClose={handleMarkedIssuesClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          {/* <Box sx={style}> */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
-            <div className="flex flex-row justify-center">
-              <img src="/images/Icon1.svg" className="h-8" />
-            </div>
-            <div className="pt-6 px-4">
-              <div className="text-black text-3xl">
-                When an article’s title is all-capitalized, it becomes more
-                eye-catching... So we should be cautious: does this article aim
-                for facts or something else?
-              </div>
-            </div>
-            <div className="flex justify-end pt-4">
-              <button
-                className="px-4 py-2 bg-white text-3xl"
-                onClick={handleSticker1Close}
-              >
-                I see
-              </button>
-            </div>
-          </div>
-          {/* </Box> */}
-        </Modal>
-        <Modal
-          open={markedIssuesOpen}
-          onClose={handleMarkedIssuesClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          {/* <Box sx={style}> */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-[#FF7575] to-[#FFD0D0] p-4 w-[800px]">
             <img
               src="/images/MarkCloseIcon.svg"
               className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 cursor-pointer"
-              onClick={handleMarkedIssuesClose}
+              // onClick={handleMarkedIssuesClose}
             ></img>
             <div className="text-3xl text-center font-bold underline ">
               MARKED ISSUES
@@ -394,7 +389,6 @@ export default function Basic() {
               </button>
             </div>
           </div>
-          {/* </Box> */}
         </Modal>
 
         <div
@@ -422,6 +416,7 @@ export default function Basic() {
                 onClick={() => {
                   setCounter(100);
                   setIsFeedback(true);
+                  // Router.push("/submitted");
                 }}
               >
                 SUBMIT

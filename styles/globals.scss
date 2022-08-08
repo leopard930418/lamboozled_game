@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 .slick-prev:before,
 .slick-next:before {
     color: transparent !important;
@@ -97,4 +94,10 @@
   
   .dropdown:hover .dropdown-content {
     display: block;
+  }
+
+  //alex added
+  .Alex_btn_gra_1 {
+    background-color: #FFD0D0; /* For browsers that do not support gradients */
+    background-image: linear-gradient(0deg, #FFD0D0, #FF7575 );
   }
