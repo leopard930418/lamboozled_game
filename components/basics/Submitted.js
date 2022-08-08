@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Container } from "postcss";
 import CustomImage from "../base/CustomImage";
 import MyImage from "../base/MyImage";
-// import CustomImage_new from "../base/CustomImage_new";
 // FOR IMPORTING ARITCLE DATA
 import content from "../../public/assets/articles.json";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -12,11 +11,11 @@ import Tooltip from '@mui/material/Tooltip';
 import { withStyles, makeStyles } from "@mui/styles";
 import LinearProgress from "@mui/material/LinearProgress";
 import Modal from '@mui/material/Modal';
-  
 // MODULES FOR DRAG&DROP
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContainer } from "../dragdrop/DragDropContainer";
+import Router from "next/router";
 // import MyToolTip from "../base/MyToolTip";
 
 const BorderLinearProgress = withStyles((theme) => {
@@ -71,11 +70,13 @@ export default function Submitted(){
             <div className={`max-w-[1280px] max-h-[790px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-${reviewMode?("[url('/images/backgroundBasic.svg')]"):("[url('/images/feedback.svg')]")}`}
                 >
+                {/* <div className={`max-w-[1280px] max-h-[790px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+                            -translate-y-1/2 bg-[url('/images/feedback.svg')]`}
+                > */}
                 {/* background image mapping */}
                 {reviewMode?(<div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat" >
                 </div>):(<div className="absolute  bg-cover bg-no-repeat h-[850px] top-0 left-0 ml-20 -translate-y-16 w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')]" >
                 </div>)}
-                
                 {/* background image mapping */}
                 <Grid container className="h-full">
                     <Grid item xs={12}>
@@ -99,7 +100,24 @@ export default function Submitted(){
                                             lg={8}
                                             className="border-2 border-black flex justify-center p-1"
                                             >
-                                            
+
+                                                <Grid item lg={3}>
+                                                    <div>
+                                                        <CustomImage
+                                                        src="/images/Icon1.svg"
+                                                        className="h-8"
+                                                        />
+                                                    </div>
+                                                </Grid>
+                                                <Grid item lg={3}>
+                                                    <CustomImage src="/images/Icon2.svg" className="h-8" />
+                                                </Grid>
+                                                <Grid item lg={3}>
+                                                    <CustomImage src="/images/Icon3.svg" className="h-8" />
+                                                </Grid>
+                                                <Grid item lg={3}>
+                                                    <CustomImage src="/images/Icon4.svg" className="h-8" />
+                                                </Grid>
                                             </Grid>
                                             <Grid
                                             item
@@ -124,18 +142,18 @@ export default function Submitted(){
                                         </div>
                                         <div className="pr-4">
                                             <div className="text-2xl text-black font-bold text-center pt-2 ">
-                                            {contentData[0].title}
+                                                {contentData[0].title}
                                             </div>
                                             <div className="flex flex-row justify-between">
-                                            <div className="text-xl text-black pt-2 ">
-                                                {contentData[0].author}
-                                            </div>
-                                            <div className="text-xl text-black pt-2 ">
-                                                {contentData[0].source}
-                                            </div>
+                                                <div className="text-xl text-black pt-2 ">
+                                                    {contentData[0].author}
+                                                </div>
+                                                <div className="text-xl text-black pt-2 ">
+                                                    {contentData[0].source}
+                                                </div>
                                             </div>
                                             <div className="text-xl text-black pt-2 overflow-auto h-36">
-                                            {contentData[0].content}
+                                                {contentData[0].content}
                                             </div>
                                         </div>
                                     </div>
@@ -143,45 +161,94 @@ export default function Submitted(){
                                     <>
                                         <div className="w-3/4 justify-self-center pt-12 ml-20">
                                         <div>
-                                            <div className="absolute top-20 right-20 w-16 h-16 rounded-full bg-[#C7C7C7]">
-                                            <div className="h-full flex justify-center items-center text-black text-3xl font-bold">
-                                                0
-                                            </div>
-                                            </div>
-                                            <div className="flex justify-center pt-12">
-                                            <label className="bg-black rounded-3xl px-16 py-2 text-white font-bold text-lg text-center">
-                                                Correct Marks (1/2)
-                                            </label>
-                                            </div>
-                                            <div className="text-lg text-[#0DA71C] font-semibold text-center py-4">
-                                            The title is all-capitalized
+                                            <div className="absolute top-20  right-[50%] w-20 h-20 rounded-full bg-[#C7C7C7]">
+                                                <div className="h-full flex justify-center items-center text-black text-3xl font-bold">
+                                                    0
+                                                </div>
                                             </div>
                                             <div className="flex justify-center pt-12">
-                                            <label className="bg-black rounded-3xl px-16 py-2 text-white font-bold text-lg">
-                                                Missed Or Mismarked
-                                            </label>
+                                                <label className="bg-black rounded-3xl px-16 py-2 text-white font-bold text-lg text-center">
+                                                    Correct Marks (1/2)
+                                                </label>
+                                            </div>
+                                            <div className="h-2/5 max-h-56  justify-center w-full overflow-x-hidden">
+
+                                                <div className="text-lg text-[#0DA71C] font-semibold text-center py-3 w-full">
+                                                The title is all-capitalized
+                                                </div>
+                                                <div className="text-lg text-[#0DA71C] font-semibold text-center py-3 w-full">
+                                                The title is all-capitalized
+                                                </div>
+                                            </div>
+
+
+                                            <div className="flex justify-center">
+                                                <label className="bg-black rounded-3xl px-16 py-2 text-white font-bold text-lg">
+                                                    Missed Or Mismarked
+                                                </label>
                                             </div>{" "}
-                                            <div className="flex flex-row justify-between items-center">
-                                            <div className="text-lg text-[#FC5757] font-semibold text-center py-4">
-                                                The title uses dramatic punctations!
+                                            <div className="h-2/5 max-h-56  justify-center w-full overflow-x-hidden">
+                                                <div className="flex flex-row justify-between items-center">
+                                                    <div className="text-lg text-[#FC5757] font-semibold text-center py-4">
+                                                        The title uses dramatic punctations!
+                                                    </div>
+                                                    <div>
+                                                        <button className="bg-[#FC5757] px-4 py-2 text-white ">
+                                                        View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div className="flex flex-row justify-between items-center">
+                                                    <div className="text-lg text-[#FC5757] font-semibold text-center py-4">
+                                                        There are typo(s) or grammar mistake(s) in this story!
+                                                    </div>
+                                                    <div>
+                                                        <button className="bg-[#FC5757] px-4 py-2 text-white ">
+                                                        View
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
-                                            <div>
-                                                <button className="bg-[#FC5757] px-4 py-2 text-white ">
-                                                View
-                                                </button>
-                                            </div>
-                                            </div>
-                                            <div className="flex flex-row justify-between items-center">
-                                            <div className="text-lg text-[#FC5757] font-semibold text-center py-4">
-                                                There are typo(s) or grammar mistake(s) in this story!
-                                            </div>
-                                            <div>
-                                                <button className="bg-[#FC5757] px-4 py-2 text-white ">
-                                                View
-                                                </button>
-                                            </div>
-                                            </div>
+
                                         </div>
+                                        </div>
+                                        <div className="absolute bottom-40 right-20">
+                                            <div className="flex flex-col justify-center items-center pt-12">
+                                            <div
+                                                className="w-3/4 bg-white flex flex-row items-center justify-center rounded-sm"
+                                                onClick={handleMarkedIssuesOpen}
+                                            >
+                                                <label>2 article(s) left</label>
+                                            </div>
+                                            <button
+                                                className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                                                onClick={() => {
+                                                setIsFeedback(false);
+                                                Router.push("/");
+                                                }}
+                                            >
+                                                NEXT
+                                            </button>
+                                            <button
+                                                className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                                                onClick={() => {
+                                                setReviewMode(true);
+                                                
+                                                }}
+                                            >
+                                                REVIEW
+                                            </button>
+                                             <button
+                                                className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                                                onClick={() => {
+                                                setReviewMode(true);
+                                                
+                                                }}
+                                            >
+                                                END THE DAY
+                                            </button>
+                                            </div>
                                         </div>
                                     </>
                                 )}
@@ -260,120 +327,7 @@ export default function Submitted(){
                     </Grid>
                 </Grid>
 
-                <Modal
-                    open={guideOpen}
-                    onClose={handleGuideClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                    >
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
-                        <div className="flex flex-row space-x-8">
-                        <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                            1
-                        </div>
-                        <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                            2
-                        </div>
-                        <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                            3
-                        </div>
-                        </div>
-
-                        
-                        <div className="pt-6 px-4">
-                        <div className="text-black text-3xl">
-                            Show GIFs one by one, player can click from top left corner to
-                            switch
-                        </div>
-                        <div className="text-black text-3xl">
-                            1) Drag a sticker to mark an issue
-                        </div>
-                        <div className="text-black text-3xl">
-                            2) Drag back to remove it
-                        </div>
-                        <div className="text-black text-3xl">
-                            3) Drag a sticker to the (?) to learn more about it
-                        </div>
-                        </div>
-
-
-                        <div className="flex justify-end pt-4">
-                        <button
-                            className="px-4 py-2 bg-white text-3xl"
-                            onClick={handleGuideClose}
-                        >
-                            Got it!
-                        </button>
-                        </div>
-                    </div>
-                </Modal>
-                <Modal
-                open={markedIssuesOpen}
-                onClose={handleMarkedIssuesClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-                >
-                <div className="absolute  left-1/2 -translate-x-1/2 bottom-0 bg-gradient-to-b from-[#FF7575] to-[#FFD0D0] pt-6 w-[800px]">
-                    <img
-                    src="/images/MarkCloseIcon.svg"
-                    className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                    onClick={handleMarkedIssuesClose}
-                    ></img>
-                    <div className="text-3xl text-center font-bold underline ">
-                    MARKED ISSUES
-                    </div>
-                    <div className="pt-6 px-4">
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title uses dramatic punctations!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        Text Text Text Text
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    </div>
-                    <div className="flex justify-center pt-12">
-                    <button
-                        className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
-                        onClick={() => {
-                        
-                        setIsFeedback(true);
-                        
-                        }}
-                    >
-                        SUBMIT
-                    </button>
-                    </div>
-                </div>
-                </Modal>
+             
                     
             </div>
           
