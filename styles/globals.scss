@@ -101,3 +101,17 @@
     background-color: #FFD0D0; /* For browsers that do not support gradients */
     background-image: linear-gradient(0deg, #FFD0D0, #FF7575 );
   }
+  @keyframes buttonTransition {
+    from {
+      r: 20%;
+    }
+    to {
+      r: 40%;
+    }
+  }
+  
+  .innerCircle {
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-name: buttonTransition;
+  }

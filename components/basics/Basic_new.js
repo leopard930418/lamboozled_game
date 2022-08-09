@@ -81,13 +81,14 @@ export default function Basic_new(){
                             <Grid item xs={1}>
                                 <div className="h-full">
                                     <div className="w-full  bg-no-repeat bg-fill">
-                                    <div className={classes.root}>
+                                        <div></div>
+                                        <div className={classes.root}>
                                                 <div className={classes.stats}>
                                                     {/* {!isFeedback && ( */}
                                                     <BorderLinearProgress variant="determinate" value={30} />
                                                     {/* )} */}
                                                 </div>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </Grid>

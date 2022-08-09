@@ -9,48 +9,48 @@ import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 import { withStyles, makeStyles } from "@mui/styles";
-import LinearProgress from "@mui/material/LinearProgress";
+// import LinearProgress from "@mui/material/LinearProgress";
 import Modal from '@mui/material/Modal';
 // MODULES FOR DRAG&DROP
 import Router from "next/router";
 // import MyToolTip from "../base/MyToolTip";
 
-const BorderLinearProgress = withStyles((theme) => {
-    return {
-      root: {
-        width: 30,
-        height: "100%",
-      },
-      colorPrimary: {
-        backgroundColor: "rgba(0, 0, 0, 0.25);",
-      },
-      bar: {
-        transform: ({ value }) => {
-          return `translateY(${value}%) !important`;
-        },
-        backgroundColor: "#FC5757",
-      },
-    };
-  })(LinearProgress);
+// const BorderLinearProgress = withStyles((theme) => {
+//     return {
+//       root: {
+//         width: 30,
+//         height: "100%",
+//       },
+//       colorPrimary: {
+//         backgroundColor: "rgba(0, 0, 0, 0.25);",
+//       },
+//       bar: {
+//         transform: ({ value }) => {
+//           return `translateY(${value}%) !important`;
+//         },
+//         backgroundColor: "#FC5757",
+//       },
+//     };
+//   })(LinearProgress);
 
-  const useStyles = makeStyles({
-    root: {
-      flexGrow: 1,
-      height: 638,
-      gap: 10,
-      display: "flex",
-      position: "fixed",
-    },
-    stats: {
-      display: "flex",
-      alignItems: "center",
-      flexDirection: "row",
-    },
-  });
+//   const useStyles = makeStyles({
+//     root: {
+//       flexGrow: 1,
+//       height: 638,
+//       gap: 10,
+//       display: "flex",
+//       position: "fixed",
+//     },
+//     stats: {
+//       display: "flex",
+//       alignItems: "center",
+//       flexDirection: "row",
+//     },
+//   });
   
 export default function Submitted(){
     const classes = useStyles();
-    const [isFeedback, setIsFeedback] = useState(false);
+    // const [isFeedback, setIsFeedback] = useState(false);
     const contentData = content;
     const [guideOpen, setGuideOpen] = useState(false);
     const handleGuideOpen = () => setGuideOpen(true);
@@ -71,7 +71,7 @@ export default function Submitted(){
                             -translate-y-1/2 bg-[url('/images/feedback.svg')]`}
                 > */}
                 {/* background image mapping */}
-                {reviewMode?(<div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat" >
+                {reviewMode?(<div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] bg-no-repeat" >
                 </div>):(<div className="absolute  bg-cover bg-no-repeat h-[850px] top-0 left-0 ml-20 -translate-y-16 w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')]" >
                 </div>)}
                 {/* background image mapping */}
@@ -147,7 +147,7 @@ export default function Submitted(){
 
                                             <MyImage src="/images/AlertPanel.svg" className="absolute right-[10%] top-48 w-[769px] h-[238px]  break-words p-8"
                                             >
-                                                <span className=" text-3xl">When an article’s title uses dramatic punctuations, it stirs up sheep's emotion...
+                                                <span className=" text-3xl">When an article’s title uses dramatic  punctuations, it stirs up sheep's emotion...
                                                              When we're emotional, we tend to neglect the validity of evidence and the flow of logic. 
                                                 </span>
                                             </MyImage>
@@ -246,7 +246,7 @@ export default function Submitted(){
                                             <button
                                                 className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                                                 onClick={() => {
-                                                setIsFeedback(false);
+                                                // setIsFeedback(false);
                                                 Router.push("/");
                                                 }}
                                             >
