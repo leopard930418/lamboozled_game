@@ -49,7 +49,7 @@ import Router from "next/router";
 //   });
   
 export default function Submitted(){
-    const classes = useStyles();
+    // const classes = useStyles();
     // const [isFeedback, setIsFeedback] = useState(false);
     const contentData = content;
     const [guideOpen, setGuideOpen] = useState(false);
