@@ -140,23 +140,27 @@ export default function Submitted(){
                                             <MyImage src="/images/contentImage1.svg" className="w-60 h-36"/>
                                         </div>
                                         <div>
-                                            <div className="absolute top-20  right-[77%] w-16 h-16 rounded-full border-4 border-red-600 ">
-                                            </div>
+                                            <svg  className="absolute top-16 left-[16%] button" expanded = "true" height = "100px" width = "100px" 
+                                                onClick={() => {
+                                                    console.log("help clicked");
+                                                    handleGuideOpen();
+                                                }}
+                                            >
+                                            <circle className = "innerCircle" cx = "50%" stroke = "#FF4040" strokeWidth = "10%" cy = "50%" r = "25%" fill = "none"/>
+                                            </svg>
                                             <MyImage src="/images/BossSmall.svg" className="absolute right-[55%] top-10 w-[134px] h-[170px]"/>
                                             
 
                                             <MyImage src="/images/AlertPanel.svg" className="absolute right-[10%] top-48 w-[769px] h-[238px]  break-words p-8"
                                             >
                                                 <span className=" text-3xl">When an article’s title uses dramatic  punctuations, it stirs up sheep's emotion...
-                                                             When we're emotional, we tend to neglect the validity of evidence and the flow of logic. 
+                                                                When we're emotional, we tend to neglect the validity of evidence and the flow of logic. 
                                                 </span>
                                             </MyImage>
                                             <MyImage src="/images/ArrowYellow.svg" className="cursor-pointer absolute right-[5.5%] top-[54%]  w-[80px] h-[79px]"
                                                     onClick={()=>{setReviewMode(false);
                                                     }}        
                                             />
-
-                                            
                                         </div>
                                         
                                         <div className="pr-4">
