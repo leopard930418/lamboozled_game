@@ -151,9 +151,9 @@ export default function Submitted(){
                                                              When we're emotional, we tend to neglect the validity of evidence and the flow of logic. 
                                                 </span>
                                             </MyImage>
-                                            <MyImage src="/images/ArrowYellow.svg" className="absolute right-[5.5%] top-[54%]  w-[80px] h-[79px]"
+                                            <MyImage src="/images/ArrowYellow.svg" className="cursor-pointer absolute right-[5.5%] top-[54%]  w-[80px] h-[79px]"
                                                     onClick={()=>{setReviewMode(false);
-                                                                console.log("arrow yellow clicked");}}        
+                                                    }}        
                                             />
 
                                             

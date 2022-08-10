@@ -14,7 +14,7 @@ const styles = {
   // border: '1px solid black',
   position: "relative",
 };
-export const DragDropContainer = ({ children, hideSourceOnDrag, stickers }) => {
+export const DragDropContainer = ({ children, hideSourceOnDrag, stickers, handleMarkedStickers }) => {
   const stickersData=stickers.map((stickerId, index)=>(
         {
         top:5,
@@ -22,7 +22,7 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers }) => {
         stickerId: stickerId,
         }
     ));
-  const markedStickers=[];
+  const [markedStickers, setMarkedStickers]= useState([]);
   console.log(stickersData);
   const [boxes, setBoxes] = useState(stickersData);
   const moveBox = useCallback(
@@ -44,18 +44,29 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers }) => {
         const delta = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
-        moveBox(item.id, left, top);
-        
-        if(left > 0 && left < 400 && top > 60 && top < 400)
-        {
-          console.log("marked ID:" +item.id);
-          //markedStickers = 
 
-        }else{
-          moveBox(item.id, stickersData[item.id].left, stickersData[item.id].top);
+        const index = 0;
+        moveBox(item.id, left, top);
+        //alex added
+        let tempArr = [...markedStickers];
+        // if(left > 0 && left < 400 && top > 60 && top < 400)
+        // {
+        //   console.log("marked ID:" +item.id);
+        //   tempArr.push(item.id);
+        //   handleMarkedStickers(tempArr);
+
+        // }else{
+        //   moveBox(item.id, stickersData[item.id].left, stickersData[item.id].top);
+        //   index = tempArr.indexOf(item.id);
+        //   delete tempArr[index];
+        // }
+        tempArr.push(item.id);
+        setMarkedStickers(tempArr);
+        if(handleMarkedStickers){
+          handleMarkedStickers(tempArr);  
         }
         
-
+        //alex added
         return undefined;
       },
     }),
@@ -70,7 +81,8 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers }) => {
   // alex ended
   return (
     <>
-      <div ref={drop} style={styles}>
+      
+      <div ref={handleMarkedStickers ? drop: undefined} style={styles}>
         {children}
         {Object.keys(boxes).map((key) => {
           const { left, top, stickerId } = boxes[key];
@@ -95,11 +107,14 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers }) => {
             </Box>
           );
         })}
-        <InfoModal
-          guideOpen={guideOpen}
-          stickerId={stickerInfoId}
-          handleGuideClose={handleGuideClose}
-        />
+        {handleMarkedStickers&&(
+          <InfoModal
+            guideOpen={guideOpen}
+            stickerId={stickerInfoId}
+            handleGuideClose={handleGuideClose}
+          />
+        )}
+        
       </div>
     </>
   );

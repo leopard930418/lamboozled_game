@@ -71,6 +71,13 @@ export default function IntroStep_2({handleStepId}){
     // const dropAreaRef = useRef();
     const [markedStickers, setMarkedStickers] = useState([]);
     const handleMarkedStickers = (sti_arr) => setMarkedStickers(sti_arr);
+    const [nextStage, setNextStage] = useState(false);
+    useEffect(() => {
+        if(markedStickers.length > 0) {
+            console.log(markedStickers);
+            setNextStage(true);
+        } 
+    }, [markedStickers]);
     
     return(                 
         <>
@@ -215,11 +222,29 @@ export default function IntroStep_2({handleStepId}){
                     )}
                     
                     <MyImage src="/images/BossMedium.svg" className="absolute right-[15%] bottom-32 w-[310px] h-[395px]"/>
-                    <MyImage src="/images/AlertPanel.svg" className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
-                    >
-                        <span className=" text-3xl">You learn fast! Try dragging a sticker to mark out an issue.
+                    {!nextStage ? (
+                        <MyImage src="/images/AlertPanel.svg" className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
+                        >
+                            <span className=" text-3xl">
+                            You learn fast! Try dragging a sticker to mark out an issue.
+                            </span>
+                        </MyImage>
+                    ):(
+                        <>
+                        <MyImage src="/images/AlertPanel.svg" className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
+                        >
+                        <span className=" text-3xl">
+                        Good job! Sometimes you need to drag multiple stickers to mark out all the issues. Sometimes the article has no issue at all.
                         </span>
-                    </MyImage>
+                        </MyImage>
+                        <MyImage src="/images/ArrowYellow.svg" className="cursor-pointer absolute right-[5.5%] top-[85%]  w-[80px] h-[79px]"
+                        onClick={()=>{
+                                    handleStepId(3);
+                                    }}        
+                        />
+                        </>
+                    )}
+                    
                 </div>                                  
             </div>
           

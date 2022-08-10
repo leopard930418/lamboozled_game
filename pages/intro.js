@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { useState } from 'react'
 import IntroStep_1 from '../components/intro/introStep_1'
 import IntroStep_2 from '../components/intro/introStep_2'
+import IntroStep_3 from '../components/intro/introStep_3'
+import IntroStep_4  from '../components/intro/introStep_4'
 
 export default function Home() {
   const [stepId, setStepId] = useState(1);
@@ -20,6 +22,14 @@ export default function Home() {
       {stepId==2 && (
         <IntroStep_2 handleStepId = {handleStepId} />
       )}
+      {stepId==3 && (
+        <IntroStep_3 handleStepId = {handleStepId} />
+      )}
+      {stepId==4 && (
+        <IntroStep_4 handleStepId = {handleStepId} />
+      )}
+
+
     </div>
   )
 }
