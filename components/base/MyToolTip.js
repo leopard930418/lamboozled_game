@@ -29,7 +29,7 @@ export default function MyToolTip(props) {
 //  console.log(props);
   return (
     <>
-       <BootstrapTooltip placement='top' title={props.title ? props.title : stickerData[props.stickerId].issue}
+       <BootstrapTooltip placement='top' title={props.title ? props.title : stickerData[Number(props.stickerId)-1].issue}
         className={`break-word`}
       >
         <div>

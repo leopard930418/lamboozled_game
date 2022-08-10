@@ -95,7 +95,7 @@ export default function Basic_new(){
                             <Grid item xs={5}>
                                 <div className="pt-24 w-11/12 px-7">
                                     <DndProvider backend={HTML5Backend}>
-                                        <DragDropContainer hideSourceOnDrag={true}>
+                                        <DragDropContainer hideSourceOnDrag={true} stickers={[1,2,3,4]}>
                                         <Grid container columns={10} className="pl-10">
                                             <Grid
                                             item

@@ -14,29 +14,16 @@ const styles = {
   // border: '1px solid black',
   position: "relative",
 };
-export const DragDropContainer = ({ children, hideSourceOnDrag }) => {
-  const [boxes, setBoxes] = useState({
-    1: {
-      top: 5,
-      left: 50 + 0 * 70,
-      stickerId: 1,
-    },
-    2: {
-      top: 5,
-      left: 50 + 1 * 70,
-      stickerId: 2,
-    },
-    3: {
-      top: 5,
-      left: 50 + 2 * 70,
-      stickerId: 3,
-    },
-    4: {
-      top: 5,
-      left: 50 + 3 * 70,
-      stickerId: 4,
-    },
-  });
+export const DragDropContainer = ({ children, hideSourceOnDrag, stickers }) => {
+  const stickersData=stickers.map((stickerId, index)=>(
+        {
+        top:5,
+        left:50 + index * 70,
+        stickerId: stickerId,
+        }
+    ));
+  // console.log(stickersData);
+  const [boxes, setBoxes] = useState(stickersData);
   const moveBox = useCallback(
     (id, left, top) => {
       setBoxes(

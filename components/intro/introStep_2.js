@@ -53,7 +53,7 @@ import { DragDropContainer } from "../dragdrop/DragDropContainer";
 //     },
 //   });
   
-export default function IntroStep_2(){
+export default function IntroStep_2({handleStepId}){
     // const classes = useStyles();
     // const [isFeedback, setIsFeedback] = useState(false);
     const contentData = content;
@@ -70,12 +70,9 @@ export default function IntroStep_2(){
             <div className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/IntroBackground.svg')]"
                 >
-                   
                 {/* background image mapping */}
                 <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat" >
-                    
                 </div>
-                
                 {/* background image mapping */}
                 <Grid container className="h-full">
                     <Grid item xs={12}>
@@ -95,7 +92,7 @@ export default function IntroStep_2(){
                             <Grid item xs={5}>
                                 <div className="pt-24 w-11/12 px-7">
                                     <DndProvider backend={HTML5Backend}>
-                                        <DragDropContainer hideSourceOnDrag={true}>
+                                        <DragDropContainer hideSourceOnDrag={true} stickers={[1,2,]}>
                                         <Grid container columns={10} className="pl-10">
                                             <Grid
                                             item
@@ -200,17 +197,17 @@ export default function IntroStep_2(){
            
                
                 <div>
-                                            <svg  className="absolute top-16 left-[33%]" class = "button"  expanded = "true" height = "100px" width = "100px" >
-                                            <circle class = "innerCircle" cx = "50%" stroke = "#FF4040" stroke-width = "10%" cy = "50%" r = "25%" fill = "none"/>
-                                            </svg>
-                                            <MyImage src="/images/BossMedium.svg" className="absolute right-[15%] bottom-32 w-[310px] h-[395px]"/>
-                                            <MyImage src="/images/AlertPanel.svg" className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
-                                            >
-                                                <span className=" text-3xl">This is your desk, and you’ll be able to use the 
-                                                computer after you get promoted. For now, please click the question mark to see your task. 
-                                                </span>
-                                            </MyImage>
-                                            </div>                                  
+                    <svg  className="absolute top-16 left-[33%]" class = "button"  expanded = "true" height = "100px" width = "100px" >
+                        <circle class = "innerCircle" cx = "50%" stroke = "#FF4040" stroke-width = "10%" cy = "50%" r = "25%" fill = "none"/>
+                    </svg>
+                    <MyImage src="/images/BossMedium.svg" className="absolute right-[15%] bottom-32 w-[310px] h-[395px]"/>
+                    <MyImage src="/images/AlertPanel.svg" className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
+                    >
+                        <span className=" text-3xl">This is your desk, and you’ll be able to use the 
+                        computer after you get promoted. For now, please click the question mark to see your task. 
+                        </span>
+                    </MyImage>
+                </div>                                  
             </div>
           
         </>

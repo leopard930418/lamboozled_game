@@ -270,6 +270,15 @@ export default function Submitted(){
                                             >
                                                 END THE DAY
                                             </button>
+                                            <button
+                                                className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                                                onClick={() => {
+                                                // setReviewMode(true);
+                                                Router.push("/intro");
+                                                }}
+                                            >
+                                                INTRODUCTION
+                                            </button>
                                             </div>
                                         </div>
                                     </>

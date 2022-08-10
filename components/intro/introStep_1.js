@@ -48,18 +48,17 @@ const BorderLinearProgress = withStyles((theme) => {
     },
   });
   
-export default function IntroStep_1(stepId, handleStepId){
+export default function IntroStep_1({handleStepId}){
     const classes = useStyles();
     const [isFeedback, setIsFeedback] = useState(false);
     const contentData = content;
     const [guideOpen, setGuideOpen] = useState(false);
     const handleGuideOpen = () => setGuideOpen(true);
     const handleGuideClose = () => setGuideOpen(false);
-    const [unlock, setUnlock] = useState(true);
-    const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
-    const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
-    const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
-    const [reviewMode, setReviewMode] = useState(false);
+    // const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
+    // const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
+    // const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
+    // const [reviewMode, setReviewMode] = useState(false);
   
     return(
         <>
@@ -106,10 +105,10 @@ export default function IntroStep_1(stepId, handleStepId){
                                                 <CustomImage src="/images/Icon2.svg" className="h-8 " />
                                             </Grid>
                                             <Grid item lg={3}>
-                                                <CustomImage src="/images/Icon3.svg" className="h-8 opacity-75" style={{backgroundColor: '#000000', }}/>
+                                                {/* <CustomImage src="/images/Icon3.svg" className="h-8 opacity-75" style={{backgroundColor: '#000000', }}/> */}
                                             </Grid>
                                             <Grid item lg={3}>
-                                                <CustomImage src="/images/Icon4.svg" className="h-8 opacity-75" style={{backgroundColor: '#000000', }}/>
+                                                {/* <CustomImage src="/images/Icon4.svg" className="h-8 opacity-75" style={{backgroundColor: '#000000', }}/> */}
                                             </Grid>
                                         </Grid>
                                         <Grid
@@ -118,10 +117,7 @@ export default function IntroStep_1(stepId, handleStepId){
                                         className="border-2 border-black flex justify-center"
                                         >
                                             <button
-                                            onClick={() => {
-                                                console.log("help clicked");
-                                                handleGuideOpen();
-                                            }}
+                                            
                                             >
                                             <CustomImage
                                                 src="/images/help.svg"
@@ -165,13 +161,13 @@ export default function IntroStep_1(stepId, handleStepId){
                                                 3) Drag a sticker to the (?) to learn more about it
                                             </div>
                                             </div>
-
-
                                             <div className="flex justify-end pt-4">
                                             <button
                                                 className="px-4 py-2 bg-white text-3xl"
                                                 onClick={()=>{handleGuideClose();
-                                                    handleStepId(2);}}
+                                                    handleStepId(2);
+                                                    console.log("introStep_1: set id" + 2);    
+                                                }}
 
                                             >
                                                 Got it!
@@ -185,7 +181,12 @@ export default function IntroStep_1(stepId, handleStepId){
                                     <div>
                                         {!guideOpen && (
                                             <>
-                                            <svg  className="absolute top-16 left-[33%]" class = "button"  expanded = "true" height = "100px" width = "100px" >
+                                            <svg  className="absolute top-16 left-[33%]" class = "button"  expanded = "true" height = "100px" width = "100px" 
+                                                onClick={() => {
+                                                    console.log("help clicked");
+                                                    handleGuideOpen();
+                                                }}
+                                            >
                                             <circle class = "innerCircle" cx = "50%" stroke = "#FF4040" stroke-width = "10%" cy = "50%" r = "25%" fill = "none"/>
                                             </svg>
                                             <MyImage src="/images/BossMedium.svg" className="absolute right-[15%] bottom-32 w-[310px] h-[395px]"/>
@@ -220,23 +221,7 @@ export default function IntroStep_1(stepId, handleStepId){
                                 </div>
                             </Grid>
                             <Grid item xs={5}>
-                                {/* <div className=" justify-center pt-[30%] pl-[20%] p-20">
-                                    <MyImage
-                                        src="/images/unlock.svg"
-                                        className={`h-[178px] w-[146px] ml-[25%]  ${
-                                        unlock ? "" : "hidden"
-                                        }`}
-                                        onClick={() => {
-                                        setUnlock(false);
-                                        }}
-                                    ></MyImage>
-                                    <MyImage
-                                        src="/images/tobeunlocked.svg"
-                                        className={` h-[27px] w-[220px] mt-[10%] ml-[15%] ${
-                                        unlock ? "" : "hidden"
-                                        }`}
-                                    ></MyImage>
-                                </div> */}
+                                
                             </Grid>
                         </Grid>
                     </Grid>
