@@ -22,7 +22,8 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers }) => {
         stickerId: stickerId,
         }
     ));
-  // console.log(stickersData);
+  const markedStickers=[];
+  console.log(stickersData);
   const [boxes, setBoxes] = useState(stickersData);
   const moveBox = useCallback(
     (id, left, top) => {
@@ -44,6 +45,17 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers }) => {
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
         moveBox(item.id, left, top);
+        
+        if(left > 0 && left < 400 && top > 60 && top < 400)
+        {
+          console.log("marked ID:" +item.id);
+          //markedStickers = 
+
+        }else{
+          moveBox(item.id, stickersData[item.id].left, stickersData[item.id].top);
+        }
+        
+
         return undefined;
       },
     }),

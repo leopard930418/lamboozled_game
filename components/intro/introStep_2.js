@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Container } from "postcss";
 import CustomImage from "../base/CustomImage";
 import MyImage from "../base/MyImage";
@@ -60,12 +60,19 @@ export default function IntroStep_2({handleStepId}){
     const [guideOpen, setGuideOpen] = useState(false);
     const handleGuideOpen = () => setGuideOpen(true);
     const handleGuideClose = () => setGuideOpen(false);
+
+    const [alertShow, setAlertShow] = useState(true);
+    const handleAlertClose = () => setAlertShow(false);
+
     const [unlock, setUnlock] = useState(true);
     const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
     const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
     const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
+    // const dropAreaRef = useRef();
+    const [markedStickers, setMarkedStickers] = useState([]);
+    const handleMarkedStickers = (sti_arr) => setMarkedStickers(sti_arr);
     
-    return(
+    return(                 
         <>
             <div className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/IntroBackground.svg')]"
@@ -92,7 +99,7 @@ export default function IntroStep_2({handleStepId}){
                             <Grid item xs={5}>
                                 <div className="pt-24 w-11/12 px-7">
                                     <DndProvider backend={HTML5Backend}>
-                                        <DragDropContainer hideSourceOnDrag={true} stickers={[1,2,]}>
+                                        <DragDropContainer hideSourceOnDrag={true} stickers={[1,2,]} handleMarkedStickers = {handleMarkedStickers}>
                                         <Grid container columns={10} className="pl-10">
                                             <Grid
                                             item
@@ -124,10 +131,10 @@ export default function IntroStep_2({handleStepId}){
                                             className="border-2 border-black flex justify-center"
                                             >
                                                 <button
-                                                onClick={() => {
-                                                    console.log("help clicked");
-                                                    handleGuideOpen();
-                                                }}
+                                                // onClick={() => {
+                                                //     console.log("help clicked");
+                                                //     handleGuideOpen();
+                                                // }}
                                                 >
                                                 <CustomImage
                                                     src="/images/help.svg"
@@ -136,27 +143,28 @@ export default function IntroStep_2({handleStepId}){
                                                 </button>
                                             </Grid>
                                         </Grid>
-
-                                        <div className="flex justify-center pt-4">
-                                            <MyImage src="/images/contentImage1.svg" className="w-60 h-36"/>
-                                        </div>
-                                       
-                                        <div className="pr-4">
-                                            <div className="text-2xl text-black font-bold text-center pt-2 ">
-                                            {contentData[0].title}
+                                        {/* <div ref={dropAreaRef}> */}
+                                            <div className="flex justify-center pt-4">
+                                                <MyImage src="/images/contentImage1.svg" className="w-60 h-36"/>
                                             </div>
-                                            <div className="flex flex-row justify-between">
-                                            <div className="text-xl text-black pt-2 ">
-                                                {contentData[0].author}
+                                        
+                                            <div className="pr-4">
+                                                <div className="text-2xl text-black font-bold text-center pt-2 ">
+                                                {contentData[0].title}
+                                                </div>
+                                                <div className="flex flex-row justify-between">
+                                                <div className="text-xl text-black pt-2 ">
+                                                    {contentData[0].author}
+                                                </div>
+                                                <div className="text-xl text-black pt-2 ">
+                                                    {contentData[0].source}
+                                                </div>
+                                                </div>
+                                                <div className="text-xl text-black pt-2 overflow-auto h-36">
+                                                {contentData[0].content}
+                                                </div>
                                             </div>
-                                            <div className="text-xl text-black pt-2 ">
-                                                {contentData[0].source}
-                                            </div>
-                                            </div>
-                                            <div className="text-xl text-black pt-2 overflow-auto h-36">
-                                            {contentData[0].content}
-                                            </div>
-                                        </div>
+                                        {/* </div> */}
                                         </DragDropContainer>
                                     </DndProvider>
 
@@ -193,18 +201,23 @@ export default function IntroStep_2({handleStepId}){
                        
                     </Grid>
                 </Grid>
-
-           
-               
                 <div>
-                    <svg  className="absolute top-16 left-[33%]" class = "button"  expanded = "true" height = "100px" width = "100px" >
-                        <circle class = "innerCircle" cx = "50%" stroke = "#FF4040" stroke-width = "10%" cy = "50%" r = "25%" fill = "none"/>
-                    </svg>
+                    ${alertShow&&(
+                        <svg  className="absolute top-12 left-[12.5%] button" expanded = "true" height = "150px" width = "150px" 
+                        onClick={() => {
+                            console.log("Alert clicked");
+                            handleAlertClose();
+                            console.log(alertShow);
+                        }}
+                        >
+                            <circle className = "innerCircle" cx = "50%" stroke = "#FF4040" strokeWidth = "10%" cy = "50%" r = "25%" fill = "none"/>
+                        </svg>
+                    )}
+                    
                     <MyImage src="/images/BossMedium.svg" className="absolute right-[15%] bottom-32 w-[310px] h-[395px]"/>
                     <MyImage src="/images/AlertPanel.svg" className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
                     >
-                        <span className=" text-3xl">This is your desk, and you’ll be able to use the 
-                        computer after you get promoted. For now, please click the question mark to see your task. 
+                        <span className=" text-3xl">You learn fast! Try dragging a sticker to mark out an issue.
                         </span>
                     </MyImage>
                 </div>                                  
