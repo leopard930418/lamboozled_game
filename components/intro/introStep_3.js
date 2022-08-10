@@ -55,15 +55,7 @@ const BorderLinearProgress = withStyles((theme) => {
   
 export default function IntroStep_3({handleStepId}){
     const classes = useStyles();
-    const [isFeedback, setIsFeedback] = useState(false);
     const contentData = content;
-    const [guideOpen, setGuideOpen] = useState(false);
-    const handleGuideOpen = () => setGuideOpen(true);
-    const handleGuideClose = () => setGuideOpen(false);
-    
-    const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
-    const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
-    const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
     
     return(
         <>
@@ -85,7 +77,7 @@ export default function IntroStep_3({handleStepId}){
                                         <div className={classes.root}>
                                                 <div className={classes.stats}>
                                                     {/* {!isFeedback && ( */}
-                                                    <BorderLinearProgress variant="determinate" value={31} />
+                                                    <BorderLinearProgress variant="determinate" value={100} />
                                                     {/* )} */}
                                                 </div>
                                         </div>
@@ -111,10 +103,6 @@ export default function IntroStep_3({handleStepId}){
                                             className="border-2 border-black flex justify-center"
                                             >
                                                 <button
-                                                onClick={() => {
-                                                    console.log("help clicked");
-                                                    handleGuideOpen();
-                                                }}
                                                 >
                                                 <CustomImage
                                                     src="/images/help.svg"
@@ -169,7 +157,6 @@ export default function IntroStep_3({handleStepId}){
                                     <div
                                         className="Alex_btn_gra_1 translate-x-6 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md"
                                         onClick={()=>{
-                                            handleMarkedIssuesOpen();
                                         }}
                                     >
                                         <label>10 issue(s)</label>

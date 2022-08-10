@@ -1,3 +1,4 @@
+//alex created
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -28,7 +29,6 @@ export default function Home() {
       {stepId==4 && (
         <IntroStep_4 handleStepId = {handleStepId} />
       )}
-
 
     </div>
   )

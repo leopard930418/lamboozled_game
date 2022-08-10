@@ -1,8 +1,8 @@
+//alex created
 import React, { useEffect, useState, useRef } from "react";
 import { Container } from "postcss";
 import CustomImage from "../base/CustomImage";
 import MyImage from "../base/MyImage";
-// import CustomImage_new from "../base/CustomImage_new";
 // FOR IMPORTING ARITCLE DATA
 import content from "../../public/assets/articles.json";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -10,7 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 import { withStyles, makeStyles } from "@mui/styles";
-// import LinearProgress from "@mui/material/LinearProgress";
 import Modal from '@mui/material/Modal';
 import Router from "next/router";
   
@@ -18,56 +17,12 @@ import Router from "next/router";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContainer } from "../dragdrop/DragDropContainer";
-// import MyToolTip from "../base/MyToolTip";
 
-// const BorderLinearProgress = withStyles((theme) => {
-//     return {
-//       root: {
-//         width: 30,
-//         height: "100%",
-//       },
-//       colorPrimary: {
-//         backgroundColor: "rgba(0, 0, 0, 0.25);",
-//       },
-//       bar: {
-//         transform: ({ value }) => {
-//           return `translateY(${value}%) !important`;
-//         },
-//         backgroundColor: "#FC5757",
-//       },
-//     };
-//   })(LinearProgress);
-
-//   const useStyles = makeStyles({
-//     root: {
-//       flexGrow: 1,
-//       height: 638,
-//       gap: 10,
-//       display: "flex",
-//       position: "fixed",
-//     },
-//     stats: {
-//       display: "flex",
-//       alignItems: "center",
-//       flexDirection: "row",
-//     },
-//   });
-  
 export default function IntroStep_2({handleStepId}){
-    // const classes = useStyles();
-    // const [isFeedback, setIsFeedback] = useState(false);
+  
     const contentData = content;
-    const [guideOpen, setGuideOpen] = useState(false);
-    const handleGuideOpen = () => setGuideOpen(true);
-    const handleGuideClose = () => setGuideOpen(false);
-
     const [alertShow, setAlertShow] = useState(true);
     const handleAlertClose = () => setAlertShow(false);
-
-    const [unlock, setUnlock] = useState(true);
-    const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
-    const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
-    const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
     // const dropAreaRef = useRef();
     const [markedStickers, setMarkedStickers] = useState([]);
     const handleMarkedStickers = (sti_arr) => setMarkedStickers(sti_arr);
@@ -95,11 +50,7 @@ export default function IntroStep_2({handleStepId}){
                                 <div className="h-full">
                                     <div className="w-full  bg-no-repeat bg-fill">
                                         <div></div>
-                                        {/* <div className={classes.root}>
-                                                <div className={classes.stats}>
-                                                    <BorderLinearProgress variant="determinate" value={30} />
-                                                </div>
-                                        </div> */}
+                                    
                                     </div>
                                 </div>
                             </Grid>
@@ -114,23 +65,6 @@ export default function IntroStep_2({handleStepId}){
                                             lg={8}
                                             className="border-2 border-black flex justify-center p-6"
                                             >
-                                                {/* <Grid item lg={3}>
-                                                    <div>
-                                                        <CustomImage_new
-                                                        src="/images/Icon1.svg"
-                                                        className="h-8"
-                                                        />
-                                                    </div>
-                                                </Grid>
-                                                <Grid item lg={3}>
-                                                    <CustomImage src="/images/Icon2.svg" className="h-8" />
-                                                </Grid>
-                                                <Grid item lg={3}>
-                                                    <CustomImage src="/images/Icon3.svg" className="h-8" />
-                                                </Grid>
-                                                <Grid item lg={3}>
-                                                    <CustomImage src="/images/Icon4.svg" className="h-8" />
-                                                </Grid> */}
                                             </Grid>
                                             <Grid
                                             item
@@ -138,10 +72,7 @@ export default function IntroStep_2({handleStepId}){
                                             className="border-2 border-black flex justify-center"
                                             >
                                                 <button
-                                                // onClick={() => {
-                                                //     console.log("help clicked");
-                                                //     handleGuideOpen();
-                                                // }}
+                                              
                                                 >
                                                 <CustomImage
                                                     src="/images/help.svg"
@@ -150,7 +81,6 @@ export default function IntroStep_2({handleStepId}){
                                                 </button>
                                             </Grid>
                                         </Grid>
-                                        {/* <div ref={dropAreaRef}> */}
                                             <div className="flex justify-center pt-4">
                                                 <MyImage src="/images/contentImage1.svg" className="w-60 h-36"/>
                                             </div>
@@ -171,7 +101,6 @@ export default function IntroStep_2({handleStepId}){
                                                 {contentData[0].content}
                                                 </div>
                                             </div>
-                                        {/* </div> */}
                                         </DragDropContainer>
                                     </DndProvider>
 

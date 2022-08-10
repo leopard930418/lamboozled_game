@@ -277,7 +277,7 @@ export default function Submitted(){
                                                 Router.push("/intro");
                                                 }}
                                             >
-                                                INTRODUCTION
+                                                Tutorial
                                             </button>
                                             </div>
                                         </div>

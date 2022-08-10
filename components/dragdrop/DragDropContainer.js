@@ -45,21 +45,21 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers, handle
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
 
-        const index = 0;
+        let index = 0;
         moveBox(item.id, left, top);
         //alex added
         let tempArr = [...markedStickers];
-        // if(left > 0 && left < 400 && top > 60 && top < 400)
-        // {
-        //   console.log("marked ID:" +item.id);
-        //   tempArr.push(item.id);
-        //   handleMarkedStickers(tempArr);
+        if(left > 0 && left < 400 && top > 60 && top < 400)
+        {
+          console.log("marked ID:" +item.id);
+          tempArr.push(item.id);
+          handleMarkedStickers(tempArr);
 
-        // }else{
-        //   moveBox(item.id, stickersData[item.id].left, stickersData[item.id].top);
-        //   index = tempArr.indexOf(item.id);
-        //   delete tempArr[index];
-        // }
+        }else{
+          moveBox(item.id, stickersData[item.id].left, stickersData[item.id].top);
+          index = tempArr.indexOf(item.id);
+          delete tempArr[index];
+        }
         tempArr.push(item.id);
         setMarkedStickers(tempArr);
         if(handleMarkedStickers){

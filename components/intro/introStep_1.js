@@ -55,11 +55,6 @@ export default function IntroStep_1({handleStepId}){
     const [guideOpen, setGuideOpen] = useState(false);
     const handleGuideOpen = () => setGuideOpen(true);
     const handleGuideClose = () => setGuideOpen(false);
-    // const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
-    // const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
-    // const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
-    // const [reviewMode, setReviewMode] = useState(false);
-  
     return(
         <>
             <div></div>
@@ -93,21 +88,15 @@ export default function IntroStep_1({handleStepId}){
 
                                             <Grid item lg={3}>
                                                 <div>
-                                                    <CustomImage
-                                                    src="/images/Icon1.svg"
-                                                    className="h-8 opacity-75 "
-                                                    />
-                                                
+                                                    <CustomImage src="/images/Icon1.svg" className="h-8 " />
                                                 </div>
                                             </Grid>
                                             <Grid item lg={3}>
                                                 <CustomImage src="/images/Icon2.svg" className="h-8 " />
                                             </Grid>
                                             <Grid item lg={3}>
-                                                {/* <CustomImage src="/images/Icon3.svg" className="h-8 opacity-75" style={{backgroundColor: '#000000', }}/> */}
                                             </Grid>
                                             <Grid item lg={3}>
-                                                {/* <CustomImage src="/images/Icon4.svg" className="h-8 opacity-75" style={{backgroundColor: '#000000', }}/> */}
                                             </Grid>
                                         </Grid>
                                         <Grid
@@ -115,13 +104,8 @@ export default function IntroStep_1({handleStepId}){
                                         lg={2}
                                         className="border-2 border-black flex justify-center"
                                         >
-                                            <button
-                                            
-                                            >
-                                            <CustomImage
-                                                src="/images/help.svg"
-                                                className="h-8"
-                                            />
+                                            <button >
+                                                <CustomImage src="/images/help.svg" className="h-8" />
                                             </button>
                                         </Grid>
                                     </Grid>
