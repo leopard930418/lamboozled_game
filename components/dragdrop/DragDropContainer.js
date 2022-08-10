@@ -14,7 +14,7 @@ const styles = {
   // border: '1px solid black',
   position: "relative",
 };
-export const DragDropContainer = ({ children, hideSourceOnDrag, stickers, handleMarkedStickers }) => {
+export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], handleMarkedStickers }) => {
   let stickersData=stickers.map((stickerId, index)=>(
         {
         top:5,
