@@ -64,6 +64,8 @@ export default function Basic_new(){
     const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
     const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
     const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
+    const [markedStickers, setMarkedStickers] = useState([]);
+    const handleMarkedStickers = (sti_arr) => setMarkedStickers(sti_arr);
     
     return(
         <>
@@ -95,70 +97,50 @@ export default function Basic_new(){
                             <Grid item xs={5}>
                                 <div className="pt-24 w-11/12 px-7">
                                     <DndProvider backend={HTML5Backend}>
-                                        <DragDropContainer hideSourceOnDrag={true} stickers={[1,2,3,4]}>
-                                        <Grid container columns={10} className="pl-10">
-                                            <Grid
-                                            item
-                                            container
-                                            lg={8}
-                                            className="border-2 border-black flex justify-center p-6"
-                                            >
-                                                {/* <Grid item lg={3}>
-                                                    <div>
-                                                        <CustomImage_new
-                                                        src="/images/Icon1.svg"
-                                                        className="h-8"
-                                                        />
-                                                    </div>
-                                                </Grid>
-                                                <Grid item lg={3}>
-                                                    <CustomImage src="/images/Icon2.svg" className="h-8" />
-                                                </Grid>
-                                                <Grid item lg={3}>
-                                                    <CustomImage src="/images/Icon3.svg" className="h-8" />
-                                                </Grid>
-                                                <Grid item lg={3}>
-                                                    <CustomImage src="/images/Icon4.svg" className="h-8" />
-                                                </Grid> */}
-                                            </Grid>
-                                            <Grid
-                                            item
-                                            lg={2}
-                                            className="border-2 border-black flex justify-center"
-                                            >
-                                                <button
-                                                onClick={() => {
-                                                    console.log("help clicked");
-                                                    handleGuideOpen();
-                                                }}
+                                        <DragDropContainer hideSourceOnDrag={true} stickers={[1,2,3,4]} handleMarkedStickers = {handleMarkedStickers}>
+                                            <Grid container columns={10} className="pl-10">
+                                                <Grid
+                                                item
+                                                container
+                                                lg={8}
+                                                className="border-2 border-black flex justify-center p-6"
                                                 >
-                                                <CustomImage
-                                                    src="/images/help.svg"
-                                                    className="h-8"
-                                                />
-                                                </button>
+                                            
+                                                </Grid>
+                                                <Grid
+                                                item
+                                                lg={2}
+                                                className="border-2 border-black flex justify-center"
+                                                >
+                                                    <button
+                                                    >
+                                                    <CustomImage
+                                                        src="/images/help.svg"
+                                                        className="h-8"
+                                                    />
+                                                    </button>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
 
-                                        <div className="flex justify-center pt-4">
-                                            <MyImage src="/images/contentImage1.svg" className="w-60 h-36"/>
-                                        </div>
-                                        <div className="pr-4">
-                                            <div className="text-2xl text-black font-bold text-center pt-2 ">
-                                            {contentData[0].title}
+                                            <div className="flex justify-center pt-4">
+                                                <MyImage src="/images/contentImage1.svg" className="w-60 h-36"/>
                                             </div>
-                                            <div className="flex flex-row justify-between">
-                                            <div className="text-xl text-black pt-2 ">
-                                                {contentData[0].author}
+                                            <div className="pr-4">
+                                                <div className="text-2xl text-black font-bold text-center pt-2 ">
+                                                {contentData[0].title}
+                                                </div>
+                                                <div className="flex flex-row justify-between">
+                                                <div className="text-xl text-black pt-2 ">
+                                                    {contentData[0].author}
+                                                </div>
+                                                <div className="text-xl text-black pt-2 ">
+                                                    {contentData[0].source}
+                                                </div>
+                                                </div>
+                                                <div className="text-xl text-black pt-2 overflow-auto h-36">
+                                                {contentData[0].content}
+                                                </div>
                                             </div>
-                                            <div className="text-xl text-black pt-2 ">
-                                                {contentData[0].source}
-                                            </div>
-                                            </div>
-                                            <div className="text-xl text-black pt-2 overflow-auto h-36">
-                                            {contentData[0].content}
-                                            </div>
-                                        </div>
                                         </DragDropContainer>
                                     </DndProvider>
                                 </div>

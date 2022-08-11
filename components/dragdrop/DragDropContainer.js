@@ -49,13 +49,23 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
         moveBox(item.id, left, top);
         //alex added
         let tempArr = [...markedStickers];
-        if(left > 0 && left < 400 && top > 60 && top < 400)
+        if(left > 0 && left < 400 && top > 60 && top < 400)//validate correct marking
         {
           console.log("marked ID:" +item.id);
           tempArr.push(item.id);
           handleMarkedStickers(tempArr);
+          
 
         }else{
+          if(left > 300 && left < 360 && top > 0 && top < 30)//validate question marking
+          {
+            
+            //console.log();
+            handleGuideOpen(boxes[item.id].stickerId);
+            handleStickerId(boxes[item.id].stickerId)
+
+          }
+          console.log("left:"+left+"---"+"top:"+top);
           moveBox(item.id, stickersData[item.id].left, stickersData[item.id].top);
           index = tempArr.indexOf(item.id);
           delete tempArr[index];
@@ -98,10 +108,10 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
                 <MyImage 
                     src={`/images/Icon${stickerId}.svg`}
                     className="h-8 w-8"
-                    onClick={() => {
-                      handleStickerId(stickerId);
-                      handleGuideOpen();
-                    }}
+                    // onClick={() => {
+                    //   handleStickerId(stickerId);
+                    //   handleGuideOpen();
+                    // }}
                 />
               </MyToolTip>
             </Box>
