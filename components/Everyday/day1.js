@@ -15,9 +15,11 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContainer } from "../dragdrop/DragDropContainer";
 import MyTimer from "../base/MyTimer";
+import stickers from "../../public/assets/sticker.json";
 
   
 export default function Basic_new(){
+    const stickerData = stickers;
     const [isFeedback, setIsFeedback] = useState(false);
     const contentData = content;
     const [guideOpen, setGuideOpen] = useState(false);
@@ -32,6 +34,7 @@ export default function Basic_new(){
     
     return(
         <>
+            {console.log("stickers:::",markedStickers)}
             <div className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
                 >
@@ -139,7 +142,7 @@ export default function Basic_new(){
                                             handleMarkedIssuesOpen();
                                         }}
                                     >
-                                        <label>10 issue(s)</label>
+                                        <label>{markedStickers} issue(s)</label>
                                         <MyImage src="/images/eye.svg" className="h-8 px-2 w-8" />
                                     </div>
                                     <button
@@ -232,42 +235,16 @@ export default function Basic_new(){
                     MARKED ISSUES
                     </div>
                     <div className="pt-6 px-4">
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title uses dramatic punctations!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        Text Text Text Text
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
-                    <div className="text-black text-xl text-center">
-                        The title is all-captitalized!
-                    </div>
+                        {
+                            markedStickers.map((stikerid)=>{
+                                return(
+                                    <div className="text-black text-xl text-center">
+                                    {stickerData[stikerid-1].issue}
+                                    </div>
+                                )
+                            })
+                        }
+                      
                     </div>
                     <div className="flex justify-center pt-12">
                     <button

@@ -66,8 +66,10 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
         }
         else if(left > 0 && left < 400 && top > 60 && top < 400)//validate correct marking
         {
-          setMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
-          handleMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
+          if(markedStickers.indexOf(boxes[item.id].stickerId) < 0 ){
+            setMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
+            handleMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
+          }
           moveBox(item.id, left, top);
           
         }
@@ -76,6 +78,7 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
           index = tempArr.indexOf(boxes[item.id].stickerId);
           delete tempArr[index];
           setMarkedStickers(tempArr);
+          handleMarkedStickers(tempArr)
         }
         
        
