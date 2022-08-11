@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Basic_new from '../components/basics/Basic_new'
+import StoryDay1 from '../components/Everyday/day1'
 
 
 
@@ -15,6 +16,7 @@ export default function Home() {
         <link rel="icon" href="/site_icon.png" />
       </Head>
       <Basic_new />
+      {/* <StoryDay1 /> */}
 
 
     </div>

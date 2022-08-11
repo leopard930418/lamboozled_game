@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import { blue, lightBlue, red } from "@mui/material/colors";
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
-import { BoltRounded } from "@mui/icons-material";
+// import Typography from '@mui/material/Typography';
+// import { BoltRounded } from "@mui/icons-material";
 import stickers from "../../public/assets/sticker.json";
-import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
+// import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
 
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
@@ -29,14 +29,19 @@ export default function MyToolTip(props) {
 //  console.log(props);
   return (
     <>
-       <BootstrapTooltip placement='top' title={props.title ? props.title : stickerData[Number(props.stickerId)-1].issue}
+      {props.markedStickers.indexOf(props.stickerId) > 0 ? (<BootstrapTooltip placement='top' title={props.title ? props.title : stickerData[props.stickerId].issue}
         className={`break-word`}
       >
         <div>
         {props.children}  
         </div>
       </BootstrapTooltip>
-      
+      ):(
+      <div>
+      {props.children}  
+      </div>
+    )}
+       
     </>
   );
 }

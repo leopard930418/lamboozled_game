@@ -15,15 +15,24 @@ const styles = {
   position: "relative",
 };
 export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], handleMarkedStickers }) => {
+  //alex added
   let stickersData=stickers.map((stickerId, index)=>(
-        {
-        top:5,
-        left:50 + index * 70,
-        stickerId: stickerId,
-        }
-    ));
+    {
+    top:5,
+    left:50 + index * 70,
+    stickerId: stickerId,
+    
+    }
+  ));
+  const [tipShowArr, setShowTipArr] = useState(stickers.map((stickerId, index)=>(
+  {
+    stickerId: false,
+  }
+  )) );
+
+  // console.log(tipShowArr);
   const [markedStickers, setMarkedStickers]= useState([]);
-  console.log(stickersData);
+  //alex ended
   const [boxes, setBoxes] = useState(stickersData);
   const moveBox = useCallback(
     (id, left, top) => {
@@ -37,6 +46,7 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
     },
     [boxes, setBoxes]
   );
+
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.BOX,
@@ -44,50 +54,46 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
         const delta = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
-
         let index = 0;
-        moveBox(item.id, left, top);
+        //moveBox(item.id, left, top);
         //alex added
         let tempArr = [...markedStickers];
-        if(left > 0 && left < 400 && top > 60 && top < 400)//validate correct marking
+        if(left > 300 && left < 360 && top > 0 && top < 30)//validate question marking
         {
-          console.log("marked ID:" +item.id);
-          tempArr.push(item.id);
-          handleMarkedStickers(tempArr);
-          
-
-        }else{
-          if(left > 300 && left < 360 && top > 0 && top < 30)//validate question marking
-          {
-            
-            //console.log();
-            handleGuideOpen(boxes[item.id].stickerId);
-            handleStickerId(boxes[item.id].stickerId)
-
-          }
-          console.log("left:"+left+"---"+"top:"+top);
-          moveBox(item.id, stickersData[item.id].left, stickersData[item.id].top);
-          index = tempArr.indexOf(item.id);
-          delete tempArr[index];
+          handleGuideOpen(boxes[item.id].stickerId);
+          handleStickerId(boxes[item.id].stickerId);
+          moveBox(item.id, item.left, item.top);
         }
-        tempArr.push(item.id);
-        setMarkedStickers(tempArr);
-        if(handleMarkedStickers){
-          handleMarkedStickers(tempArr);  
+        else if(left > 0 && left < 400 && top > 60 && top < 400)//validate correct marking
+        {
+          setMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
+          handleMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
+          moveBox(item.id, left, top);
+          
+        }
+        else{
+          moveBox(item.id, stickersData[item.id].left, stickersData[item.id].top);
+          index = tempArr.indexOf(boxes[item.id].stickerId);
+          delete tempArr[index];
+          setMarkedStickers(tempArr);
         }
         
+       
+    
         //alex added
         return undefined;
       },
     }),
     [moveBox]
   );
+  console.log("markedstickers++++", markedStickers);
   // alex added
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
   const handleGuideClose = () => setGuideOpen(false);
   const [stickerInfoId, setStickerInfoId] = useState(0);
   const handleStickerId = (value) => setStickerInfoId(value);
+ 
   // alex ended
   return (
     <>
@@ -104,7 +110,7 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
               top={top}
               hideSourceOnDrag={hideSourceOnDrag}
             >
-              <MyToolTip stickerId={stickerId}>
+              <MyToolTip stickerId={stickerId} markedStickers={markedStickers}>
                 <MyImage 
                     src={`/images/Icon${stickerId}.svg`}
                     className="h-8 w-8"

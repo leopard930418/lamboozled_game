@@ -1,58 +1,23 @@
+//Alex created
 import React, { useEffect, useState } from "react";
 import { Container } from "postcss";
-import CustomImage from "../base/CustomImage";
-import MyImage from "../base/MyImage";
-// FOR IMPORTING ARITCLE DATA
-import content from "../../public/assets/articles.json";
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
-import { withStyles, makeStyles } from "@mui/styles";
-import LinearProgress from "@mui/material/LinearProgress";
 import Modal from '@mui/material/Modal';
 import Router from "next/router";
-  
-// MODULES FOR DRAG&DROP
+// UserApis
+import CustomImage from "../base/CustomImage";
+import MyImage from "../base/MyImage";
+import content from "../../public/assets/articles.json";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContainer } from "../dragdrop/DragDropContainer";
+import MyTimer from "../base/MyTimer";
 
-const BorderLinearProgress = withStyles((theme) => {
-    return {
-      root: {
-        width: 30,
-        height: "100%",
-      },
-      colorPrimary: {
-        backgroundColor: "rgba(0, 0, 0, 0.25);",
-      },
-      bar: {
-        transform: ({ value }) => {
-          return `translateY(${value}%) !important`;
-        },
-        backgroundColor: "#FC5757",
-      },
-    };
-  })(LinearProgress);
-
-  const useStyles = makeStyles({
-    root: {
-      flexGrow: 1,
-      height: 638,
-      gap: 10,
-      display: "flex",
-      position: "fixed",
-    },
-    stats: {
-      display: "flex",
-      alignItems: "center",
-      flexDirection: "row",
-    },
-  });
   
 export default function Basic_new(){
-    const classes = useStyles();
     const [isFeedback, setIsFeedback] = useState(false);
     const contentData = content;
     const [guideOpen, setGuideOpen] = useState(false);
@@ -70,32 +35,22 @@ export default function Basic_new(){
             <div className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
                 >
-                   
-                {/* background image mapping */}
                 <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat" >
                 </div>
-                {/* background image mapping */}
                 <Grid container className="h-full">
                     <Grid item xs={12}>
                         <Grid container >
                             <Grid item xs={1}>
                                 <div className="h-full">
                                     <div className="w-full  bg-no-repeat bg-fill">
-                                        <div></div>
-                                        <div className={classes.root}>
-                                                <div className={classes.stats}>
-                                                    {/* {!isFeedback && ( */}
-                                                    <BorderLinearProgress variant="determinate" value={30} />
-                                                    {/* )} */}
-                                                </div>
-                                        </div>
+                                        <MyTimer />
                                     </div>
                                 </div>
                             </Grid>
                             <Grid item xs={5}>
                                 <div className="pt-24 w-11/12 px-7">
                                     <DndProvider backend={HTML5Backend}>
-                                        <DragDropContainer hideSourceOnDrag={true} stickers={[1,2,3,4]} handleMarkedStickers = {handleMarkedStickers}>
+                                        <DragDropContainer hideSourceOnDrag={true} stickers={[3,4,]} handleMarkedStickers = {handleMarkedStickers}>
                                             <Grid container columns={10} className="pl-10">
                                                 <Grid
                                                 item
