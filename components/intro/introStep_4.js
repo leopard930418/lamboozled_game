@@ -145,7 +145,7 @@ export default function introStep_4(){
                             </MyImage>
                             <MyImage src="/images/ArrowYellow.svg" className="absolute right-[0.5%] top-[65%]  w-[80px] h-[79px] cursor-pointer"
                                 onClick={()=>{
-                                        Router.push("/submitted");
+                                        Router.push("/feedback");
                                         }}        
                             /></>
                         ):( <>

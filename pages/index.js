@@ -2,12 +2,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Basic_new from '../components/basics/Basic_new'
-import StoryDay1 from '../components/Everyday/day1'
-
-
-
+import StoryDay1 from '../components/story/StoryDay1'
+import StoryDay2 from '../components/story/StoryDay2'
+import { useState } from 'react'
 
 export default function Home() {
+  const [theDay, setTheDay] = useState(1);
+  const handleTheDay = (value) => setTheDay(value);
+  const [meter, setMeter] = useState(50);
+  const handleMeter = (value) => setMeter(value);
   return (
     <div className="bg-black w-screen h-screen">
       <Head>
@@ -16,7 +19,13 @@ export default function Home() {
         <link rel="icon" href="/site_icon.png" />
       </Head>
       {/* <Basic_new /> */}
-      <StoryDay1 />
+      {theDay==1 &&(
+        <StoryDay1 meter = {meter} handelMeter={handleMeter} handleTheDay={handleTheDay} />
+      )}
+      {theDay==2 && (
+        <StoryDay2 meter = {meter} handelMeter={handleMeter} handleTheDay={handleTheDay}/>
+      )}
+      
 
 
     </div>

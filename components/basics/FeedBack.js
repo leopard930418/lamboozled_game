@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container } from "postcss";
 import CustomImage from "../base/CustomImage";
 import MyImage from "../base/MyImage";
+import stickers from "../../public/assets/sticker.json";
 // FOR IMPORTING ARITCLE DATA
 import content from "../../public/assets/articles.json";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -48,9 +49,11 @@ import Router from "next/router";
 //     },
 //   });
   
-export default function Submitted(){
+export default function FeedBack(curArtIndex = 0, meter=50, handleIsFeed,handleCurArtIndex){
     // const classes = useStyles();
     // const [isFeedback, setIsFeedback] = useState(false);
+    const article = content[curArtIndex];
+    const Stickers = stickers;
     const contentData = content;
     const [guideOpen, setGuideOpen] = useState(false);
     const handleGuideOpen = () => setGuideOpen(true);

@@ -192,7 +192,7 @@ export default function Basic_new(){
                                         onClick={() => {
                                         // setCounter(100);
                                         setIsFeedback(true);
-                                        Router.push("/submitted");
+                                        Router.push("/feedback");
                                         }}
                                     >
                                         SUBMIT
@@ -320,7 +320,7 @@ export default function Basic_new(){
                         onClick={() => {
                         // setCounter(100);
                         setIsFeedback(true);
-                        Router.push("/submitted");
+                        Router.push("/feedback");
                         
                         }}
                     >

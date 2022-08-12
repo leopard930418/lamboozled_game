@@ -14,24 +14,26 @@ const styles = {
   // border: '1px solid black',
   position: "relative",
 };
-export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], handleMarkedStickers }) => {
+export const DragDropContainer = ({
+  children,
+  hideSourceOnDrag,
+  stickers = [],
+  handleMarkedStickers,
+}) => {
   //alex added
-  let stickersData=stickers.map((stickerId, index)=>(
-    {
-    top:5,
-    left:50 + index * 70,
+  let stickersData = stickers.map((stickerId, index) => ({
+    top: 10,
+    left: 50 + index * 70,
     stickerId: stickerId,
-    
-    }
-  ));
-  const [tipShowArr, setShowTipArr] = useState(stickers.map((stickerId, index)=>(
-  {
-    stickerId: false,
-  }
-  )) );
+  }));
+  const [tipShowArr, setShowTipArr] = useState(
+    stickers.map((stickerId, index) => ({
+      stickerId: false,
+    }))
+  );
 
   // console.log(tipShowArr);
-  const [markedStickers, setMarkedStickers]= useState([]);
+  const [markedStickers, setMarkedStickers] = useState([]);
   //alex ended
   const [boxes, setBoxes] = useState(stickersData);
   const moveBox = useCallback(
@@ -58,31 +60,30 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
         //moveBox(item.id, left, top);
         //alex added
         let tempArr = [...markedStickers];
-        if(left > 300 && left < 360 && top > 0 && top < 30)//validate question marking
-        {
+        if (left > 300 && left < 360 && top > 0 && top < 30) {
+          //validate question marking
           handleGuideOpen(boxes[item.id].stickerId);
           handleStickerId(boxes[item.id].stickerId);
           moveBox(item.id, item.left, item.top);
-        }
-        else if(left > 0 && left < 400 && top > 60 && top < 400)//validate correct marking
-        {
-          if(markedStickers.indexOf(boxes[item.id].stickerId) < 0 ){
+        } else if (left > 0 && left < 400 && top > 60 && top < 400) {
+          //validate correct marking
+          if (markedStickers.indexOf(boxes[item.id].stickerId) < 0) {
             setMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
             handleMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
           }
           moveBox(item.id, left, top);
-          
-        }
-        else{
-          moveBox(item.id, stickersData[item.id].left, stickersData[item.id].top);
+        } else {
+          moveBox(
+            item.id,
+            stickersData[item.id].left,
+            stickersData[item.id].top
+          );
           index = tempArr.indexOf(boxes[item.id].stickerId);
-          delete tempArr[index];
+          tempArr.splice(index, 1);
           setMarkedStickers(tempArr);
-          handleMarkedStickers(tempArr)
+          handleMarkedStickers(tempArr);
         }
-        
-       
-    
+
         //alex added
         return undefined;
       },
@@ -96,12 +97,11 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
   const handleGuideClose = () => setGuideOpen(false);
   const [stickerInfoId, setStickerInfoId] = useState(0);
   const handleStickerId = (value) => setStickerInfoId(value);
- 
+
   // alex ended
   return (
     <>
-      
-      <div ref={handleMarkedStickers ? drop: undefined} style={styles}>
+      <div ref={handleMarkedStickers ? drop : undefined} style={styles}>
         {children}
         {Object.keys(boxes).map((key) => {
           const { left, top, stickerId } = boxes[key];
@@ -114,26 +114,25 @@ export const DragDropContainer = ({ children, hideSourceOnDrag, stickers=[], han
               hideSourceOnDrag={hideSourceOnDrag}
             >
               <MyToolTip stickerId={stickerId} markedStickers={markedStickers}>
-                <MyImage 
-                    src={`/images/Icon${stickerId}.svg`}
-                    className="h-8 w-8"
-                    // onClick={() => {
-                    //   handleStickerId(stickerId);
-                    //   handleGuideOpen();
-                    // }}
+                <MyImage
+                  src={`/images/Icon${stickerId}.svg`}
+                  className="h-8 w-8"
+                  // onClick={() => {
+                  //   handleStickerId(stickerId);
+                  //   handleGuideOpen();
+                  // }}
                 />
               </MyToolTip>
             </Box>
           );
         })}
-        {handleMarkedStickers&&(
+        {handleMarkedStickers && (
           <InfoModal
             guideOpen={guideOpen}
             stickerId={stickerInfoId}
             handleGuideClose={handleGuideClose}
           />
         )}
-        
       </div>
     </>
   );
