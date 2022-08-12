@@ -5,7 +5,7 @@ import stickers from "../public/assets/sticker.json";
 export default function InfoModal(props) {
   
     const stickerData = stickers;
-    const id = Number(props.stickerId) - 1;
+    const id = Number(props.stickerId);
     console.log("dragdropcontainer:"+ props.stickerId);
     console.log("infomodal:" + id);
     // console.log("stickerId ; " + id);
@@ -19,7 +19,7 @@ export default function InfoModal(props) {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
             
             
-            {}
+            
             <div className="flex flex-row justify-center">
               <img src={`/images/Icon${props.stickerId}.svg`} className="h-8" />
             </div>

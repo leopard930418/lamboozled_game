@@ -115,7 +115,7 @@ export const DragDropContainer = ({
             >
               <MyToolTip stickerId={stickerId} markedStickers={markedStickers}>
                 <MyImage
-                  src={`/images/Icon${stickerId}.svg`}
+                  src={`/images/Icon${stickerId+1}.svg`}
                   className="h-8 w-8"
                   // onClick={() => {
                   //   handleStickerId(stickerId);

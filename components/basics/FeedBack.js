@@ -14,42 +14,8 @@ import { withStyles, makeStyles } from "@mui/styles";
 import Modal from '@mui/material/Modal';
 // MODULES FOR DRAG&DROP
 import Router from "next/router";
-// import MyToolTip from "../base/MyToolTip";
 
-// const BorderLinearProgress = withStyles((theme) => {
-//     return {
-//       root: {
-//         width: 30,
-//         height: "100%",
-//       },
-//       colorPrimary: {
-//         backgroundColor: "rgba(0, 0, 0, 0.25);",
-//       },
-//       bar: {
-//         transform: ({ value }) => {
-//           return `translateY(${value}%) !important`;
-//         },
-//         backgroundColor: "#FC5757",
-//       },
-//     };
-//   })(LinearProgress);
-
-//   const useStyles = makeStyles({
-//     root: {
-//       flexGrow: 1,
-//       height: 638,
-//       gap: 10,
-//       display: "flex",
-//       position: "fixed",
-//     },
-//     stats: {
-//       display: "flex",
-//       alignItems: "center",
-//       flexDirection: "row",
-//     },
-//   });
-  
-export default function FeedBack(curArtIndex = 0, meter=50, handleIsFeed,handleCurArtIndex){
+export default function FeedBack({curArtIndex = 0, meter=50, leftArts = 0, handleIsFeed, handleCurArtIndex, handleTheDay}){
     // const classes = useStyles();
     // const [isFeedback, setIsFeedback] = useState(false);
     const article = content[curArtIndex];
@@ -64,7 +30,6 @@ export default function FeedBack(curArtIndex = 0, meter=50, handleIsFeed,handleC
     const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
     
     const [reviewMode, setReviewMode] = useState(false);
-    
     return(
         <>
             <div className={`max-w-[1280px] max-h-[790px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
@@ -185,15 +150,15 @@ export default function FeedBack(curArtIndex = 0, meter=50, handleIsFeed,handleC
                                     </div>
                                 ):(
                                     <>
-                                        <div className="w-3/4 justify-self-center pt-12 ml-20">
+                                        <div className="w-10/12 justify-self-center pt-12 ml-20 ">
                                         <div>
                                             <div className="absolute top-20  right-[50%] w-20 h-20 rounded-full bg-[#C7C7C7]">
                                                 <div className="h-full flex justify-center items-center text-black text-3xl font-bold">
                                                     0
                                                 </div>
                                             </div>
-                                            <div className="flex justify-center pt-12">
-                                                <label className="bg-black rounded-3xl px-16 py-2 text-white font-bold text-lg text-center">
+                                            <div className="flex justify-center pt-12 pb-4">
+                                                <label className="bg-black rounded-3xl px-12 py-2 text-white font-bold text-lg text-center">
                                                     Correct Marks (1/2)
                                                 </label>
                                             </div>
@@ -208,18 +173,18 @@ export default function FeedBack(curArtIndex = 0, meter=50, handleIsFeed,handleC
                                             </div>
 
 
-                                            <div className="flex justify-center">
-                                                <label className="bg-black rounded-3xl px-16 py-2 text-white font-bold text-lg">
+                                            <div className="flex justify-center pb-4">
+                                                <label className="bg-black rounded-3xl px-12 py-2 text-white font-bold text-lg">
                                                     Missed Or Mismarked
                                                 </label>
                                             </div>{" "}
-                                            <div className="h-2/5 max-h-56  justify-center w-full overflow-x-hidden">
+                                            <div className="h-2/5 pl-8 max-h-56  justify-center w-full overflow-x-hidden">
                                                 <div className="flex flex-row justify-between items-center">
-                                                    <div className="text-lg text-[#FC5757] font-semibold text-center py-4">
-                                                        The title uses dramatic punctations!
+                                                    <div className="text-lg w-10/12 text-[#FC5757] font-semibold text-center py-4">
+                                                    The title uses dramatic punctuation!!!
                                                     </div>
-                                                    <div>
-                                                        <button className="bg-[#FC5757] px-4 py-2 text-white " 
+                                                    <div className="w-2/12  text-right">
+                                                        <button className="bg-[#FC5757]  px-1 py-0  text-white " 
                                                             onClick={()=>{setReviewMode(true);}}
                                                         >
                                                         View
@@ -227,11 +192,11 @@ export default function FeedBack(curArtIndex = 0, meter=50, handleIsFeed,handleC
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-row justify-between items-center">
-                                                    <div className="text-lg text-[#FC5757] font-semibold text-center py-4">
+                                                    <div className="text-lg w-10/12 text-[#FC5757] font-semibold text-center py-4">
                                                         There are typo(s) or grammar mistake(s) in this story!
                                                     </div>
-                                                    <div>
-                                                        <button className="bg-[#FC5757] px-4 py-2 text-white "
+                                                    <div className="w-2/12  text-right">
+                                                        <button className="bg-[#FC5757] px-1 py-0 text-white "
                                                         onClick={()=>{setReviewMode(true);}}>
                                                         View
                                                         </button>
@@ -248,18 +213,33 @@ export default function FeedBack(curArtIndex = 0, meter=50, handleIsFeed,handleC
                                                 className="w-3/4 bg-white flex flex-row items-center justify-center rounded-sm"
                                                 onClick={handleMarkedIssuesOpen}
                                             >
-                                                <label>2 article(s) left</label>
+                                                <label>{leftArts} article(s) left</label>
                                             </div>
-                                            <button
-                                                className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
-                                                onClick={() => {
-                                                // setIsFeedback(false);
-                                                Router.push("/");
-                                                }}
-                                            >
-                                                NEXT
-                                            </button>
-                                            <button
+                                            {leftArts==0?(
+                                                <button
+                                                    className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                                                    onClick={() => {
+                                                    // setReviewMode(true);
+                                                    handleTheDay();
+                                                    }}
+                                                >
+                                                    END THE DAY
+                                                </button>
+                                            ):(
+                                                <button
+                                                    className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                                                    onClick={() => {
+                                                        handleIsFeed(false);
+                                                        handleCurArtIndex();
+                                                    
+                                                    }}
+                                                >
+                                                    NEXT
+                                                </button>
+                                            )}
+                                            
+                                            
+                                            {/* <button
                                                 className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                                                 onClick={() => {
                                                 setReviewMode(true);
@@ -267,17 +247,9 @@ export default function FeedBack(curArtIndex = 0, meter=50, handleIsFeed,handleC
                                                 }}
                                             >
                                                 REVIEW
-                                            </button>
-                                             <button
-                                                className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
-                                                onClick={() => {
-                                                // setReviewMode(true);
-                                                Router.push("/");
-                                                }}
-                                            >
-                                                END THE DAY
-                                            </button>
-                                            <button
+                                            </button> */}
+                                             
+                                            {/* <button
                                                 className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                                                 onClick={() => {
                                                 // setReviewMode(true);
@@ -285,7 +257,7 @@ export default function FeedBack(curArtIndex = 0, meter=50, handleIsFeed,handleC
                                                 }}
                                             >
                                                 Tutorial
-                                            </button>
+                                            </button> */}
                                             </div>
                                         </div>
                                     </>

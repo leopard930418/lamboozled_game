@@ -28,10 +28,10 @@ export default function CustomImage({
           </div>
           <div className="pt-6 px-4 text-2xl text-center">
             {markedStickers.map((stickerid, index) => {
-              if (stickerid > 0) {
+              if (stickerid > -1) {
                 return (
                   <div key={index} classNameo="text-black text-xl text-center">
-                    {stickers[stickerid - 1].issue}
+                    {stickers[stickerid].issue}
                   </div>
                 );
               }
@@ -43,7 +43,7 @@ export default function CustomImage({
               onClick={() => {
                 // setCounter(100);
                 setIsFeedback(true);
-                Router.push("/feedback");
+                //Router.push("/feedback");
               }}
             >
               SUBMIT
