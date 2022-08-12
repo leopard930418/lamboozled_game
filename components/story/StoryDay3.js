@@ -6,7 +6,8 @@ export default function StoryDay3({meter = 50, handleMeter,handleTheDay}) {
     const [cntArt, setcntArt] = useState(3);
     const articlesId = [4,5,6];
     const [curArtIndex, setCurArtIndex] = useState(0);
-    const handleCurArtIndex = () => {setCurArtIndex(curArtIndex+1)};
+    const handleCurArtIndex = () => {setCurArtIndex(curArtIndex+1);
+                                        setMarkedStickers([]);};
     const [isFeedback, setIsFeedBack] = useState(false);
     const handleIsFeed = (value)=>setIsFeedBack(value);
     const [markedStickers, setMarkedStickers] = useState([]);
@@ -34,7 +35,9 @@ export default function StoryDay3({meter = 50, handleMeter,handleTheDay}) {
                                 leftArts = {articlesId.length-Number(curArtIndex)-1} 
                                 handleIsFeed={handleIsFeed} 
                                 handleCurArtIndex={handleCurArtIndex} 
-                                handleTheDay={handleTheDay}/>
+                                handleTheDay={handleTheDay}
+                                markedStickers = {markedStickers}
+                                handleMeter = {handleMeter}/>
                 </div>
             )}
         </>

@@ -17,16 +17,13 @@ import { DragDropContainer } from "../dragdrop/DragDropContainer";
 import MyTimer from "../base/MyTimer";
 import stickers from "../../public/assets/sticker.json";
 import IssueModal from "../base/IssueModal";
+import Meter from "../base/Meter";
 
 export default function Day1_3({curArtIndex = 0 ,meter=50, handleIsFeed, handleMarked, unlockedStickers}) {
 // game logic
-  // const [markedResult, setMarkedResult] = useState("000000000000");
   const handleResult = (value) => setMarkedResult(value);
   const article = content[curArtIndex];
-
-// 
   const stickerData = stickers;
-  // const [isFeedback, setIsFeedback] = useState(false);
   const contentData = content;
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
@@ -38,9 +35,6 @@ export default function Day1_3({curArtIndex = 0 ,meter=50, handleIsFeed, handleM
   const [markedStickers, setMarkedStickers] = useState([]);
   const handleMarkedStickers = (sti_arr) => {setMarkedStickers(sti_arr);
                                             handleMarked(sti_arr);}
-
-  
-
 
   return (
     <>
@@ -178,12 +172,14 @@ export default function Day1_3({curArtIndex = 0 ,meter=50, handleIsFeed, handleM
               </Grid>
 
               <Grid item xs={4}>
-                <div className={` fixed bottom-0 flexd-bottom w-[30%] `}>
+                <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
                   <div className="translate-y-2 translate-x-11">
                     <MyImage
                       src="/images/bottomlambmeter.svg"
                       className="h-24"
                     />
+                  
+                    <Meter point={meter}/>
                   </div>
                 </div>
               </Grid>

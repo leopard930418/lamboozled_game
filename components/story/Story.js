@@ -8,17 +8,18 @@ export default function Story() {
   const [theDay, setTheDay] = useState(1);
   const handleTheDay = () => {setTheDay(theDay + 1)};
   const [meter, setMeter] = useState(50);
-  const handleMeter = (value) => setMeter(value);
+  const handleMeter = (value) => {setMeter(value);};
+  // console.log("makredstickers:::",handleMeter);
   return (
       <div>
       {theDay==1 &&(
-        <StoryDay1 meter = {meter} handelMeter={handleMeter} handleTheDay={handleTheDay} />
+        <StoryDay1 meter = {meter} handleMeter={handleMeter} handleTheDay={handleTheDay} />
       )}
       {theDay==2 && (
-        <StoryDay2 meter = {meter} handelMeter={handleMeter} handleTheDay={handleTheDay} />
+        <StoryDay2 meter = {meter} handleMeter={handleMeter} handleTheDay={handleTheDay} />
       )}
       {theDay==3 && (
-        <StoryDay3 meter = {meter} handelMeter={handleMeter} handleTheDay={handleTheDay} />
+        <StoryDay3 meter = {meter} handleMeter={handleMeter} handleTheDay={handleTheDay} />
       )}
       
       </div>
