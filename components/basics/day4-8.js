@@ -19,10 +19,10 @@ import stickers from "../../public/assets/sticker.json";
 import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
 
-export default function Day1_3({curArtId = 0 ,curArtIndex = 0 , meter=50, handleIsFeed, handleMarked, unlockedStickers}) {
+export default function Day1_3({curArtIndex = 0 ,meter=50, handleIsFeed, handleMarked, unlockedStickers}) {
 // game logic
   const handleResult = (value) => setMarkedResult(value);
-  const article = content[curArtId];
+  const article = content[curArtIndex];
   const stickerData = stickers;
   const contentData = content;
   const [guideOpen, setGuideOpen] = useState(false);
@@ -35,7 +35,7 @@ export default function Day1_3({curArtId = 0 ,curArtIndex = 0 , meter=50, handle
   const [markedStickers, setMarkedStickers] = useState([]);
   const handleMarkedStickers = (sti_arr) => {setMarkedStickers(sti_arr);
                                             handleMarked(sti_arr);}
-    console.log("unlock:", unlock);
+
   return (
     <>
       <div
@@ -60,7 +60,6 @@ export default function Day1_3({curArtId = 0 ,curArtIndex = 0 , meter=50, handle
                       hideSourceOnDrag={true}
                       stickers={unlockedStickers}
                       handleMarkedStickers={handleMarkedStickers}
-                      unlock={curArtIndex==0? (unlock):(false)}
 
                     >
                       <Grid container columns={10} className="pl-10">
@@ -111,25 +110,23 @@ export default function Day1_3({curArtId = 0 ,curArtIndex = 0 , meter=50, handle
                 </div>
               </Grid>
               <Grid item xs={5}>
-                {curArtIndex==0 &&(
-                  <div className=" justify-center pt-[30%] pl-[20%] p-20">
-                    <MyImage
-                      src="/images/unlock.svg"
-                      className={`h-[178px] w-[146px] ml-[25%]  ${
-                        unlock ? "" : "hidden"
-                      }`}
-                      onClick={() => {
-                        setUnlock(false);
-                      }}
-                    ></MyImage>
-                    <MyImage
-                      src="/images/tobeunlocked.svg"
-                      className={` h-[27px] w-[220px] mt-[10%] ml-[15%] ${
-                        unlock ? "" : "hidden"
-                      }`}
-                    ></MyImage>
-                  </div>
-                )}
+                <div className=" justify-center pt-[30%] pl-[20%] p-20">
+                  <MyImage
+                    src="/images/unlock.svg"
+                    className={`h-[178px] w-[146px] ml-[25%]  ${
+                      unlock ? "" : "hidden"
+                    }`}
+                    onClick={() => {
+                      setUnlock(false);
+                    }}
+                  ></MyImage>
+                  <MyImage
+                    src="/images/tobeunlocked.svg"
+                    className={` h-[27px] w-[220px] mt-[10%] ml-[15%] ${
+                      unlock ? "" : "hidden"
+                    }`}
+                  ></MyImage>
+                </div>
               </Grid>
             </Grid>
           </Grid>

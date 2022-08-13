@@ -16,7 +16,8 @@ export default function StoryDay1({meter = 50, handleMeter,handleTheDay}) {
         <>
             {!isFeedback ? (
                 <div >
-                    <Day1_3   curArtIndex = {articlesId[curArtIndex]} 
+                    <Day1_3   curArtId = {articlesId[curArtIndex]} 
+                            curArtIndex = {curArtIndex}
                             meter={meter} 
                             handleIsFeed={handleIsFeed} 
                             handleMarked = {handleMarkedStickers}

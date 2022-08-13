@@ -3,7 +3,6 @@ import Day1_3 from '../basics/day1_3'
 import FeedBack from '../basics/FeedBack'
 
 export default function StoryDay2({meter = 50, handleMeter,handleTheDay}) {
-    const [cntArt, setcntArt] = useState(2);
     const articlesId = [2,3];
     const [curArtIndex, setCurArtIndex] = useState(0);
     const handleCurArtIndex = () => {setCurArtIndex(curArtIndex+1);
@@ -22,7 +21,8 @@ export default function StoryDay2({meter = 50, handleMeter,handleTheDay}) {
         <>
             {!isFeedback ? (
                 <div >
-                    <Day1_3   curArtIndex = {articlesId[curArtIndex]} 
+                    <Day1_3   curArtId = {articlesId[curArtIndex]}
+                              curArtIndex = {curArtIndex} 
                             meter={meter} 
                             handleIsFeed={handleIsFeed} 
                             handleMarked = {handleMarkedStickers}

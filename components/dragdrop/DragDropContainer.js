@@ -19,8 +19,10 @@ export const DragDropContainer = ({
   hideSourceOnDrag,
   stickers = [],
   handleMarkedStickers,
+  unlock
 }) => {
   //alex added
+
   let stickersData = stickers.map((stickerId, index) => ({
     top: 10,
     left: 50 + index * 70,
@@ -48,7 +50,6 @@ export const DragDropContainer = ({
     },
     [boxes, setBoxes]
   );
-
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.BOX,
@@ -114,14 +115,19 @@ export const DragDropContainer = ({
               hideSourceOnDrag={hideSourceOnDrag}
             >
               <MyToolTip stickerId={stickerId} markedStickers={markedStickers}>
-                <MyImage
+                {unlock? (
+                  <></>
+                ):(
+                  <MyImage
                   src={`/images/Icon${stickerId+1}.svg`}
                   className="h-8 w-8"
                   // onClick={() => {
                   //   handleStickerId(stickerId);
                   //   handleGuideOpen();
                   // }}
-                />
+                 />
+                )}
+                
               </MyToolTip>
             </Box>
           );

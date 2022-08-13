@@ -64,7 +64,7 @@ export default function FeedBack({
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
-
+  const [reviewSticker, setReviewSticker] = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
   return (
     <>
@@ -268,6 +268,7 @@ export default function FeedBack({
                                   <button
                                     className="bg-[#FC5757]  px-1 py-0  text-white "
                                     onClick={() => {
+                                      setReviewSticker(stickerId);
                                       setReviewMode(true);
                                     }}
                                   >
@@ -298,7 +299,7 @@ export default function FeedBack({
                           className="w-3/4 bg-white flex flex-row items-center justify-center rounded-sm"
                           onClick={handleMarkedIssuesOpen}
                         >
-                          <label>{leftArts} article(s) left</label>
+                          <label className="font-bold">{leftArts} article(s) left</label>
                         </div>
                         {leftArts == 0 ? (
                           <button
