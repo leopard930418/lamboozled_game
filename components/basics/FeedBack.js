@@ -48,6 +48,13 @@ export default function FeedBack({
   wrong.map((stickerId) => {
     sum -= weights[stickerId];
   });
+  let sumcolor = '#C7C7C7';
+  if(sum > 0){
+    sumcolor = 'green';
+  }else if(sum < 0){
+    sumcolor = 'red';
+  }
+  
   article.answer_key;
   const contentData = content;
   const [guideOpen, setGuideOpen] = useState(false);
@@ -223,11 +230,13 @@ export default function FeedBack({
                   <>
                     <div className="w-10/12 justify-self-center pt-12 ml-20 ">
                       <div>
-                        <div className="absolute top-20  right-[50%] w-20 h-20 rounded-full bg-[#C7C7C7]">
+                        
+                        <div className="absolute top-20  right-[50%] w-20 h-20 rounded-full" style={{backgroundColor:sumcolor,}}>
                           <div className="h-full flex justify-center items-center text-black text-3xl font-bold">
                             {sum}
                           </div>
                         </div>
+
                         <div className="flex justify-center pt-12 pb-4">
                           <label className="bg-black rounded-3xl px-12 py-2 text-white font-bold text-lg text-center">
                             Correct Marks ({correct.length}/
