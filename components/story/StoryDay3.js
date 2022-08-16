@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react'
-import Day1_3 from '../basics/Day1_3'
+import day1_3 from '../basics/day1_3'
 import FeedBack from '../basics/FeedBack'
 
 export default function StoryDay3({meter = 50, handleMeter,handleTheDay}) {
@@ -22,7 +22,7 @@ export default function StoryDay3({meter = 50, handleMeter,handleTheDay}) {
         <>
             {!isFeedback ? (
                 <div >
-                    <Day1_3     curArtId = {articlesId[curArtIndex]} 
+                    <day1_3     curArtId = {articlesId[curArtIndex]} 
                                 curArtIndex = {curArtIndex}
                                 meter={meter} 
                                 handleIsFeed={handleIsFeed} 

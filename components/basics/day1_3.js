@@ -6,7 +6,6 @@ import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
 import Modal from "@mui/material/Modal";
-import React from "react";
 import Router from "next/router";
 // UserApis
 import CustomImage from "../base/CustomImage";
@@ -20,7 +19,7 @@ import stickers from "../../public/assets/sticker.json";
 import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
 
-export default function Day1_3({
+export default function day1_3({
   curArtId = 0,
   curArtIndex = 0,
   meter = 50,
