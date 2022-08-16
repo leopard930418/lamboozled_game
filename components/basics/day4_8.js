@@ -20,7 +20,8 @@ import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
 import Categories from "../base/Categories";
 import Social from "../base/Social";
-
+import Source from "../base/Source";
+import Fact from "../base/Fact";
 export default function Day4_8({
   curArtId = 0,
   curArtIndex = 0,
@@ -46,6 +47,9 @@ export default function Day4_8({
     setMarkedStickers(sti_arr);
     handleMarked(sti_arr);
   };
+  const [sceneIndex, setSceneIndex] = useState(0);
+  const handleSceneF = () => setSceneIndex(sceneIndex + 1);
+  const handleSceneP = () => setSceneIndex(sceneIndex - 1);
   // console.log("unlock:", unlock);
   return (
     <>
@@ -151,7 +155,10 @@ export default function Day4_8({
                       ) : (
                         <div className="w-full h-full">
                           {/* <Categories /> */}
-                          <Social />
+                          {/* <Social /> */}
+                          {/* <Source/> */}
+                          <Fact />
+                          
                         </div>
                       )}
                     </div>
