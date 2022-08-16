@@ -1,5 +1,6 @@
+import React from "react";
 import { useState } from 'react'
-import Day1_3 from '../../components/basics/Day1_3'
+import Day1_3 from '../basics/Day1_3'
 import FeedBack from '../basics/FeedBack'
 
 export default function StoryDay1({meter = 50, handleMeter,handleTheDay}) {

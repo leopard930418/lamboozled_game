@@ -1,9 +1,11 @@
 // Alex created
+import React from "react";
 import StoryDay1 from "./StoryDay1";
 import StoryDay2 from "./StoryDay2";
 import StoryDay3 from "./StoryDay3";
 import StoryDay4 from "./StoryDay4";
 import { useState } from "react";
+
 
 export default function Story() {
   const [theDay, setTheDay] = useState(1);
