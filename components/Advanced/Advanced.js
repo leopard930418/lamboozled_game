@@ -229,13 +229,13 @@ export default function Advanced() {
                   inputProps={{ "aria-label": "search" }}
                 />
                 <SearchIcon />
-              </Search> 
+              </Search>
             </div>
             <div className="flex justify-center pl-8 pt-10">
               <div className="w-7/12 shadow-lg p-4 flex flex-col space-y-4">
                 <div className="text-black text-lg">
                   Contextual Clue - Analysis of News Source
-                </div> 
+                </div>
                 <div className="flex flex-row justify-between">
                   <button className="bg-black rounded-full text-white text-lg px-4 py-1">
                     Social Media Account

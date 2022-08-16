@@ -9,9 +9,6 @@ import MyToolTip from "../base/MyToolTip";
 import CustomImage from "../base/CustomImage.js";
 import MyImage from "../base/MyImage";
 const styles = {
-  // width: 300,
-  // height: 300,
-  // border: '1px solid black',
   position: "relative",
 };
 export const DragDropContainer = ({
@@ -19,13 +16,13 @@ export const DragDropContainer = ({
   hideSourceOnDrag,
   stickers = [],
   handleMarkedStickers,
-  unlock
+  unlock,
 }) => {
   //alex added
 
   let stickersData = stickers.map((stickerId, index) => ({
-    top: 10,
-    left: 50 + index * 70,
+    top: 105,
+    left: 200 + index * 60,
     stickerId: stickerId,
   }));
   const [tipShowArr, setShowTipArr] = useState(
@@ -57,16 +54,17 @@ export const DragDropContainer = ({
         const delta = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
+        console.log(left, "x-y", boxes[item.id].stickerId);
         let index = 0;
         //moveBox(item.id, left, top);
         //alex added
         let tempArr = [...markedStickers];
-        if (left > 300 && left < 360 && top > 0 && top < 30) {
+        if (left > 440 && left < 480 && top > 100 && top < 115) {
           //validate question marking
           handleGuideOpen(boxes[item.id].stickerId);
           handleStickerId(boxes[item.id].stickerId);
           moveBox(item.id, item.left, item.top);
-        } else if (left > 0 && left < 400 && top > 60 && top < 400) {
+        } else if (left > 115 && left < 540 && top > 150 && top < 515) {
           //validate correct marking
           if (markedStickers.indexOf(boxes[item.id].stickerId) < 0) {
             setMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
@@ -91,7 +89,7 @@ export const DragDropContainer = ({
     }),
     [moveBox]
   );
-  console.log("markedstickers++++", markedStickers);
+  // console.log("markedstickers++++", unlock);
   // alex added
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
@@ -115,19 +113,18 @@ export const DragDropContainer = ({
               hideSourceOnDrag={hideSourceOnDrag}
             >
               <MyToolTip stickerId={stickerId} markedStickers={markedStickers}>
-                {unlock? (
+                {unlock ? ( //unlock
                   <></>
-                ):(
+                ) : (
                   <MyImage
-                  src={`/images/Icon${stickerId+1}.svg`}
-                  className="h-8 w-8"
-                  // onClick={() => {
-                  //   handleStickerId(stickerId);
-                  //   handleGuideOpen();
-                  // }}
-                 />
+                    src={`/images/Icon${stickerId + 1}.svg`}
+                    className="h-8 w-8"
+                    // onClick={() => {
+                    //   handleStickerId(stickerId);
+                    //   handleGuideOpen();
+                    // }}
+                  />
                 )}
-                
               </MyToolTip>
             </Box>
           );

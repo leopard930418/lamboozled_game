@@ -18,8 +18,10 @@ import MyTimer from "../base/MyTimer";
 import stickers from "../../public/assets/sticker.json";
 import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
+import Categories from "../base/Categories";
+import Social from "../base/Social";
 
-export default function Day1_3({
+export default function Day4_8({
   curArtId = 0,
   curArtIndex = 0,
   meter = 50,
@@ -69,6 +71,7 @@ export default function Day1_3({
                       </div>
                     </div>
                   </Grid>
+
                   <Grid item xs={5}>
                     <div className="pt-24 w-11/12 px-7">
                       <Grid container columns={10} className="pl-10">
@@ -117,25 +120,41 @@ export default function Day1_3({
                     </div>
                   </Grid>
                   <Grid item xs={5}>
-                    {curArtIndex == 0 && (
-                      <div className=" justify-center pt-[30%] pl-[20%] p-20">
-                        <MyImage
-                          src="/images/unlock.svg"
-                          className={`h-[178px] w-[146px] ml-[25%]  ${
-                            unlock ? "" : "hidden"
-                          }`}
-                          onClick={() => {
-                            setUnlock(false);
-                          }}
-                        ></MyImage>
-                        <MyImage
-                          src="/images/tobeunlocked.svg"
-                          className={` h-[27px] w-[220px] mt-[10%] ml-[15%] ${
-                            unlock ? "" : "hidden"
-                          }`}
-                        ></MyImage>
-                      </div>
-                    )}
+                    <div className="w-[626px] h-[377px] bg-white justify-center mt-[101px] ml-[-26px] ">
+                      {false ? ( //curArtIndex==0&&unlock==true
+                        <div>
+                          <MyImage
+                            src="/images/SearchBar.svg"
+                            className="w-[520px] h-[35px] ml-[53px] mt-[40px] float-left justify-between"
+                            onClick={() => {
+                              setUnlock(false);
+                            }}
+                          >
+                            <span className="ml-[20px] mt-[5px] float-left text-[#4F4F4F] ">
+                              Click the bar to begin your search
+                            </span>
+                            <MyImage
+                              src="/images/SearchIcon.svg"
+                              className="float-right w-[29px] h-[27px] mr-[9px] mt-[3px]"
+                            />
+                          </MyImage>
+                          <MyImage
+                            src="/images/BossFace1.svg"
+                            className="float-left w-[230px] h-[137px] ml-[200px] mt-[40px]"
+                          />
+                          <span className="w-[400px] float-left ml-[125px] mt-[20px]">
+                            “I put my handsome face here to give you support. I
+                            believe you can figure out how to use the computer
+                            by yourself.”
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="w-full h-full">
+                          {/* <Categories /> */}
+                          <Social />
+                        </div>
+                      )}
+                    </div>
                   </Grid>
                 </Grid>
               </Grid>

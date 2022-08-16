@@ -15,7 +15,7 @@ export default function MyImage({
     color = '#93d58f';
   }
   const [percent, setPercent] = useState(Math.ceil(280/100*point));
-  console.log("meterwidht",percent);
+  // console.log("meterwidht",percent);
   return (
     <>
     <div className={`fixed h-[30px] w-[280px] bg-white -translate-y-20 translate-x-20`} style={{width:percent+'px'}}>

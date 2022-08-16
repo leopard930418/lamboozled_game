@@ -34,13 +34,31 @@ export default function FeedBack({
   let wrong = [];
   let sum = 0;
   console.log("feedback-marked stickers---", markedStickers );
-  markedStickers.map((stickerId) => {
-    if (Number(article.answer_key.charAt(stickerId)) == 1) {
-      correct.push(stickerId);
-    } else {
-      wrong.push(stickerId);
+
+  const answer_key = article.answer_key; 
+//   markedStickers.map((stickerId) => {
+//     if (Number(article.answer_key.charAt(stickerId)) == 1) {
+//       correct.push(stickerId);
+//     } else {
+//       wrong.push(stickerId);
+//     }
+//   });
+
+  for(var i = 0; i < answer_key.length; i++){
+    if(answer_key.charAt(i) == '1'){    //when answer's sticker is true 
+        if(markedStickers.indexOf(i) < 0){//the sticker id is not in marked stickers?
+            wrong.push(i);
+        } else{
+            correct.push(i);
+        }
+    }else{                              //when answer's sticker is false
+        if(markedStickers.indexOf(i) > -1){ //
+            wrong.push(i)
+        }
     }
-  });
+  }
+
+
   correct.map((stickerId) => {
     sum += weights[stickerId];
   });
@@ -76,16 +94,12 @@ export default function FeedBack({
                                 : "[url('/images/feedback.svg')]"
                             }`}
       >
-        {/* <div className={`max-w-[1280px] max-h-[790px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
-                            -translate-y-1/2 bg-[url('/images/feedback.svg')]`}
-                > */}
-        {/* background image mapping */}
+  
         {reviewMode ? (
           <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
         ) : (
           <div className="absolute  bg-cover bg-no-repeat h-[850px] top-0 left-0 ml-20 -translate-y-16 w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')]"></div>
         )}
-        {/* background image mapping */}
         <Grid container className="h-full">
           <Grid item xs={12}>
             <Grid container>
@@ -279,17 +293,7 @@ export default function FeedBack({
                             );
                           })}
 
-                          {/* <div className="flex flex-row justify-between items-center">
-                                                    <div className="text-lg w-10/12 text-[#FC5757] font-semibold text-center py-4">
-                                                        There are typo(s) or grammar mistake(s) in this story!
-                                                    </div>
-                                                    <div className="w-2/12  text-right">
-                                                        <button className="bg-[#FC5757] px-1 py-0 text-white "
-                                                        onClick={()=>{setReviewMode(true);}}>
-                                                        View
-                                                        </button>
-                                                    </div>
-                                                </div> */}
+                        
                         </div>
                       </div>
                     </div>
@@ -351,23 +355,7 @@ export default function FeedBack({
                 )}
               </Grid>
               <Grid item xs={5}>
-                {/* <div className=" justify-center pt-[30%] pl-[20%] p-20">
-                                    <MyImage
-                                        src="/images/unlock.svg"
-                                        className={`h-[178px] w-[146px] ml-[25%]  ${
-                                        unlock ? "" : "hidden"
-                                        }`}
-                                        onClick={() => {
-                                        setUnlock(false);
-                                        }}
-                                    ></MyImage>
-                                    <MyImage
-                                        src="/images/tobeunlocked.svg"
-                                        className={` h-[27px] w-[220px] mt-[10%] ml-[15%] ${
-                                        unlock ? "" : "hidden"
-                                        }`}
-                                    ></MyImage>
-                                </div> */}
+              
               </Grid>
             </Grid>
           </Grid>
@@ -388,26 +376,7 @@ export default function FeedBack({
                 )}
               </Grid>
               <Grid item xs={4}>
-                {/* <div className={`fixed bottom-0 w-full flex flex-row `}>
-                                    <div className="bottom-0 flexd-bottom translate-x-28">
-                                    <div
-                                        className="Alex_btn_gra_1 translate-x-6 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md"
-                                        onClick={handleMarkedIssuesOpen}
-                                    >
-                                        <label>10 issue(s)</label>
-                                        <MyImage src="/images/eye.svg" className="h-8 px-2 w-8" />
-                                    </div>
-                                    <button
-                                        className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
-                                        onClick={() => {
-                                        // setCounter(100);
-                                        setIsFeedback(true);
-                                        }}
-                                    >
-                                        SUBMIT
-                                    </button>
-                                    </div>
-                                </div> */}
+            
               </Grid>
 
               <Grid item xs={4}>

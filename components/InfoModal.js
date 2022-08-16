@@ -21,7 +21,7 @@ export default function InfoModal(props) {
             
             
             <div className="flex flex-row justify-center">
-              <img src={`/images/Icon${props.stickerId}.svg`} className="h-8" />
+              <img src={`/images/Icon${props.stickerId+1}.svg`} className="h-8" />
             </div>
             
             
