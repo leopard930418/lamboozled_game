@@ -22,6 +22,7 @@ import Categories from "../base/Categories";
 import Social from "../base/Social";
 import Source from "../base/Source";
 import Fact from "../base/Fact";
+import Reverse from "../base/Reverse";
 export default function Day4_8({
   curArtId = 0,
   curArtIndex = 0,
@@ -157,7 +158,8 @@ export default function Day4_8({
                           {/* <Categories /> */}
                           {/* <Social /> */}
                           {/* <Source/> */}
-                          <Fact />
+                          {/* <Fact /> */}
+                          <Reverse />
                           
                         </div>
                       )}

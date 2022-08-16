@@ -2,7 +2,7 @@
 import StoryDay1 from "./StoryDay1";
 import StoryDay2 from "./StoryDay2";
 import StoryDay3 from "./StoryDay3";
-// import StoryDay4 from "./StoryDay4";
+import StoryDay4 from "./StoryDay4";
 import { useState } from "react";
 
 export default function Story() {
@@ -26,9 +26,9 @@ export default function Story() {
         {theDay==3 && (
           <StoryDay3 meter = {meter} handleMeter={handleMeter} handleTheDay={handleTheDay} />
         )}
-        {/* {theDay==4 && (
+        {theDay==4 && (
           <StoryDay4 meter = {meter} handleMeter={handleMeter} handleTheDay={handleTheDay} />
-        )} */}
+        )}
       {/* <StoryDay4
         meter={meter}
         handleMeter={handleMeter}
