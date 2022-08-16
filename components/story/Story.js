@@ -26,9 +26,9 @@ export default function Story() {
         {theDay==3 && (
           <StoryDay3 meter = {meter} handleMeter={handleMeter} handleTheDay={handleTheDay} />
         )}
-        {theDay==4 && (
+        {/* {theDay==4 && (
           <StoryDay4 meter = {meter} handleMeter={handleMeter} handleTheDay={handleTheDay} />
-        )}
+        )} */}
       {/* <StoryDay4
         meter={meter}
         handleMeter={handleMeter}
