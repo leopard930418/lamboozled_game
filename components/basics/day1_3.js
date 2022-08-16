@@ -19,7 +19,7 @@ import stickers from "../../public/assets/sticker.json";
 import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
 
-export default function day1_3({
+export default function Day1_3({
   curArtId = 0,
   curArtIndex = 0,
   meter = 50,

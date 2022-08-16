@@ -1,6 +1,6 @@
 // Alex created
 import React from "react";
-import StoryDay1 from "./storyDay1";
+import StoryDay1 from "./StoryDay1";
 import StoryDay2 from "./StoryDay2";
 import StoryDay3 from "./StoryDay3";
 import StoryDay4 from "./StoryDay4";
