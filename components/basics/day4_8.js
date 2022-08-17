@@ -23,6 +23,8 @@ import Social from "../base/Social";
 import Source from "../base/Source";
 import Fact from "../base/Fact";
 import Reverse from "../base/Reverse";
+import Lateral from "../base/Lateral";
+import { Adv_DragDropContainer } from "../dragdrop/Adv_DragDropContainer";
 export default function Day4_8({
   curArtId = 0,
   curArtIndex = 0,
@@ -49,9 +51,10 @@ export default function Day4_8({
     handleMarked(sti_arr);
   };
   const [sceneIndex, setSceneIndex] = useState(0);
-  const handleSceneF = () => setSceneIndex(sceneIndex + 1);
-  const handleSceneP = () => setSceneIndex(sceneIndex - 1);
-  // console.log("unlock:", unlock);
+  const handleScene = (value) => setSceneIndex(value);
+  const handleSceneP = () => setSceneIndex(0);
+
+  // console.log("sceneIndex:", sceneIndex);
   return (
     <>
       <div
@@ -60,24 +63,26 @@ export default function Day4_8({
       >
         <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat"></div>
         <DndProvider backend={HTML5Backend}>
-          <DragDropContainer
-            hideSourceOnDrag={true}
-            stickers={unlockedStickers}
-            handleMarkedStickers={handleMarkedStickers}
-            unlock={curArtIndex == 0 ? unlock : false}
-          >
-            <Grid container className="h-full">
-              <Grid item xs={12}>
-                <Grid container>
-                  <Grid item xs={1}>
-                    <div className="h-full">
-                      <div className="w-full  bg-no-repeat bg-fill">
-                        <MyTimer />
-                      </div>
+          <Grid container className="h-full">
+            <Grid item xs={12}>
+              <Grid container>
+                <Grid item xs={1}>
+                  <div className="h-full">
+                    <div className="w-full  bg-no-repeat bg-fill">
+                      <MyTimer />
                     </div>
-                  </Grid>
+                  </div>
+                </Grid>
 
-                  <Grid item xs={5}>
+                <Grid item xs={5}>
+                  <DragDropContainer
+                    hideSourceOnDrag={true}
+                    stickers={unlockedStickers}
+                    handleMarkedStickers={handleMarkedStickers}
+                    //unlock={curArtIndex == 0 ? unlock : false}
+                    unlock={false}
+                    sceneIndex={sceneIndex}
+                  >
                     <div className="pt-24 w-11/12 px-7">
                       <Grid container columns={10} className="pl-10">
                         <Grid
@@ -123,116 +128,179 @@ export default function Day4_8({
                         </div>
                       </div>
                     </div>
-                  </Grid>
-                  <Grid item xs={5}>
-                    <div className="w-[626px] h-[377px] bg-white justify-center mt-[101px] ml-[-26px] ">
-                      {false ? ( //curArtIndex==0&&unlock==true
-                        <div>
-                          <MyImage
-                            src="/images/SearchBar.svg"
-                            className="w-[520px] h-[35px] ml-[53px] mt-[40px] float-left justify-between"
-                            onClick={() => {
-                              setUnlock(false);
-                            }}
-                          >
-                            <span className="ml-[20px] mt-[5px] float-left text-[#4F4F4F] ">
-                              Click the bar to begin your search
-                            </span>
-                            <MyImage
-                              src="/images/SearchIcon.svg"
-                              className="float-right w-[29px] h-[27px] mr-[9px] mt-[3px]"
-                            />
-                          </MyImage>
-                          <MyImage
-                            src="/images/BossFace1.svg"
-                            className="float-left w-[230px] h-[137px] ml-[200px] mt-[40px]"
-                          />
-                          <span className="w-[400px] float-left ml-[125px] mt-[20px]">
-                            “I put my handsome face here to give you support. I
-                            believe you can figure out how to use the computer
-                            by yourself.”
-                          </span>
-                        </div>
-                      ) : (
-                        <div className="w-full h-full">
-                          {/* <Categories /> */}
-                          {/* <Social /> */}
-                          {/* <Source/> */}
-                          {/* <Fact /> */}
-                          <Reverse />
-                          
-                        </div>
-                      )}
-                    </div>
-                  </Grid>
+                  </DragDropContainer>
                 </Grid>
-              </Grid>
-              <Grid item xs={12}>
-                <Grid container className="h-full">
-                  <Grid item xs={4}>
-                    <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
-                      <div className={`translate-y-2`}>
+                <Grid item xs={5}>
+                  <div className="w-[626px] h-[377px] bg-white justify-center mt-[101px] ml-[-26px] ">
+                    {curArtIndex == 0 && unlock == true ? ( //
+                      <div>
                         <MyImage
-                          src="/images/bottomlogo.svg"
-                          className={`h-24 w-full`}
-                        />
-                      </div>
-                    </div>
-                  </Grid>
-                  <Grid item xs={4}>
-                    <div className={`fixed bottom-0 w-full flex flex-row `}>
-                      <div className="bottom-0 flexd-bottom translate-x-28 -translate-y-1">
-                        <div
-                          className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md"
+                          src="/images/SearchBar.svg"
+                          className="w-[520px] h-[35px] ml-[53px] mt-[40px] float-left justify-between"
                           onClick={() => {
-                            handleMarkedIssuesOpen();
-                            //console.log(markedIssuesOpen);
+                            setUnlock(false);
                           }}
                         >
-                          <label>{markedStickers.length} issue(s)</label>
+                          <span className="ml-[20px] mt-[5px] float-left text-[#4F4F4F] ">
+                            Click the bar to begin your search
+                          </span>
                           <MyImage
-                            src="/images/eye.svg"
-                            className="h-8 px-2 w-8"
+                            src="/images/SearchIcon.svg"
+                            className="float-right w-[29px] h-[27px] mr-[9px] mt-[3px]"
                           />
-                        </div>
-
-                        <button
-                          className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
-                          onClick={() => {
-                            // setCounter(100);
-                            handleIsFeed(true);
-                            //Router.push("/feedback");
-                          }}
-                        >
-                          SUBMIT
-                        </button>
-                      </div>
-                    </div>
-                  </Grid>
-
-                  <Grid item xs={4}>
-                    <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
-                      <div className="translate-y-2 translate-x-11">
+                        </MyImage>
                         <MyImage
-                          src="/images/bottomlambmeter.svg"
-                          className="h-24"
+                          src="/images/BossFace1.svg"
+                          className="float-left w-[230px] h-[137px] ml-[200px] mt-[40px]"
                         />
-
-                        <Meter point={meter} />
+                        <span className="w-[400px] float-left ml-[125px] mt-[20px]">
+                          “I put my handsome face here to give you support. I
+                          believe you can figure out how to use the computer by
+                          yourself.”
+                        </span>
                       </div>
-                    </div>
-                  </Grid>
+                    ) : (
+                      <div className="w-full h-full">
+                        {/* <Adv_DragDropContainer
+                          hideSourceOnDrag={true}
+                          stickers={unlockedStickers}
+                          handleMarkedStickers={handleMarkedStickers}
+                          unlock={curArtIndex == 0 ? unlock : false}
+                          sceneIndex={sceneIndex}
+                        > */}
+                          <Categories
+                            className={`${
+                              sceneIndex === 0 ? "show" : "hidden"
+                            } w-full h-full`}
+                            handleScene={handleScene}
+                          />
+                          <Social
+                            className={`${
+                              sceneIndex === 1 ? "show" : "hidden"
+                            } w-full h-full`}
+                            handleSceneP={handleSceneP}
+                            hidesourceondrag={true}//dnd props
+                            stickers={[4]}
+                            handlemarkedstickers={handleMarkedStickers}
+                            unlock={curArtIndex == 0 ? unlock : false}
+                            sceneindex={sceneIndex}
+                          />
+                          <Source
+                            className={`${
+                              sceneIndex === 2 ? "show" : "hidden"
+                            } w-full h-full`}
+                            handleSceneP={handleSceneP}
+                            hidesourceondrag={true}//dnd props
+                            stickers={[5,6]}
+                            handlemarkedstickers={handleMarkedStickers}
+                            unlock={curArtIndex == 0 ? unlock : false}
+                            sceneindex={sceneIndex}
+                          />
+                          <Fact
+                            className={`${
+                              sceneIndex === 3 ? "show" : "hidden"
+                            } w-full h-full`}
+                            handleSceneP={handleSceneP}
+                            hidesourceondrag={true}//dnd props
+                            stickers={[7,8]}
+                            handlemarkedstickers={handleMarkedStickers}
+                            unlock={curArtIndex == 0 ? unlock : false}
+                            sceneindex={sceneIndex}
+                          />
+                          <Reverse
+                            className={`${
+                              sceneIndex === 4 ? "show" : "hidden"
+                            } w-full h-full`}
+                            handleSceneP={handleSceneP}
+                            hidesourceondrag={true}//dnd props
+                            stickers={[9,10]}
+                            handlemarkedstickers={handleMarkedStickers}
+                            unlock={curArtIndex == 0 ? unlock : false}
+                            sceneindex={sceneIndex}
+                          />
+                          <Lateral
+                            className={`${
+                              sceneIndex === 5 ? "show" : "hidden"
+                            } w-full h-full`}
+                            handleSceneP={handleSceneP}
+                            hidesourceondrag={true}//dnd props
+                            stickers={[11]}
+                            handlemarkedstickers={handleMarkedStickers}
+                            unlock={curArtIndex == 0 ? unlock : false}
+                            sceneindex={sceneIndex}
+                          />
+                        {/* </Adv_DragDropContainer> */}
+                      </div>
+                    )}
+                  </div>
                 </Grid>
               </Grid>
             </Grid>
+            <Grid item xs={12}>
+              <Grid container className="h-full">
+                <Grid item xs={4}>
+                  <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
+                    <div className={`translate-y-2`}>
+                      <MyImage
+                        src="/images/bottomlogo.svg"
+                        className={`h-24 w-full`}
+                      />
+                    </div>
+                  </div>
+                </Grid>
+                <Grid item xs={4}>
+                  <div className={`fixed bottom-0 w-full flex flex-row `}>
+                    <div className="bottom-0 flexd-bottom translate-x-28 -translate-y-1">
+                      <div
+                        className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md"
+                        onClick={() => {
+                          handleMarkedIssuesOpen();
+                          //console.log(markedIssuesOpen);
+                        }}
+                      >
+                        <label>{markedStickers.length} issue(s)</label>
+                        <MyImage
+                          src="/images/eye.svg"
+                          className="h-8 px-2 w-8"
+                        />
+                      </div>
 
-            <IssueModal
-              open={markedIssuesOpen}
-              IssuClose={handleMarkedIssuesClose}
-              markedStickers={markedStickers}
-              setIsFeedback={handleIsFeed}
-            />
-          </DragDropContainer>
+                      <button
+                        className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                        onClick={() => {
+                          // setCounter(100);
+                          handleIsFeed(true);
+                          //Router.push("/feedback");
+                        }}
+                      >
+                        SUBMIT
+                      </button>
+                    </div>
+                  </div>
+                </Grid>
+
+                <Grid item xs={4}>
+                  <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
+                    <div className="translate-y-2 translate-x-11">
+                      <MyImage
+                        src="/images/bottomlambmeter.svg"
+                        className="h-24"
+                      />
+
+                      <Meter point={meter} />
+                    </div>
+                  </div>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <IssueModal
+            open={markedIssuesOpen}
+            IssuClose={handleMarkedIssuesClose}
+            markedStickers={markedStickers}
+            setIsFeedback={handleIsFeed}
+          />
         </DndProvider>
       </div>
     </>

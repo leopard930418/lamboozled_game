@@ -4,12 +4,12 @@ export default function Categories({
   src = "",
   title = "",
   alt = "",
-  // width = "",
+  handleScene,
   onLoad = () => {},
   ...props
 }) {
   return (
-    <div>
+    <div className="w-full h-full" {...props}>
       <MyImage
         src="/images/SearchBar.svg"
         className="w-[520px] h-[35px] ml-[53px] mt-[40px] float-left justify-between"
@@ -28,10 +28,13 @@ export default function Categories({
             Contextual Clue - Analysis of News Source
           </div>
           <div className="flex flex-row">
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0">
+            <button className="bg-black rounded-full text-white text-lg px-4 py-0"
+            onClick={()=>{handleScene(1)}}
+            >
               Social Media Account
             </button>
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0 ml-6">
+            <button className="bg-black rounded-full text-white text-lg px-4 py-0 ml-6"
+            onClick={()=>{handleScene(2)}}>
               Source Website
             </button>
           </div>
@@ -43,13 +46,16 @@ export default function Categories({
             External Clue - Analysis of External Information
           </div>
           <div className=" float-left">
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0 float-left">
+            <button className="bg-black rounded-full text-white text-lg px-4 py-0 float-left"
+            onClick={()=>{handleScene(3)}}>
+              Fac-Checking Hub
+            </button>
+            <button className="bg-black rounded-full text-white text-lg px-4 py-0 ml-6"
+            onClick={()=>{handleScene(4)}}>
               Reverse Image Search
             </button>
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0 ml-6">
-              Source Website
-            </button>
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0 ml-0 mt-6">
+            <button className="bg-black rounded-full text-white text-lg px-4 py-0 ml-0 mt-6"
+            onClick={()=>{handleScene(5)}}>
               Lateral Reading
             </button>
           </div>

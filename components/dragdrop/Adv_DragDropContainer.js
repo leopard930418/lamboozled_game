@@ -11,27 +11,35 @@ import MyImage from "../base/MyImage";
 const styles = {
   position: "relative",
 };
-export const DragDropContainer = ({
+export const Adv_DragDropContainer = ({
   children,
-  hideSourceOnDrag,
+  hidesourceondrag,
   stickers = [],
-  handleMarkedStickers,
+  handlemarkedstickers,
   unlock,
-  sceneIndex,
+  sceneindex,
 }) => {
   //alex added
-
   let stickersData = [];
   stickers.map((stickerId, index) => {
-    if (index < 4) {
+   
+
+    if (stickerId == 4 || stickerId == 5 || stickerId == 7 || stickerId == 9 || stickerId == 11) {
       stickersData.push({
-        top: 106,
-        left: 95 + index * 60,
+        top: 25,
+        left: 490,
+        stickerId: stickerId,
+      });
+    }
+    if (stickerId == 6 || stickerId == 8 || stickerId == 10) {
+      stickersData.push({
+        top: 25,
+        left: 430,
         stickerId: stickerId,
       });
     }
   });
-  console.log("stickerData--", stickersData);
+  // console.log("stickerData--", stickersData);
   const [tipShowArr, setShowTipArr] = useState(
     stickers.map((stickerId, index) => ({
       stickerId: false,
@@ -63,20 +71,19 @@ export const DragDropContainer = ({
         const top = Math.round(item.top + delta.y);
         console.log(left, "x-y", top);
         let index = 0;
-        //moveBox(item.id, left, top);
         //alex added
         let tempArr = [...markedStickers];
-        if (left > 330 && left < 380 && top > 100 && top < 120) {
+        if (left > 550 && left < 600 && top > 0 && top < 50) {
           //validate question marking
           handleGuideOpen(boxes[item.id].stickerId);
           handleStickerId(boxes[item.id].stickerId);
           moveBox(item.id, item.left, item.top);
-        } else if (left > 0 && left < 425 && top > 150 && top < 506) {
+        } else if (left > 0 && left < 600 && top > 80 && top < 350) {
           //validate correct marking
           if (markedStickers.indexOf(boxes[item.id].stickerId) < 0) {
-            console.log("normal---", markedStickers);
+            console.log("adv---", markedStickers);
             setMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
-            handleMarkedStickers([
+            handlemarkedstickers([
               ...markedStickers,
               boxes[item.id].stickerId,
             ]);
@@ -91,16 +98,14 @@ export const DragDropContainer = ({
           index = tempArr.indexOf(boxes[item.id].stickerId);
           tempArr.splice(index, 1);
           setMarkedStickers(tempArr);
-          handleMarkedStickers(tempArr);
+          handlemarkedstickers(tempArr);
         }
-
         //alex added
         return undefined;
       },
     }),
     [moveBox]
   );
-  // console.log("markedstickers++++", unlock);
   // alex added
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
@@ -111,7 +116,7 @@ export const DragDropContainer = ({
   // alex ended
   return (
     <>
-      <div ref={handleMarkedStickers ? drop : undefined} style={styles}>
+      <div ref={handlemarkedstickers ? drop : undefined} style={styles} className="w-full h-full">
         {children}
         {Object.keys(boxes).map((key) => {
           const { left, top, stickerId } = boxes[key];
@@ -121,8 +126,7 @@ export const DragDropContainer = ({
               id={key}
               left={left}
               top={top}
-              hideSourceOnDrag={hideSourceOnDrag}
-              className={`${sceneIndex!=0 ?("show"):("hidden")}`}
+              hideSourceOnDrag={hidesourceondrag}
             >
               <MyToolTip stickerId={stickerId} markedStickers={markedStickers}>
                 {unlock ? ( //unlock
@@ -141,7 +145,7 @@ export const DragDropContainer = ({
             </Box>
           );
         })}
-        {handleMarkedStickers && (
+        {handlemarkedstickers && (
           <InfoModal
             guideOpen={guideOpen}
             stickerId={stickerInfoId}

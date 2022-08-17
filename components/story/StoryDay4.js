@@ -23,7 +23,7 @@ export default function StoryDay4({meter = 50, handleMeter,handleTheDay}) {
                                 meter={meter} 
                                 handleIsFeed={handleIsFeed} 
                                 handleMarked = {handleMarkedStickers}
-                                unlockedStickers={[0,1,2,3,4]} />
+                                unlockedStickers={[0,1,2,3,]} />
                 </div>
             ):(
                 <div >
