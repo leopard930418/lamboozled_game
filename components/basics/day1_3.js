@@ -37,11 +37,7 @@ export default function Day1_3({
   const dispatch = useDispatch();
   const handleResult = (value) => setMarkedResult(value);
   const article = content[curArtId];
-  const stickerData = stickers;
-  const contentData = content;
-  const [guideOpen, setGuideOpen] = useState(false);
-  const handleGuideOpen = () => setGuideOpen(true);
-  const handleGuideClose = () => setGuideOpen(false);
+
   const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
@@ -69,7 +65,8 @@ export default function Day1_3({
                   <DragDropContainer
                     hideSourceOnDrag={true}
                     stickers={unlockedStickers}
-                    unlock={curArtIndex == 0 ? unlock : false}
+                    // unlock={curArtIndex == 0 ? unlock : false}
+                    unlock={false}
                     isdraging={true}
                 
                   >
@@ -129,7 +126,7 @@ export default function Day1_3({
                           unlock ? "" : "hidden"
                         }`}
                         onClick={() => {
-                          setUnlock(false);
+                          // setUnlock(false);
                         }}
                       ></MyImage>
                       <MyImage

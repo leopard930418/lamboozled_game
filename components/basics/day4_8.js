@@ -30,7 +30,7 @@ import { useSelector, useDispatch } from "react-redux";
 export default function Day4_8({
   curArtId = 0,
   curArtIndex = 0,
-  meter = 50,
+  // meter = 50,
   handleIsFeed,
   unlockedStickers,
 }) {
@@ -38,7 +38,7 @@ export default function Day4_8({
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? []
   );
- 
+  const meter = useSelector((state)=>state?.game?.meter ?? 50);
   const article = content[curArtId];
   const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);

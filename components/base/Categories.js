@@ -64,9 +64,7 @@ export default function Categories({
           </div>
           <div className=" float-left">
             <button
-              className={`${
-                theDay > 5 ? "show" : "hidden"
-              } bg-black rounded-full text-white text-lg px-4 py-0 float-left`}
+              className={`bg-black rounded-full text-white text-lg px-4 py-0 float-left`}
               onClick={() => {
                 handleScene(3);
               }}
@@ -74,9 +72,7 @@ export default function Categories({
               Fac-Checking Hub
             </button>
             <button
-              className={`${
-                theDay > 6 ? "show" : "hidden"
-              } bg-black rounded-full text-white text-lg px-4 py-0 ml-6`}
+              className={`bg-black rounded-full text-white text-lg px-4 py-0 ml-6`}
               onClick={() => {
                 handleScene(4);
               }}
@@ -84,9 +80,7 @@ export default function Categories({
               Reverse Image Search
             </button>
             <button
-              className={`${
-                theDay > 7 ? "show" : "hidden"
-              } bg-black rounded-full text-white text-lg px-4 py-0 ml-0 mt-6`}
+              className={`bg-black rounded-full text-white text-lg px-4 py-0 ml-0 mt-6`}
               onClick={() => {
                 handleScene(5);
               }}

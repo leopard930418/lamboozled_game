@@ -1,0 +1,38 @@
+[
+  {
+    "index": 0,
+    "image_reverse": "",
+    "image_reverse_titles": [
+      "SheepCoin Reaches New Low",
+      "The Slow Death of Sheepcurrency?"
+    ],
+    "lateral_titles": [
+      "SheepCoin Not As Low As Last Year”, “The Slow Death of Sheepcurrency?"
+    ],
+    "sources": ["The Fluffington Post", "Sun Press"]
+  },
+  {
+    "index": 1,
+    "image_reverse": "",
+    "image_reverse_titles": [
+      "SheepCoin Reaches New Low",
+      "The Slow Death of Sheepcurrency?"
+    ],
+    "lateral_titles": [
+      "SheepCoin Not As Low As Last Year”, “The Slow Death of Sheepcurrency?"
+    ],
+    "sources": ["The Fluffington Post", "Sun Press"]
+  },
+  {
+    "index": 2,
+    "image_reverse": "",
+    "image_reverse_titles": [
+      "SheepCoin Reaches New Low",
+      "The Slow Death of Sheepcurrency?"
+    ],
+    "lateral_titles": [
+      "SheepCoin Not As Low As Last Year”, “The Slow Death of Sheepcurrency?"
+    ],
+    "sources": ["The Fluffington Post", "Sun Press"]
+  }
+]
