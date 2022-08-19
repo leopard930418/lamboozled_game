@@ -10,11 +10,12 @@ export default function Social({
   stickers,
   handlemarkedstickers,
   unlock = true,
-  sceneindex,
+  // markedstickers,
+  // sceneindex,
   onLoad = () => {},
   ...props
 }) {
-  console.log("Social", stickers);
+  // console.log("markedstickers", markedstickers);
   return (
     <div {...props}>
       <Adv_DragDropContainer
@@ -22,7 +23,8 @@ export default function Social({
         stickers={stickers}
         handlemarkedstickers={handlemarkedstickers}
         unlock={unlock}
-        sceneindex={sceneindex}
+        // markedstickers={markedstickers}
+        // sceneindex={sceneindex}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">

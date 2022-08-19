@@ -1,13 +1,18 @@
 import update from "immutability-helper";
 import { useCallback, useState } from "react";
 import { useDrop } from "react-dnd";
-import { Box } from "./Box.js";
+import { Box_adv } from "./Box_adv";
 import Tooltip from "@mui/material/Tooltip";
 import { ItemTypes } from "./ItemTypes.js";
 import InfoModal from "../InfoModal";
 import MyToolTip from "../base/MyToolTip";
 import CustomImage from "../base/CustomImage.js";
 import MyImage from "../base/MyImage";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  appendMarkedStickers,
+  reduceMarkedStickers,
+} from "../../store/reducers/gameSlice";
 const styles = {
   position: "relative",
 };
@@ -17,14 +22,23 @@ export const Adv_DragDropContainer = ({
   stickers = [],
   handlemarkedstickers,
   unlock,
-  sceneindex,
+  // markedstickers,
+  // sceneindex,
 }) => {
   //alex added
+  const markedStickers = useSelector(
+    (state) => state?.game?.markedStickers ?? []
+  );
+  const dispatch = useDispatch();
   let stickersData = [];
   stickers.map((stickerId, index) => {
-   
-
-    if (stickerId == 4 || stickerId == 5 || stickerId == 7 || stickerId == 9 || stickerId == 11) {
+    if (
+      stickerId == 4 ||
+      stickerId == 5 ||
+      stickerId == 7 ||
+      stickerId == 9 ||
+      stickerId == 11
+    ) {
       stickersData.push({
         top: 25,
         left: 490,
@@ -46,8 +60,7 @@ export const Adv_DragDropContainer = ({
     }))
   );
 
-  // console.log(tipShowArr);
-  const [markedStickers, setMarkedStickers] = useState([]);
+  
   //alex ended
   const [boxes, setBoxes] = useState(stickersData);
   const moveBox = useCallback(
@@ -64,41 +77,34 @@ export const Adv_DragDropContainer = ({
   );
   const [, drop] = useDrop(
     () => ({
-      accept: ItemTypes.BOX,
+      accept: ItemTypes.BOX_ADV,
       drop(item, monitor) {
         const delta = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
         console.log(left, "x-y", top);
-        let index = 0;
-        //alex added
-        let tempArr = [...markedStickers];
+
+        // console.log("tempArr------------------", tempArr);
         if (left > 550 && left < 600 && top > 0 && top < 50) {
           //validate question marking
+          console.log("adv1");
           handleGuideOpen(boxes[item.id].stickerId);
           handleStickerId(boxes[item.id].stickerId);
           moveBox(item.id, item.left, item.top);
         } else if (left > 0 && left < 600 && top > 80 && top < 350) {
           //validate correct marking
           if (markedStickers.indexOf(boxes[item.id].stickerId) < 0) {
-            console.log("adv---", markedStickers);
-            setMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
-            handlemarkedstickers([
-              ...markedStickers,
-              boxes[item.id].stickerId,
-            ]);
+            dispatch(appendMarkedStickers(boxes[item.id].stickerId));
           }
           moveBox(item.id, left, top);
         } else {
+          console.log("adv2");
           moveBox(
             item.id,
             stickersData[item.id].left,
             stickersData[item.id].top
           );
-          index = tempArr.indexOf(boxes[item.id].stickerId);
-          tempArr.splice(index, 1);
-          setMarkedStickers(tempArr);
-          handlemarkedstickers(tempArr);
+          dispatch(reduceMarkedStickers(boxes[item.id].stickerId));
         }
         //alex added
         return undefined;
@@ -116,19 +122,22 @@ export const Adv_DragDropContainer = ({
   // alex ended
   return (
     <>
-      <div ref={handlemarkedstickers ? drop : undefined} style={styles} className="w-full h-full">
+      <div ref={drop} style={styles} className="w-full h-full">
         {children}
         {Object.keys(boxes).map((key) => {
           const { left, top, stickerId } = boxes[key];
           return (
-            <Box
+            <Box_adv
               key={key}
               id={key}
               left={left}
               top={top}
               hideSourceOnDrag={hidesourceondrag}
             >
-              <MyToolTip stickerId={stickerId} markedStickers={markedStickers}>
+              <MyToolTip
+                stickerId={stickerId}
+                markedStickers={markedStickers}
+              >
                 {unlock ? ( //unlock
                   <></>
                 ) : (
@@ -142,7 +151,7 @@ export const Adv_DragDropContainer = ({
                   />
                 )}
               </MyToolTip>
-            </Box>
+            </Box_adv>
           );
         })}
         {handlemarkedstickers && (

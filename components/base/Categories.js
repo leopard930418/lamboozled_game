@@ -1,5 +1,6 @@
 import React from "react";
 import MyImage from "./MyImage";
+import { useSelector } from "react-redux";
 export default function Categories({
   src = "",
   title = "",
@@ -8,6 +9,7 @@ export default function Categories({
   onLoad = () => {},
   ...props
 }) {
+  const theDay = useSelector((state) => state?.game?.theDay ?? 1);
   return (
     <div className="w-full h-full" {...props}>
       <MyImage
@@ -28,34 +30,67 @@ export default function Categories({
             Contextual Clue - Analysis of News Source
           </div>
           <div className="flex flex-row">
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0"
-            onClick={()=>{handleScene(1)}}
+            <button
+              className={`${
+                theDay > 3 ? "show" : "hidden"
+              } bg-black rounded-full text-white text-lg px-4 py-0`}
+              onClick={() => {
+                handleScene(1);
+              }}
             >
               Social Media Account
             </button>
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0 ml-6"
-            onClick={()=>{handleScene(2)}}>
+            <button
+              className={`${
+                theDay > 4 ? "show" : "hidden"
+              } bg-black rounded-full text-white text-lg px-4 py-0 ml-6`}
+              onClick={() => {
+                handleScene(2);
+              }}
+            >
               Source Website
             </button>
           </div>
         </div>
       </div>
-      <div className="float-left w-full justify-center ml-20 mt-6">
+      <div
+        className={`${
+          theDay > 5 ? "show" : "hidden"
+        } float-left w-full justify-center ml-20 mt-6`}
+      >
         <div className="w-9/12 shadow-[0_0px_6px_2px_rgba(0,0,0,0.25)] p-2 flex flex-col space-y-4">
           <div className="text-black text-lg">
             External Clue - Analysis of External Information
           </div>
           <div className=" float-left">
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0 float-left"
-            onClick={()=>{handleScene(3)}}>
+            <button
+              className={`${
+                theDay > 5 ? "show" : "hidden"
+              } bg-black rounded-full text-white text-lg px-4 py-0 float-left`}
+              onClick={() => {
+                handleScene(3);
+              }}
+            >
               Fac-Checking Hub
             </button>
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0 ml-6"
-            onClick={()=>{handleScene(4)}}>
+            <button
+              className={`${
+                theDay > 6 ? "show" : "hidden"
+              } bg-black rounded-full text-white text-lg px-4 py-0 ml-6`}
+              onClick={() => {
+                handleScene(4);
+              }}
+            >
               Reverse Image Search
             </button>
-            <button className="bg-black rounded-full text-white text-lg px-4 py-0 ml-0 mt-6"
-            onClick={()=>{handleScene(5)}}>
+            <button
+              className={`${
+                theDay > 7 ? "show" : "hidden"
+              } bg-black rounded-full text-white text-lg px-4 py-0 ml-0 mt-6`}
+              onClick={() => {
+                handleScene(5);
+              }}
+            >
               Lateral Reading
             </button>
           </div>

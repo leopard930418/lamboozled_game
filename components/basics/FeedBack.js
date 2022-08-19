@@ -14,19 +14,24 @@ import Meter from "../base/Meter";
 import Modal from "@mui/material/Modal";
 // MODULES FOR DRAG&DROP
 import Router from "next/router";
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  updateMeterByAmount,
+  nextDay,
+  initMarkedStickers,
+} from "../../store/reducers/gameSlice";
 export default function FeedBack({
   curArtIndex = 0,
-  meter = 50,
+  // meter = 50,
   leftArts = 0,
   handleIsFeed,
   handleCurArtIndex,
   handleTheDay,
-  markedStickers,
-  handleMeter,
 }) {
  
-
+  const dispatch = useDispatch();
+  const markedStickers = useSelector((state) => state?.game?.markedStickers ?? []);
+  const meter = useSelector((state)=>state?.game?.meter ?? 0);
   const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
   const article = content[curArtIndex];
   const Stickers = stickers;
@@ -36,13 +41,6 @@ export default function FeedBack({
   console.log("feedback-marked stickers---", markedStickers );
 
   const answer_key = article.answer_key; 
-//   markedStickers.map((stickerId) => {
-//     if (Number(article.answer_key.charAt(stickerId)) == 1) {
-//       correct.push(stickerId);
-//     } else {
-//       wrong.push(stickerId);
-//     }
-//   });
 
   for(var i = 0; i < answer_key.length; i++){
     if(answer_key.charAt(i) == '1'){    //when answer's sticker is true 
@@ -310,8 +308,9 @@ export default function FeedBack({
                             className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                             onClick={() => {
                               // setReviewMode(true);
-                              handleTheDay();
-                              handleMeter(meter + sum);
+                              dispatch(nextDay());
+                              dispatch(updateMeterByAmount(sum));
+                              dispatch(initMarkedStickers());
                               
                             }}
                           >
@@ -323,7 +322,8 @@ export default function FeedBack({
                             onClick={() => {
                               handleIsFeed(false);
                               handleCurArtIndex();
-                              handleMeter(meter + sum);
+                              dispatch(updateMeterByAmount(sum));
+                              dispatch(initMarkedStickers());
                             }}
                           >
                             NEXT

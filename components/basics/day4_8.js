@@ -24,32 +24,27 @@ import Source from "../base/Source";
 import Fact from "../base/Fact";
 import Reverse from "../base/Reverse";
 import Lateral from "../base/Lateral";
-import { Adv_DragDropContainer } from "../dragdrop/Adv_DragDropContainer";
+
+import { useSelector, useDispatch } from "react-redux";
+
 export default function Day4_8({
   curArtId = 0,
   curArtIndex = 0,
   meter = 50,
   handleIsFeed,
-  handleMarked,
   unlockedStickers,
 }) {
   // game logic
-  const handleResult = (value) => setMarkedResult(value);
+  const markedStickers = useSelector(
+    (state) => state?.game?.markedStickers ?? []
+  );
+ 
   const article = content[curArtId];
-  const stickerData = stickers;
-  const contentData = content;
-  const [guideOpen, setGuideOpen] = useState(false);
-  const handleGuideOpen = () => setGuideOpen(true);
-  const handleGuideClose = () => setGuideOpen(false);
   const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
-  const [markedStickers, setMarkedStickers] = useState([]);
-  const handleMarkedStickers = (sti_arr) => {
-    setMarkedStickers(sti_arr);
-    handleMarked(sti_arr);
-  };
+
   const [sceneIndex, setSceneIndex] = useState(0);
   const handleScene = (value) => setSceneIndex(value);
   const handleSceneP = () => setSceneIndex(0);
@@ -78,10 +73,9 @@ export default function Day4_8({
                   <DragDropContainer
                     hideSourceOnDrag={true}
                     stickers={unlockedStickers}
-                    handleMarkedStickers={handleMarkedStickers}
-                    //unlock={curArtIndex == 0 ? unlock : false}
+                    //
                     unlock={false}
-                    sceneIndex={sceneIndex}
+                    isdraging={true}
                   >
                     <div className="pt-24 w-11/12 px-7">
                       <Grid container columns={10} className="pl-10">
@@ -165,70 +159,60 @@ export default function Day4_8({
                           hideSourceOnDrag={true}
                           stickers={unlockedStickers}
                           handleMarkedStickers={handleMarkedStickers}
-                          unlock={curArtIndex == 0 ? unlock : false}
+                          unlock={false}
                           sceneIndex={sceneIndex}
                         > */}
-                          <Categories
-                            className={`${
-                              sceneIndex === 0 ? "show" : "hidden"
-                            } w-full h-full`}
-                            handleScene={handleScene}
-                          />
-                          <Social
-                            className={`${
-                              sceneIndex === 1 ? "show" : "hidden"
-                            } w-full h-full`}
-                            handleSceneP={handleSceneP}
-                            hidesourceondrag={true}//dnd props
-                            stickers={[4]}
-                            handlemarkedstickers={handleMarkedStickers}
-                            unlock={curArtIndex == 0 ? unlock : false}
-                            sceneindex={sceneIndex}
-                          />
-                          <Source
-                            className={`${
-                              sceneIndex === 2 ? "show" : "hidden"
-                            } w-full h-full`}
-                            handleSceneP={handleSceneP}
-                            hidesourceondrag={true}//dnd props
-                            stickers={[5,6]}
-                            handlemarkedstickers={handleMarkedStickers}
-                            unlock={curArtIndex == 0 ? unlock : false}
-                            sceneindex={sceneIndex}
-                          />
-                          <Fact
-                            className={`${
-                              sceneIndex === 3 ? "show" : "hidden"
-                            } w-full h-full`}
-                            handleSceneP={handleSceneP}
-                            hidesourceondrag={true}//dnd props
-                            stickers={[7,8]}
-                            handlemarkedstickers={handleMarkedStickers}
-                            unlock={curArtIndex == 0 ? unlock : false}
-                            sceneindex={sceneIndex}
-                          />
-                          <Reverse
-                            className={`${
-                              sceneIndex === 4 ? "show" : "hidden"
-                            } w-full h-full`}
-                            handleSceneP={handleSceneP}
-                            hidesourceondrag={true}//dnd props
-                            stickers={[9,10]}
-                            handlemarkedstickers={handleMarkedStickers}
-                            unlock={curArtIndex == 0 ? unlock : false}
-                            sceneindex={sceneIndex}
-                          />
-                          <Lateral
-                            className={`${
-                              sceneIndex === 5 ? "show" : "hidden"
-                            } w-full h-full`}
-                            handleSceneP={handleSceneP}
-                            hidesourceondrag={true}//dnd props
-                            stickers={[11]}
-                            handlemarkedstickers={handleMarkedStickers}
-                            unlock={curArtIndex == 0 ? unlock : false}
-                            sceneindex={sceneIndex}
-                          />
+                        <Categories
+                          className={`${
+                            sceneIndex === 0 ? "show" : "hidden"
+                          } w-full h-full`}
+                          handleScene={handleScene}
+                        />
+                        <Social
+                          className={`${
+                            sceneIndex === 1 ? "show" : "hidden"
+                          } w-full h-full`}
+                          handleSceneP={handleSceneP}
+                          hidesourceondrag={true} //dnd props
+                          stickers={[4]}
+                          unlock={false}
+                        />
+                        <Source
+                          className={`${
+                            sceneIndex === 2 ? "show" : "hidden"
+                          } w-full h-full`}
+                          handleSceneP={handleSceneP}
+                          hidesourceondrag={true} //dnd props
+                          stickers={[5, 6]}
+                          unlock={false}
+                        />
+                        <Fact
+                          className={`${
+                            sceneIndex === 3 ? "show" : "hidden"
+                          } w-full h-full`}
+                          handleSceneP={handleSceneP}
+                          hidesourceondrag={true} //dnd props
+                          stickers={[7, 8]}
+                          unlock={false}
+                        />
+                        <Reverse
+                          className={`${
+                            sceneIndex === 4 ? "show" : "hidden"
+                          } w-full h-full`}
+                          handleSceneP={handleSceneP}
+                          hidesourceondrag={true} //dnd props
+                          stickers={[9, 10]}
+                          unlock={false}
+                        />
+                        <Lateral
+                          className={`${
+                            sceneIndex === 5 ? "show" : "hidden"
+                          } w-full h-full`}
+                          handleSceneP={handleSceneP}
+                          hidesourceondrag={true} //dnd props
+                          stickers={[11]}
+                          unlock={false}
+                        />
                         {/* </Adv_DragDropContainer> */}
                       </div>
                     )}

@@ -8,6 +8,11 @@ import InfoModal from "../InfoModal";
 import MyToolTip from "../base/MyToolTip";
 import CustomImage from "../base/CustomImage.js";
 import MyImage from "../base/MyImage";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  appendMarkedStickers,
+  reduceMarkedStickers,
+} from "../../store/reducers/gameSlice";
 const styles = {
   position: "relative",
 };
@@ -15,31 +20,31 @@ export const DragDropContainer = ({
   children,
   hideSourceOnDrag,
   stickers = [],
-  handleMarkedStickers,
   unlock,
-  sceneIndex,
+  isdraging = false,
 }) => {
   //alex added
-
+  const markedStickers = useSelector(
+    (state) => state?.game?.markedStickers ?? []
+  );
+  const dispatch = useDispatch();
   let stickersData = [];
   stickers.map((stickerId, index) => {
     if (index < 4) {
       stickersData.push({
         top: 106,
-        left: 95 + index * 60,
+        left: 85 + index * 60,
         stickerId: stickerId,
       });
     }
   });
-  console.log("stickerData--", stickersData);
+  // console.log("stickerData--", stickersData);
   const [tipShowArr, setShowTipArr] = useState(
     stickers.map((stickerId, index) => ({
       stickerId: false,
     }))
   );
 
-  // console.log(tipShowArr);
-  const [markedStickers, setMarkedStickers] = useState([]);
   //alex ended
   const [boxes, setBoxes] = useState(stickersData);
   const moveBox = useCallback(
@@ -61,46 +66,36 @@ export const DragDropContainer = ({
         const delta = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
-        console.log(left, "x-y", top);
-        let index = 0;
-        //moveBox(item.id, left, top);
-        //alex added
-        let tempArr = [...markedStickers];
+        // console.log(left, "x-y", top);
+        // if(item.id > 3) return undefined;
+        console.log("item.id", item.id);
         if (left > 330 && left < 380 && top > 100 && top < 120) {
           //validate question marking
           handleGuideOpen(boxes[item.id].stickerId);
           handleStickerId(boxes[item.id].stickerId);
           moveBox(item.id, item.left, item.top);
+          console.log("normal1");
         } else if (left > 0 && left < 425 && top > 150 && top < 506) {
           //validate correct marking
           if (markedStickers.indexOf(boxes[item.id].stickerId) < 0) {
-            console.log("normal---", markedStickers);
-            setMarkedStickers([...markedStickers, boxes[item.id].stickerId]);
-            handleMarkedStickers([
-              ...markedStickers,
-              boxes[item.id].stickerId,
-            ]);
+            dispatch(appendMarkedStickers(boxes[item.id].stickerId));
           }
           moveBox(item.id, left, top);
         } else {
+          console.log("normal2");
           moveBox(
             item.id,
             stickersData[item.id].left,
             stickersData[item.id].top
           );
-          index = tempArr.indexOf(boxes[item.id].stickerId);
-          tempArr.splice(index, 1);
-          setMarkedStickers(tempArr);
-          handleMarkedStickers(tempArr);
+          dispatch(reduceMarkedStickers(boxes[item.id].stickerId));
         }
-
         //alex added
         return undefined;
       },
     }),
     [moveBox]
   );
-  // console.log("markedstickers++++", unlock);
   // alex added
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
@@ -111,7 +106,7 @@ export const DragDropContainer = ({
   // alex ended
   return (
     <>
-      <div ref={handleMarkedStickers ? drop : undefined} style={styles}>
+      <div ref={isdraging ? drop : undefined} style={styles}>
         {children}
         {Object.keys(boxes).map((key) => {
           const { left, top, stickerId } = boxes[key];
@@ -122,7 +117,6 @@ export const DragDropContainer = ({
               left={left}
               top={top}
               hideSourceOnDrag={hideSourceOnDrag}
-              className={`${sceneIndex!=0 ?("show"):("hidden")}`}
             >
               <MyToolTip stickerId={stickerId} markedStickers={markedStickers}>
                 {unlock ? ( //unlock
@@ -141,7 +135,7 @@ export const DragDropContainer = ({
             </Box>
           );
         })}
-        {handleMarkedStickers && (
+        {isdraging && (
           <InfoModal
             guideOpen={guideOpen}
             stickerId={stickerInfoId}

@@ -18,16 +18,23 @@ import MyTimer from "../base/MyTimer";
 import stickers from "../../public/assets/sticker.json";
 import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
+import { useSelector, useDispatch } from "react-redux";
+// import {
+//   selectMakredStickers,
 
+// } from "../../store/reducers/gameSlice";
 export default function Day1_3({
   curArtId = 0,
   curArtIndex = 0,
-  meter = 50,
+  // meter = 50,
   handleIsFeed,
-  handleMarked,
+  // handleMarked,
   unlockedStickers,
 }) {
   // game logic
+  const markedStickers = useSelector((state) => state?.game?.markedStickers ?? []);
+  const meter = useSelector((state) => state?.game?.meter ?? 0);
+  const dispatch = useDispatch();
   const handleResult = (value) => setMarkedResult(value);
   const article = content[curArtId];
   const stickerData = stickers;
@@ -39,12 +46,7 @@ export default function Day1_3({
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
-  const [markedStickers, setMarkedStickers] = useState([]);
-  const handleMarkedStickers = (sti_arr) => {
-    setMarkedStickers(sti_arr);
-    handleMarked(sti_arr);
-  };
-  // console.log("unlock:", unlock);
+
   return (
     <>
       <div
@@ -67,8 +69,9 @@ export default function Day1_3({
                   <DragDropContainer
                     hideSourceOnDrag={true}
                     stickers={unlockedStickers}
-                    handleMarkedStickers={handleMarkedStickers}
                     unlock={curArtIndex == 0 ? unlock : false}
+                    isdraging={true}
+                
                   >
                     <div className="pt-24 w-11/12 px-7">
                       <Grid container columns={10} className="pl-10">
@@ -159,7 +162,6 @@ export default function Day1_3({
                         className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md"
                         onClick={() => {
                           handleMarkedIssuesOpen();
-                          //console.log(markedIssuesOpen);
                         }}
                       >
                         <label>{markedStickers.length} issue(s)</label>

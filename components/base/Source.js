@@ -10,6 +10,7 @@ export default function Source({
   stickers,
   handlemarkedstickers,
   unlock = true,
+  markedstickers,
   sceneindex,
   onLoad = () => {},
   ...props
@@ -21,6 +22,7 @@ export default function Source({
         stickers={stickers}
         handlemarkedstickers={handlemarkedstickers}
         unlock={unlock}
+        markedstickers={markedstickers}
         sceneindex={sceneindex}
       >
         <div className="h-[20%] w-full float-left ">

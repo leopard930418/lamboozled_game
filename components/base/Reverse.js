@@ -10,6 +10,8 @@ export default function Reverse({
   stickers,
   handlemarkedstickers,
   unlock = true,
+  markedstickers,
+
   sceneindex,
   onLoad = () => {},
   ...props
@@ -21,58 +23,63 @@ export default function Reverse({
         stickers={stickers}
         handlemarkedstickers={handlemarkedstickers}
         unlock={unlock}
+        markedstickers={markedstickers}
         sceneindex={sceneindex}
       >
-      <div className="h-[20%] w-full float-left ">
-        <div className="h-full w-[50%] float-left">
-          <button
-            className="bg-black rounded-full text-white text-lg px-4 py-0 float-right mt-5"
-            onClick={() => {
-              handleSceneP();
-            }}
-          >
-            Back
-          </button>
-        </div>
-        <div className="h-full w-[50%] float-left">
-          <div className="float-right w-[80px] h-full border-black border-l-2">
-            <CustomImage src="/images/help.svg" className="h-8 mt-5 ml-5" />
+        <div className="h-[20%] w-full float-left ">
+          <div className="h-full w-[50%] float-left">
+            <button
+              className="bg-black rounded-full text-white text-lg px-4 py-0 float-right mt-5"
+              onClick={() => {
+                handleSceneP();
+              }}
+            >
+              Back
+            </button>
           </div>
-          <div className="float-right h-full w-[140px] border-black border-l-2"></div>
-        </div>
-      </div>
-      <div className="h-[80%] w-full float-left  border-black border-t-2 border-l-2">
-        <div className="h-[33%] w-[100%] border-white border-2">
-          <MyImage
-            src="images/Moogle-logo.svg"
-            className="w-[186px] h-[33px] mt-6 ml-4 float-left"
-          />
-          <MyImage
-            src="/images/contentImage1.svg"
-            className="w-32 h-20 float-left ml-5 mt-2"
-          />
-          <div className="text-[18px] font-bold text-center mt-3">
-            Image Reverse Search
+          <div className="h-full w-[50%] float-left">
+            <div className="float-right w-[80px] h-full border-black border-l-2">
+              <CustomImage src="/images/help.svg" className="h-8 mt-5 ml-5" />
+            </div>
+            <div className="float-right h-full w-[140px] border-black border-l-2"></div>
           </div>
-          <div className="text-center mt-2">Image Size: 1170 * 720</div>
         </div>
-        <div className="h-[33%] w-[100%] border-white border-2">
-          <MyImage
-            src="/images/contentImage1.svg"
-            className="w-32 h-20 float-left ml-16 mt-2  mr-10"
-          />
-          <div className="text-[18px] font-bold mt-3">Image Reverse Search</div>
-          <div className="ml-10 mt-2">Alt Source</div>
+        <div className="h-[80%] w-full float-left  border-black border-t-2 border-l-2">
+          <div className="h-[33%] w-[100%] border-white border-2">
+            <MyImage
+              src="images/Moogle-logo.svg"
+              className="w-[186px] h-[33px] mt-6 ml-4 float-left"
+            />
+            <MyImage
+              src="/images/contentImage1.svg"
+              className="w-32 h-20 float-left ml-5 mt-2"
+            />
+            <div className="text-[18px] font-bold text-center mt-3">
+              Image Reverse Search
+            </div>
+            <div className="text-center mt-2">Image Size: 1170 * 720</div>
+          </div>
+          <div className="h-[33%] w-[100%] border-white border-2">
+            <MyImage
+              src="/images/contentImage1.svg"
+              className="w-32 h-20 float-left ml-16 mt-2  mr-10"
+            />
+            <div className="text-[18px] font-bold mt-3">
+              Image Reverse Search
+            </div>
+            <div className="ml-10 mt-2">Alt Source</div>
+          </div>
+          <div className="h-[33%] w-[100%] border-white border-2">
+            <MyImage
+              src="/images/contentImage1.svg"
+              className="w-32 h-20 float-left ml-16 mt-2 mr-10"
+            />
+            <div className="text-[18px] font-bold mt-3">
+              Image Reverse Search
+            </div>
+            <div className="ml-10 mt-2">Alt Source</div>
+          </div>
         </div>
-        <div className="h-[33%] w-[100%] border-white border-2">
-          <MyImage
-            src="/images/contentImage1.svg"
-            className="w-32 h-20 float-left ml-16 mt-2 mr-10"
-          />
-          <div className="text-[18px] font-bold mt-3">Image Reverse Search</div>
-          <div className="ml-10 mt-2">Alt Source</div>
-        </div>
-      </div>
       </Adv_DragDropContainer>
     </div>
   );
