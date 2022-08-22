@@ -191,7 +191,7 @@ export default function Advanced() {
                 >
                   <button
                     onClick={() => {
-                      console.log("help clicked");
+                      // console.log("help clicked");
                       handleGuideOpen();
                     }}
                   >

@@ -33,7 +33,7 @@ export const DragDropContainer = ({
     if (index < 4) {
       stickersData.push({
         top: 106,
-        left: 85 + index * 60,
+        left: 93 + index * 60,
         stickerId: stickerId,
       });
     }
@@ -68,13 +68,13 @@ export const DragDropContainer = ({
         const top = Math.round(item.top + delta.y);
         // console.log(left, "x-y", top);
         // if(item.id > 3) return undefined;
-        console.log("item.id", item.id);
+        // console.log("item.id", item.id);
         if (left > 330 && left < 380 && top > 100 && top < 120) {
           //validate question marking
           handleGuideOpen(boxes[item.id].stickerId);
           handleStickerId(boxes[item.id].stickerId);
           moveBox(item.id, item.left, item.top);
-          console.log("normal1");
+          // console.log("normal1");
         } else if (left > 0 && left < 425 && top > 150 && top < 506) {
           //validate correct marking
           if (markedStickers.indexOf(boxes[item.id].stickerId) < 0) {
@@ -82,7 +82,7 @@ export const DragDropContainer = ({
           }
           moveBox(item.id, left, top);
         } else {
-          console.log("normal2");
+          // console.log("normal2");
           moveBox(
             item.id,
             stickersData[item.id].left,

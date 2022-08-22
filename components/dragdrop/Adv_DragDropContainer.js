@@ -20,7 +20,7 @@ export const Adv_DragDropContainer = ({
   children,
   hidesourceondrag,
   stickers = [],
-  handlemarkedstickers,
+  // handlemarkedstickers,
   unlock,
   // markedstickers,
   // sceneindex,
@@ -82,12 +82,12 @@ export const Adv_DragDropContainer = ({
         const delta = monitor.getDifferenceFromInitialOffset();
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
-        console.log(left, "x-y", top);
+        // console.log(left, "x-y", top);
 
         // console.log("tempArr------------------", tempArr);
         if (left > 550 && left < 600 && top > 0 && top < 50) {
           //validate question marking
-          console.log("adv1");
+          // console.log("adv1");
           handleGuideOpen(boxes[item.id].stickerId);
           handleStickerId(boxes[item.id].stickerId);
           moveBox(item.id, item.left, item.top);
@@ -98,7 +98,7 @@ export const Adv_DragDropContainer = ({
           }
           moveBox(item.id, left, top);
         } else {
-          console.log("adv2");
+          // console.log("adv2");
           moveBox(
             item.id,
             stickersData[item.id].left,
@@ -154,13 +154,13 @@ export const Adv_DragDropContainer = ({
             </Box_adv>
           );
         })}
-        {handlemarkedstickers && (
+        {/* {handlemarkedstickers && ( */}
           <InfoModal
             guideOpen={guideOpen}
             stickerId={stickerInfoId}
             handleGuideClose={handleGuideClose}
           />
-        )}
+        {/* )} */}
       </div>
     </>
   );

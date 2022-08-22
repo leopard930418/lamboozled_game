@@ -3,28 +3,27 @@ import MyImage from "./MyImage";
 
 import CustomImage from "../base/CustomImage";
 import { Adv_DragDropContainer } from "../dragdrop/Adv_DragDropContainer";
+import externals from "../../public/assets/external.json";
 
 export default function Lateral({
   handleSceneP,
   hidesourceondrag,
   stickers,
-  handlemarkedstickers,
   unlock = true,
-  markedstickers,
-
-  sceneindex,
+  lateralData,
   onLoad = () => {},
   ...props
 }) {
+  const extData = externals;
+  console.log("lateralData.curArtId", extData.filter((ele)=>ele.index == lateralData.curArtId));
+  // console.log("extData[lateralData.curArtId]", extData[lateralData.curArtId]);
+  // console.log("curId", curArtId);
   return (
     <div {...props}>
       <Adv_DragDropContainer
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
-        handlemarkedstickers={handlemarkedstickers}
         unlock={unlock}
-        markedstickers={markedstickers}
-        sceneindex={sceneindex}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">
@@ -63,25 +62,30 @@ export default function Lateral({
               />
             </MyImage>
           </div>
-          {/* <div className="h-[33%] w-[100%] border-white border-2">
-          <MyImage className="w-20 h-20 float-left  mt-1  mr-10" />
-          <div className="text-[18px] font-bold mt-1">
-            Alt Title Alt Title Alt Title Alt Title Alt Title Alt Title Alt
-            Title Alt Title Alt Source
-          </div>
-          <div className="ml-10 mt-1">Alt Source</div>
-        </div>
-        <div className="h-[33%] w-[100%] border-white border-2">
-          <MyImage className="w-20 h-20 float-left mt-1 mr-10" />
-          <div className="text-[18px] font-bold mt-1">
-            Alt Title Alt Title Alt Title Alt Title Alt Title Alt Title Alt
-            Title Alt Title Alt Source
-          </div>
-          <div className="ml-10 mt-1">Alt Source</div>
-        </div> */}
-          <div className="h-[66%] w-[100%] border-white border-2 text-center">
-            <div className="mt-10 text-[#4F4F4F]">No Relevant Result</div>
-          </div>
+          {!lateralData.lateral ? (
+            <div className="h-[66%] w-[100%] border-white border-2 text-center">
+              <div className="mt-10 text-[#4F4F4F]">No Relevant Result</div>
+            </div>
+          ) : (
+            <>
+              <div className="h-[33%] w-[100%] border-white border-2">
+                <MyImage className="w-20 h-20 float-left  mt-1  mr-10" />
+                <div className="text-[18px] font-bold mt-1">
+                {extData.filter((ele)=>ele.index == lateralData.curArtId)[0].lateral_titles[0]}
+                </div>
+                <div className="ml-10 mt-1">{extData.filter((ele)=>ele.index == lateralData.curArtId)[0].sources[0]}
+                  {console.log(extData, lateralData.curArtId, "Justin")}
+                </div>
+              </div>
+              <div className="h-[33%] w-[100%] border-white border-2">
+                <MyImage className="w-20 h-20 float-left mt-1 mr-10" />
+                <div className="text-[18px] font-bold mt-1">
+                {extData.filter((ele)=>ele.index == lateralData.curArtId)[0].lateral_titles[1]}
+                </div>
+                <div className="ml-10 mt-1">{extData.filter((ele)=>ele.index == lateralData.curArtId)[0].sources[1]}</div>
+              </div>
+            </>
+          )}
         </div>
       </Adv_DragDropContainer>
     </div>

@@ -25,6 +25,7 @@ import Fact from "../base/Fact";
 import Reverse from "../base/Reverse";
 import Lateral from "../base/Lateral";
 
+
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Day4_8({
@@ -33,12 +34,13 @@ export default function Day4_8({
   // meter = 50,
   handleIsFeed,
   unlockedStickers,
+  advancedData,
 }) {
   // game logic
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? []
   );
-  const meter = useSelector((state)=>state?.game?.meter ?? 50);
+  const meter = useSelector((state) => state?.game?.meter ?? 50);
   const article = content[curArtId];
   const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
@@ -49,7 +51,17 @@ export default function Day4_8({
   const handleScene = (value) => setSceneIndex(value);
   const handleSceneP = () => setSceneIndex(0);
 
+  const [counter, setCounter] = React.useState(100);
+  React.useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 3000);
+    return () => clearInterval(timer);
+  }, [counter]);
+  console.log("countdown", counter);
   // console.log("sceneIndex:", sceneIndex);
+  
+  //for source
+  
   return (
     <>
       <div
@@ -176,6 +188,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[4]}
                           unlock={false}
+                          socialData = {advancedData.socialData}
                         />
                         <Source
                           className={`${
@@ -185,6 +198,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[5, 6]}
                           unlock={false}
+                          sourceData = {advancedData.sourceData}
                         />
                         <Fact
                           className={`${
@@ -194,6 +208,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[7, 8]}
                           unlock={false}
+                          art_answer={article.answer_key}
                         />
                         <Reverse
                           className={`${
@@ -203,6 +218,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[9, 10]}
                           unlock={false}
+                          curArtId={curArtId}
                         />
                         <Lateral
                           className={`${
@@ -212,6 +228,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[11]}
                           unlock={false}
+                          lateralData = {advancedData.lateralData}
                         />
                         {/* </Adv_DragDropContainer> */}
                       </div>

@@ -1,51 +1,27 @@
 //Alex created
-import { withStyles, makeStyles } from "@mui/styles";
-import LinearProgress from "@mui/material/LinearProgress";
+import React from "react";
+const VerticalProgress = ({ value = 50 }) => {
+  return (
+    <div className="relative h-[638px] w-8 bg-black bg-opacity-25">
+      <div
+        className="absolute bg-[#FC5757] bottom-0 left-0 w-full"
+        style={{ height: `${100 - value}%` }}
+      ></div>
+    </div>
+  );
+};
 
-const BorderLinearProgress = withStyles((theme) => {
-    return {
-      root: {
-        width: 30,
-        height: "100%",
-      },
-      colorPrimary: {
-        backgroundColor: "rgba(0, 0, 0, 0.25);",
-      },
-      bar: {
-        transform: ({ value }) => {
-          return `translateY(${value}%) !important`;
-        },
-        backgroundColor: "#FC5757",
-      },
-    };
-  })(LinearProgress);
-
-  const useStyles = makeStyles({
-    root: {
-      flexGrow: 1,
-      height: 638,
-      gap: 10,
-      display: "flex",
-      position: "fixed",
-    },
-    stats: {
-      display: "flex",
-      alignItems: "center",
-      flexDirection: "row",
-    },
-  });
-  
-  export default function Basic_new(){
-    const classes = useStyles();
-    return(
-        <>
-            <div className={classes.root}>
-                    <div className={classes.stats}>
-                        {/* {!isFeedback && ( */}
-                        <BorderLinearProgress variant="determinate" value={30} />
-                        {/* )} */}
-                    </div>
-            </div>
-        </>
-    );
-  }
+export default function MyTimer() {
+  const [counter, setCounter] = React.useState(100);
+  React.useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 3000);
+    return () => clearInterval(timer);
+  }, [counter]);
+  // console.log("counter", counter);
+  return (
+    <>
+      <VerticalProgress value={counter} />
+    </>
+  );
+}

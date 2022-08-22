@@ -10,21 +10,18 @@ export default function Social({
   stickers,
   handlemarkedstickers,
   unlock = true,
-  // markedstickers,
-  // sceneindex,
+  socialData,
   onLoad = () => {},
   ...props
 }) {
-  // console.log("markedstickers", markedstickers);
+  // console.log("socialdata", socialData);
+
   return (
     <div {...props}>
       <Adv_DragDropContainer
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
-        handlemarkedstickers={handlemarkedstickers}
         unlock={unlock}
-        // markedstickers={markedstickers}
-        // sceneindex={sceneindex}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">
@@ -54,17 +51,42 @@ export default function Social({
                 src="/images/UnkownAvatar.svg"
                 className="h-32 w-32 ml-6 mt-6"
               ></MyImage>
-              <MyImage
-                src="/images/GreenCheck.svg"
-                className="h-10 w-10 ml-28 mt-[-35px]"
-              ></MyImage>
+              {socialData.verifyIcon && (
+                <MyImage
+                  src="/images/GreenCheck.svg"
+                  className="h-10 w-10 ml-28 mt-[-35px]"
+                ></MyImage>
+              )}
             </div>
             <div className="text-[18px]  w-[60%] h-full float-left mt-10">
-              <div>Registered a year ago</div>
-              <div className="mt-4">Follows: 5231</div>
+              {socialData.registerDate ? (
+                <div>Registered a year ago</div>
+              ) : (
+                <div className="text-[#FC5757]">Registered a day ago</div>
+              )}
+              {socialData.follower ? (
+                <div className="mt-4">Follows: {socialData.nor_follows}</div>
+              ) : (
+                <div className="mt-4 text-[#FC5757]">
+                  Follows: {socialData.fake_follows}
+                </div>
+              )}
             </div>
           </div>
-          <div className="h-[90%] w-[30%] float-left mt-7">Posts</div>
+          {socialData.post ? (
+            <div className="h-[90%] w-[30%] float-left mt-7">
+              <div className="w-[120px] h-[17px] ml-3 ">Posts</div>
+              <div className="w-[120px] h-[17px] mt-4 ml-3 bg-[#EAEAEA]"></div>
+              <div className="w-[100px] h-[17px] mt-4 ml-3 bg-[#EAEAEA]"></div>
+              <div className="w-[60px] h-[17px] mt-4 ml-3 bg-[#EAEAEA]"></div>
+              <div className="w-[90px] h-[17px] mt-4 ml-3 bg-[#EAEAEA]"></div>
+              <div className="w-[100px] h-[17px] mt-4 ml-3 bg-[#EAEAEA]"></div>
+            </div>
+          ) : (
+            <div className="h-[90%] w-[30%] float-left mt-7 text-[#FC5757]">
+              <div className="w-[120px] h-[17px] ml-3 ">No Posts</div>
+            </div>
+          )}
         </div>
       </Adv_DragDropContainer>
     </div>

@@ -93,7 +93,7 @@ export default function Basic() {
       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
     return () => clearInterval(timer);
   }, [counter]);
-  console.log("countdown", counter);
+  // console.log("countdown", counter);
   return (
     <div className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <div
@@ -240,7 +240,7 @@ export default function Basic() {
                           <Tooltip title="AAAAAAAAA" arrow>
                             <button
                               onClick={() => {
-                                console.log("help clicked");
+                                // console.log("help clicked");
                                 handleGuideOpen();
                               }}
                             >

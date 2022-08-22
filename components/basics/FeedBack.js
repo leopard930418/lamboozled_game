@@ -19,6 +19,7 @@ import {
   updateMeterByAmount,
   nextDay,
   initMarkedStickers,
+  updatePlayStatus,
 } from "../../store/reducers/gameSlice";
 export default function FeedBack({
   curArtIndex = 0,
@@ -26,36 +27,40 @@ export default function FeedBack({
   leftArts = 0,
   handleIsFeed,
   handleCurArtIndex,
-  handleTheDay,
+  
 }) {
- 
   const dispatch = useDispatch();
-  const markedStickers = useSelector((state) => state?.game?.markedStickers ?? []);
-  const meter = useSelector((state)=>state?.game?.meter ?? 0);
+  const markedStickers = useSelector(
+    (state) => state?.game?.markedStickers ?? []
+  );
+  const meter = useSelector((state) => state?.game?.meter ?? 0);
   const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
   const article = content[curArtIndex];
   const Stickers = stickers;
   let correct = [];
   let wrong = [];
   let sum = 0;
-  console.log("feedback-marked stickers---", markedStickers );
+  // console.log("feedback-marked stickers---", markedStickers );
+  const theDay = useSelector((state)=>state?.game?.theDay ?? 1);
+  const answer_key = article.answer_key;
 
-  const answer_key = article.answer_key; 
-
-  for(var i = 0; i < answer_key.length; i++){
-    if(answer_key.charAt(i) == '1'){    //when answer's sticker is true 
-        if(markedStickers.indexOf(i) < 0){//the sticker id is not in marked stickers?
-            wrong.push(i);
-        } else{
-            correct.push(i);
-        }
-    }else{                              //when answer's sticker is false
-        if(markedStickers.indexOf(i) > -1){ //
-            wrong.push(i)
-        }
+  for (var i = 0; i < answer_key.length; i++) {
+    if (answer_key.charAt(i) == "1") {
+      //when answer's sticker is true
+      if (markedStickers.indexOf(i) < 0) {
+        //the sticker id is not in marked stickers?
+        wrong.push(i);
+      } else {
+        correct.push(i);
+      }
+    } else {
+      //when answer's sticker is false
+      if (markedStickers.indexOf(i) > -1) {
+        //
+        wrong.push(i);
+      }
     }
   }
-
 
   correct.map((stickerId) => {
     sum += weights[stickerId];
@@ -64,24 +69,25 @@ export default function FeedBack({
   wrong.map((stickerId) => {
     sum -= weights[stickerId];
   });
-  let sumcolor = '#C7C7C7';
-  if(sum > 0){
-    sumcolor = 'green';
-  }else if(sum < 0){
-    sumcolor = 'red';
+  let sumcolor = "#C7C7C7";
+  if (sum > 0) {
+    sumcolor = "green";
+  } else if (sum < 0) {
+    sumcolor = "red";
   }
-  
+
   article.answer_key;
   const contentData = content;
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
   const handleGuideClose = () => setGuideOpen(false);
-  const [unlock, setUnlock] = useState(true);
+  // const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
   const [reviewSticker, setReviewSticker] = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
+  console.log("reviewSticker", reviewSticker);
   return (
     <>
       <div
@@ -92,7 +98,6 @@ export default function FeedBack({
                                 : "[url('/images/feedback.svg')]"
                             }`}
       >
-  
         {reviewMode ? (
           <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
         ) : (
@@ -121,7 +126,7 @@ export default function FeedBack({
                         item
                         container
                         lg={8}
-                        className="border-2 border-black flex justify-center p-1"
+                        className="border-2 border-black flex justify-center p-2 pl-7"
                       >
                         <Grid item lg={3}>
                           <div>
@@ -160,7 +165,7 @@ export default function FeedBack({
                       >
                         <button
                           onClick={() => {
-                            console.log("help clicked");
+                            // console.log("help clicked");
                             handleGuideOpen();
                           }}
                         >
@@ -176,40 +181,113 @@ export default function FeedBack({
                       />
                     </div>
                     <div>
-                      <svg
-                        className="absolute top-16 left-[16%] button"
-                        expanded="true"
-                        height="100px"
-                        width="100px"
-                        onClick={() => {
-                          console.log("help clicked");
-                          handleGuideOpen();
-                        }}
-                      >
-                        <circle
-                          className="innerCircle"
-                          cx="50%"
-                          stroke="#FF4040"
-                          strokeWidth="10%"
-                          cy="50%"
-                          r="25%"
-                          fill="none"
-                        />
-                      </svg>
+                      {reviewSticker < 4 && (
+                        <svg
+                          className="absolute top-16 button"
+                          style={{
+                            marginLeft: `${reviewSticker * 55 + 35}` + "px",
+                          }}
+                          expanded="true"
+                          height="100px"
+                          width="100px"
+                          onClick={() => {
+                            // console.log("help clicked");
+                            handleGuideOpen();
+                          }}
+                        >
+                          <circle
+                            className="innerCircle"
+                            cx="50%"
+                            stroke="#FF4040"
+                            strokeWidth="10%"
+                            cy="50%"
+                            r="25%"
+                            fill="none"
+                          />
+                        </svg>
+                      )}
+                      {(reviewSticker == 4 ||
+                        reviewSticker == 5 ||
+                        reviewSticker == 7 ||
+                        reviewSticker == 9 ||
+                        reviewSticker == 11) && (
+                          <svg
+                            className="absolute top-16 button"
+                            style={{
+                              marginLeft: `${1000 - 1 * 55}` + "px",
+                            }}
+                            expanded="true"
+                            height="100px"
+                            width="100px"
+                            onClick={() => {
+                              // console.log("help clicked");
+                              handleGuideOpen();
+                            }}
+                          >
+                            <circle
+                              className="innerCircle"
+                              cx="50%"
+                              stroke="#FF4040"
+                              strokeWidth="10%"
+                              cy="50%"
+                              r="25%"
+                              fill="none"
+                            />
+                          </svg>
+                        )}
+                      {(reviewSticker == 6 ||
+                        reviewSticker == 8 ||
+                        reviewSticker == 10) && (
+                          <svg
+                            className="absolute top-16 button"
+                            style={{
+                              marginLeft: `${1000 - 2 * 55}` + "px",
+                            }}
+                            expanded="true"
+                            height="100px"
+                            width="100px"
+                            onClick={() => {
+                              // console.log("help clicked");
+                              handleGuideOpen();
+                            }}
+                          >
+                            <circle
+                              className="innerCircle"
+                              cx="50%"
+                              stroke="#FF4040"
+                              strokeWidth="10%"
+                              cy="50%"
+                              r="25%"
+                              fill="none"
+                            />
+                          </svg>
+                        )}
                       <MyImage
                         src="/images/BossSmall.svg"
-                        className="absolute right-[55%] top-10 w-[134px] h-[170px]"
+                        className={`absolute right-[55%] top-10 w-[134px] h-[170px] ${
+                          reviewSticker < 4
+                            ? "right-[55%]"
+                            : "scale-x-[-1] right-[30%]"
+                        }`}
                       />
+                      {/* {reviewSticker < 4 ? (
+                        <MyImage
+                          src="/images/BossSmall.svg"
+                          className="absolute  top-10 w-[134px] h-[170px] right-[55%] "
+                        />
+                      ) : (
+                        <MyImage
+                          src="/images/BossSmall.svg"
+                          className="absolute  top-10 w-[134px] h-[170px] scale-x-[-1] right-[30%]"
+                        />
+                      )} */}
 
                       <MyImage
                         src="/images/AlertPanel.svg"
                         className="absolute right-[10%] top-48 w-[769px] h-[238px]  break-words p-8"
                       >
                         <span className=" text-3xl">
-                          When an article’s title uses dramatic punctuations, it
-                          stirs up sheep's emotion... When we're emotional, we
-                          tend to neglect the validity of evidence and the flow
-                          of logic.
+                          {stickers[reviewSticker].description}
                         </span>
                       </MyImage>
                       <MyImage
@@ -242,23 +320,26 @@ export default function FeedBack({
                   <>
                     <div className="w-10/12 justify-self-center pt-12 ml-20 ">
                       <div>
-                        
-                        <div className="absolute top-20  right-[50%] w-20 h-20 rounded-full" style={{backgroundColor:sumcolor,}}>
+                        <div
+                          className="absolute top-20  right-[50%] w-20 h-20 rounded-full"
+                          style={{ backgroundColor: sumcolor }}
+                        >
                           <div className="h-full flex justify-center items-center text-black text-3xl font-bold">
                             {sum}
                           </div>
                         </div>
-
                         <div className="flex justify-center pt-12 pb-4">
                           <label className="bg-black rounded-3xl px-12 py-2 text-white font-bold text-lg text-center">
-                            Correct Marks ({correct.length}/
-                            {correctCnt})
+                            Correct Marks ({correct.length}/{correctCnt})
                           </label>
                         </div>
-                        <div className="h-2/5 max-h-56  justify-center w-full overflow-x-hidden">
+                        <div
+                          className={`h-2/5 max-h-56 justify-center w-full overflow-x-hidden`}
+                          style={{ minHeight: "150px" }}
+                        >
                           {correct.map((stickerId) => {
                             return (
-                              <div className="text-lg text-[#0DA71C] font-semibold text-center py-3 w-full">
+                              <div className="text-lg text-[#0DA71C] font-semibold text-center py-2 w-full">
                                 {Stickers[stickerId].issue}
                               </div>
                             );
@@ -273,7 +354,7 @@ export default function FeedBack({
                           {wrong.map((stickerId) => {
                             return (
                               <div className="flex flex-row justify-between items-center">
-                                <div className="text-lg w-10/12 text-[#FC5757] font-semibold text-center py-4">
+                                <div className="text-lg w-10/12 text-[#FC5757] font-semibold text-center py-2">
                                   {stickers[stickerId].issue}
                                 </div>
                                 <div className="w-2/12  text-right">
@@ -290,8 +371,6 @@ export default function FeedBack({
                               </div>
                             );
                           })}
-
-                        
                         </div>
                       </div>
                     </div>
@@ -301,7 +380,9 @@ export default function FeedBack({
                           className="w-3/4 bg-white flex flex-row items-center justify-center rounded-sm"
                           onClick={handleMarkedIssuesOpen}
                         >
-                          <label className="font-bold">{leftArts} article(s) left</label>
+                          <label className="font-bold">
+                            {leftArts} article(s) left
+                          </label>
                         </div>
                         {leftArts == 0 ? (
                           <button
@@ -324,6 +405,9 @@ export default function FeedBack({
                               handleCurArtIndex();
                               dispatch(updateMeterByAmount(sum));
                               dispatch(initMarkedStickers());
+                              if(theDay == 8){
+                                dispatch(updatePlayStatus("landing"));
+                              }
                             }}
                           >
                             NEXT
@@ -354,9 +438,7 @@ export default function FeedBack({
                   </>
                 )}
               </Grid>
-              <Grid item xs={5}>
-              
-              </Grid>
+              <Grid item xs={5}></Grid>
             </Grid>
           </Grid>
           <Grid item xs={12}>
@@ -375,9 +457,7 @@ export default function FeedBack({
                   ""
                 )}
               </Grid>
-              <Grid item xs={4}>
-            
-              </Grid>
+              <Grid item xs={4}></Grid>
 
               <Grid item xs={4}>
                 {!reviewMode && (
@@ -387,7 +467,7 @@ export default function FeedBack({
                         src="/images/bottomlambmeter.svg"
                         className="h-24"
                       />
-                      <Meter point={meter}/>
+                      <Meter point={meter} />
                     </div>
                   </div>
                 )}

@@ -3,7 +3,8 @@ import MyImage from "./MyImage";
 
 import CustomImage from "../base/CustomImage";
 import { Adv_DragDropContainer } from "../dragdrop/Adv_DragDropContainer";
-
+import sources from "../../public/assets/sources.json";
+import externals from "../../public/assets/external.json";
 export default function Fact({
   handleSceneP,
   hidesourceondrag,
@@ -12,19 +13,17 @@ export default function Fact({
   unlock = true,
   markedstickers,
 
-  sceneindex,
   onLoad = () => {},
   ...props
 }) {
+  const srcContent = sources;
+
   return (
     <div {...props}>
       <Adv_DragDropContainer
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
-        handlemarkedstickers={handlemarkedstickers}
         unlock={unlock}
-        markedstickers={markedstickers}
-        sceneindex={sceneindex}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">
@@ -63,57 +62,24 @@ export default function Fact({
                 className="w-full h-[80%] overflow-x-hidden"
                 style={{ fontFamily: "Patrick Hand" }}
               >
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C] ">
-                    The FencePost{" "}
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[140px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
+                {srcContent.map((source, index) => {
+                  let width = Math.floor(source.score * 1.4);
+                  return (
+                    <div className="w-full mt-4 float-left justify">
+                      <div className="float-left w-[35%] text-[#7B7F8C] ">
+                        {source.name}
+                      </div>
+                      <div className="border-2 border-black w-[140px] h-4 float-left mt-1 ml-10">
+                        <div
+                          className={`border-2 border-black h-4 -mt-[2px] -ml-[1px] bg-[#605F5B]`}
+                          style={{width:width}}
+                        ></div>
+                      </div>
 
-                  <span className="-mt-3">94%</span>
-                </div>
-
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C]">
-                    The Garlic Press
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[40px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
-
-                  <span className="-mt-3">94%</span>
-                </div>
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C]">
-                    The Meadow Examiner
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[40px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
-
-                  <span className="-mt-3">94%</span>
-                </div>
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C]">
-                    The Financial Times{" "}
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[40px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
-
-                  <span className="-mt-3">94%</span>
-                </div>
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C]">
-                    The FencePost{" "}
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[40px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
-
-                  <span className="-mt-3">94%</span>
-                </div>
+                      <span className="-mt-3">{source.score}%</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="w-[25%] h-[85%] shadow-[0_0px_6px_2px_rgba(0,0,0,0.25)] float-left mt-3 ml-6">
@@ -128,9 +94,11 @@ export default function Fact({
                   className="text-center mt-10 text-[#7B7F8C]"
                   style={{ fontFamily: "Patrick Hand" }}
                 >
-                  <div className="mt-3 pt-2 ">The lonion </div>
-                  <div className="mt-3 pt-2 ">Last Sheep Tonight </div>
-                  <div className="mt-3 pt-2 ">Cracked Sheep</div>
+                  {srcContent.map((source, index) => {
+                    if(source.satirical == true)
+                    return(<div className="mt-3 pt-2 ">{source.name} </div>)
+                  })}
+                 
                 </div>
               </div>
             </div>

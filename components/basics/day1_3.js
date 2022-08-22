@@ -32,7 +32,9 @@ export default function Day1_3({
   unlockedStickers,
 }) {
   // game logic
-  const markedStickers = useSelector((state) => state?.game?.markedStickers ?? []);
+  const markedStickers = useSelector(
+    (state) => state?.game?.markedStickers ?? []
+  );
   const meter = useSelector((state) => state?.game?.meter ?? 0);
   const dispatch = useDispatch();
   const handleResult = (value) => setMarkedResult(value);
@@ -42,7 +44,7 @@ export default function Day1_3({
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
-
+  
   return (
     <>
       <div
@@ -68,7 +70,6 @@ export default function Day1_3({
                     // unlock={curArtIndex == 0 ? unlock : false}
                     unlock={false}
                     isdraging={true}
-                
                   >
                     <div className="pt-24 w-11/12 px-7">
                       <Grid container columns={10} className="pl-10">

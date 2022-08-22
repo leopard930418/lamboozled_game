@@ -6,8 +6,8 @@ export default function InfoModal(props) {
   
     const stickerData = stickers;
     const id = Number(props.stickerId);
-    console.log("dragdropcontainer:"+ props.stickerId);
-    console.log("infomodal:" + id);
+    // console.log("dragdropcontainer:"+ props.stickerId);
+    // console.log("infomodal:" + id);
     // console.log("stickerId ; " + id);
     return (
         <Modal

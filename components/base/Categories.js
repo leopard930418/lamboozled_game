@@ -33,6 +33,7 @@ export default function Categories({
             <button
               className={`${
                 theDay > 3 ? "show" : "hidden"
+                // theDay > 0 ? "show" : "hidden"
               } bg-black rounded-full text-white text-lg px-4 py-0`}
               onClick={() => {
                 handleScene(1);
@@ -43,6 +44,7 @@ export default function Categories({
             <button
               className={`${
                 theDay > 4 ? "show" : "hidden"
+                // theDay > 0 ? "show" : "hidden"
               } bg-black rounded-full text-white text-lg px-4 py-0 ml-6`}
               onClick={() => {
                 handleScene(2);
@@ -56,6 +58,7 @@ export default function Categories({
       <div
         className={`${
           theDay > 5 ? "show" : "hidden"
+          // theDay > 0 ? "show" : "hidden"
         } float-left w-full justify-center ml-20 mt-6`}
       >
         <div className="w-9/12 shadow-[0_0px_6px_2px_rgba(0,0,0,0.25)] p-2 flex flex-col space-y-4">

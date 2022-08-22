@@ -10,8 +10,7 @@ export default function CustomImage({
   ...props
 }) {
   const [openF, setOpenF] = useState(open);
-  console.log("open+", open);
-  console.log("openF+", openF);
+
   return (
     <>
       {open ? (
