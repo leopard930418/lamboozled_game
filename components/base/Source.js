@@ -49,10 +49,10 @@ export default function Source({
               </span>
             </MyImage>
             <div
-              className="text-[38px] justify-center w-full text-center"
+              className="text-[38px] justify-center w-full text-center float-left"
               style={{ fontFamily: "Patrick Hand" }}
             >
-              <span>{sourceData.srcContent.name}</span>
+              <span className="w-full">{sourceData.srcContent.name}</span>
               
             </div>
             <div className="w-full h-[60%] float-left">
