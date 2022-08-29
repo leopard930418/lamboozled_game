@@ -1,0 +1,58 @@
+[
+    {
+        "name" : "The Fluffington Post",
+        "correct_url" : "TheFluffingtonPost.com",
+        "wrong_url" :  "Thefluffing.com",
+        "score" : 92,
+        "satirical" : false,
+        "img" : [ ]
+    },
+    {
+        "name" : "The Green Meadows Gazette",
+        "correct_url" : "Greenmeadowsgazette.com",
+        "wrong_url" : "greemeadosgazette.com",
+        "score" : 96,
+        "satirical" : false,
+        "img" : [ ]
+    },
+    {
+        "name" : "Sun Press",
+        "correct_url" : "SunPress.com",
+        "wrong_url" : "SunPre.ss",
+        "score" : 40,
+        "satirical" : true,
+        "img" : [ ]
+    },
+    {
+        "name" : "The Financial Times",
+        "correct_url" : "Financialtimes.com",
+        "wrong_url" : "FinancialTim.es",
+        "score" : 70,
+        "satirical" : false,
+        "img" : [ ]
+    },
+    {
+        "name" : "Shearlock Horns News",
+        "correct_url" : "ShearlockHorns.com",
+        "wrong_url" : "sherlok-hornz.com",
+        "score" : 20,
+        "satirical" : true,
+        "img" : [ ]
+    },
+    {
+        "name" : "The Fence Post",
+        "correct_url" : "Thefencepost.com",
+        "wrong_url" : "dafencepost.com",
+        "score" : 92,
+        "satirical" : false,
+        "img" : [ ]
+    },
+    {
+        "name" : "The Garlic Press",
+        "correct_url" : "GarlicPress.com",
+        "wrong_url" : "garlipress.com",
+        "score" : 40,
+        "satirical" : false,
+        "img" : [ ]
+    }
+]

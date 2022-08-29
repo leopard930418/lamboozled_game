@@ -1,30 +1,30 @@
-import React from "react";
+import React, {useState} from "react";
 import MyImage from "./MyImage";
 
 import CustomImage from "../base/CustomImage";
 import { Adv_DragDropContainer } from "../dragdrop/Adv_DragDropContainer";
-
+import sources from "../../public/assets/sources.json";
+import externals from "../../public/assets/external.json";
+import HelpModal from "../helpModal";
 export default function Fact({
   handleSceneP,
   hidesourceondrag,
   stickers,
-  handlemarkedstickers,
   unlock = true,
-  markedstickers,
 
-  sceneindex,
   onLoad = () => {},
   ...props
 }) {
+  const srcContent = sources;
+  const [guideOpen, setGuideOpen] = useState(false);
+  const handleGuideOpen = () => setGuideOpen(true);
+  const handleGuideClose = () => setGuideOpen(false);  
   return (
     <div {...props}>
       <Adv_DragDropContainer
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
-        handlemarkedstickers={handlemarkedstickers}
         unlock={unlock}
-        markedstickers={markedstickers}
-        sceneindex={sceneindex}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">
@@ -38,7 +38,7 @@ export default function Fact({
             </button>
           </div>
           <div className="h-full w-[50%] float-left">
-            <div className="float-right w-[80px] h-full border-black border-l-2">
+            <div className="float-right w-[80px] h-full border-black border-l-2" onClick={handleGuideOpen}>
               <CustomImage src="/images/help.svg" className="h-8 mt-5 ml-5" />
             </div>
             <div className="float-right h-full w-[140px] border-black border-l-2"></div>
@@ -63,57 +63,24 @@ export default function Fact({
                 className="w-full h-[80%] overflow-x-hidden"
                 style={{ fontFamily: "Patrick Hand" }}
               >
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C] ">
-                    The FencePost{" "}
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[140px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
+                {srcContent.map((source, index) => {
+                  let width = Math.floor(source.score * 1.4);
+                  return (
+                    <div className="w-full mt-4 float-left justify">
+                      <div className="float-left w-[35%] text-[#7B7F8C] ">
+                        {source.name}
+                      </div>
+                      <div className="border-2 border-black w-[140px] h-4 float-left mt-1 ml-10">
+                        <div
+                          className={`border-2 border-black h-4 -mt-[2px] -ml-[1px] bg-[#605F5B]`}
+                          style={{width:width}}
+                        ></div>
+                      </div>
 
-                  <span className="-mt-3">94%</span>
-                </div>
-
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C]">
-                    The Garlic Press
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[40px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
-
-                  <span className="-mt-3">94%</span>
-                </div>
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C]">
-                    The Meadow Examiner
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[40px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
-
-                  <span className="-mt-3">94%</span>
-                </div>
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C]">
-                    The Financial Times{" "}
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[40px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
-
-                  <span className="-mt-3">94%</span>
-                </div>
-                <div className="w-full mt-4 float-left justify">
-                  <div className="float-left w-[35%] text-[#7B7F8C]">
-                    The FencePost{" "}
-                  </div>
-                  <div className="border-2 border-black w-40 h-4 float-left mt-1 ml-10">
-                    <div className="border-2 border-black w-[40px] h-4 -mt-[2px] -ml-[1px] bg-[#605F5B] "></div>
-                  </div>
-
-                  <span className="-mt-3">94%</span>
-                </div>
+                      <span className="-mt-3">{source.score}%</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="w-[25%] h-[85%] shadow-[0_0px_6px_2px_rgba(0,0,0,0.25)] float-left mt-3 ml-6">
@@ -128,15 +95,21 @@ export default function Fact({
                   className="text-center mt-10 text-[#7B7F8C]"
                   style={{ fontFamily: "Patrick Hand" }}
                 >
-                  <div className="mt-3 pt-2 ">The lonion </div>
-                  <div className="mt-3 pt-2 ">Last Sheep Tonight </div>
-                  <div className="mt-3 pt-2 ">Cracked Sheep</div>
+                  {srcContent.map((source, index) => {
+                    if(source.satirical == true)
+                    return(<div className="mt-3 pt-2 ">{source.name} </div>)
+                  })}
+                 
                 </div>
               </div>
             </div>
           </div>
         </div>
       </Adv_DragDropContainer>
+      <HelpModal
+        open={guideOpen}
+        handleGuideClose={handleGuideClose}
+      />
     </div>
   );
 }

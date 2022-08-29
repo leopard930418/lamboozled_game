@@ -16,6 +16,7 @@ export default function Story() {
   const theDay = useSelector((state) => state.game?.theDay ?? 1);
   return (
     <div>
+      {/* temp test */}
       {theDay==1 &&(
         <StoryDay1 />
       )}
@@ -40,7 +41,8 @@ export default function Story() {
       {theDay==8 && (
         <StoryDay8 />
       )}
-      
+        {/* <StoryDay6 /> */}
+
     </div>
   );
 }

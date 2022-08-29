@@ -32,7 +32,9 @@ export default function Day1_3({
   unlockedStickers,
 }) {
   // game logic
-  const markedStickers = useSelector((state) => state?.game?.markedStickers ?? []);
+  const markedStickers = useSelector(
+    (state) => state?.game?.markedStickers ?? []
+  );
   const meter = useSelector((state) => state?.game?.meter ?? 0);
   const dispatch = useDispatch();
   const handleResult = (value) => setMarkedResult(value);
@@ -42,6 +44,9 @@ export default function Day1_3({
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
+  const [guideOpen, setGuideOpen] = useState(false);
+  const handleGuideOpen = () => setGuideOpen(true);
+  const handleGuideClose = () => setGuideOpen(false);
 
   return (
     <>
@@ -68,7 +73,6 @@ export default function Day1_3({
                     // unlock={curArtIndex == 0 ? unlock : false}
                     unlock={false}
                     isdraging={true}
-                
                   >
                     <div className="pt-24 w-11/12 px-7">
                       <Grid container columns={10} className="pl-10">
@@ -83,7 +87,11 @@ export default function Day1_3({
                           lg={2}
                           className="border-2 border-black flex justify-center"
                         >
-                          <button>
+                          <button
+                            onClick={() => {
+                              handleGuideOpen();
+                            }}
+                          >
                             <CustomImage
                               src="/images/help.svg"
                               className="h-8"
@@ -118,25 +126,25 @@ export default function Day1_3({
                   </DragDropContainer>
                 </Grid>
                 <Grid item xs={5}>
-                  {curArtIndex == 0 && (
-                    <div className=" justify-center pt-[30%] pl-[20%] p-20">
-                      <MyImage
-                        src="/images/unlock.svg"
-                        className={`h-[178px] w-[146px] ml-[25%]  ${
-                          unlock ? "" : "hidden"
-                        }`}
-                        onClick={() => {
-                          // setUnlock(false);
-                        }}
-                      ></MyImage>
-                      <MyImage
-                        src="/images/tobeunlocked.svg"
-                        className={` h-[27px] w-[220px] mt-[10%] ml-[15%] ${
-                          unlock ? "" : "hidden"
-                        }`}
-                      ></MyImage>
-                    </div>
-                  )}
+                  {/* {curArtIndex == 0 && ( */}
+                  <div className=" justify-center pt-[30%] pl-[20%] p-20">
+                    <MyImage
+                      src="/images/unlock.svg"
+                      className={`h-[178px] w-[146px] ml-[25%]  ${
+                        unlock ? "" : "hidden"
+                      }`}
+                      onClick={() => {
+                        // setUnlock(false);
+                      }}
+                    ></MyImage>
+                    <MyImage
+                      src="/images/tobeunlocked.svg"
+                      className={` h-[27px] w-[220px] mt-[10%] ml-[15%] ${
+                        unlock ? "" : "hidden"
+                      }`}
+                    ></MyImage>
+                  </div>
+                  {/* )} */}
                 </Grid>
               </Grid>
             </Grid>
@@ -204,6 +212,52 @@ export default function Day1_3({
             markedStickers={markedStickers}
             setIsFeedback={handleIsFeed}
           />
+          <Modal
+            open={guideOpen}
+            onClose={handleGuideClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            className="z-[1501]"
+          >
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
+              <div className="flex flex-row space-x-8">
+                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
+                  1
+                </div>
+                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
+                  2
+                </div>
+                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
+                  3
+                </div>
+              </div>
+
+              <div className="pt-6 px-4">
+                <div className="text-black text-3xl">
+                  Show GIFs one by one, player can click from top left corner to
+                  switch
+                </div>
+                <div className="text-black text-3xl">
+                  1) Drag a sticker to mark an issue
+                </div>
+                <div className="text-black text-3xl">
+                  2) Drag back to remove it
+                </div>
+                <div className="text-black text-3xl">
+                  3) Drag a sticker to the (?) to learn more about it
+                </div>
+              </div>
+
+              <div className="flex justify-end pt-4">
+                <button
+                  className="px-4 py-2 bg-white text-3xl"
+                  onClick={handleGuideClose}
+                >
+                  Got it!
+                </button>
+              </div>
+            </div>
+          </Modal>
         </DndProvider>
       </div>
     </>

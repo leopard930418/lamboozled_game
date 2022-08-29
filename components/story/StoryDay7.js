@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Day4_8 from "../basics/day4_8";
 import FeedBack from "../basics/FeedBack";
-
+import sources from "../../public/assets/sources.json";
+import content from "../../public/assets/articles.json";
 
 export default function StoryDay7({ meter = 50, handleMeter, handleTheDay }) {
   const [cntArt, setcntArt] = useState(3);
@@ -13,7 +14,55 @@ export default function StoryDay7({ meter = 50, handleMeter, handleTheDay }) {
   };
   const [isFeedback, setIsFeedBack] = useState(false);
   const handleIsFeed = (value) => setIsFeedBack(value);
+  const srcContent = sources;
+  const art_answer = content[articlesId[curArtIndex]].answer_key;
+  //for source
+  let fiveOrSix = true;
+  if (art_answer.charAt(5) == "1") {
+    fiveOrSix = true;
+  } else if (art_answer.charAt(6) == "1") {
+    fiveOrSix = false;
+  }
+  const srcIndex = Math.floor(Math.random() * srcContent.length);
+  const sourceData = { fiveOrSix: fiveOrSix, srcContent: srcContent[srcIndex] };
+  //for social
+  let registerDate = true;
+  let follower = true;
+  let post = true;
+  let verifyIcon = true;
+  let howmany = 0;
+  let randN = 0;
+  if (art_answer.charAt(4) == "1") {
+    howmany = Math.floor(Math.random() * 4 + 1);
+    for (let index = 0; index < howmany; index++) {
+      randN = Math.floor(Math.random() * 4 + 1);
+      if (randN == 1) registerDate = false;
+      else if (randN == 2) follower = false;
+      else if (randN == 3) post = false;
+      else if (randN == 4) verifyIcon = false;
+    }
+  }
+  const socialData = {
+    verifyIcon: verifyIcon,
+    registerDate: registerDate,
+    follower: follower,
+    post: post,
+    nor_follows: Math.floor(Math.random() * 10 + 1),
+    fake_follows: Math.floor(Math.random() * 9999 + 3000),
+  };
+  //for lateral
+  const lateralData = {
+    lateral: art_answer.charAt(11) == "1" ? true : false,
+    curArtId: articlesId[curArtIndex],
+    curArt:content[articlesId[curArtIndex]],
+  };
 
+  //concat all
+  const advancedData = {
+    socialData: socialData,
+    sourceData: sourceData,
+    lateralData: lateralData,
+  };
   return (
     <>
       {!isFeedback ? (
@@ -24,6 +73,7 @@ export default function StoryDay7({ meter = 50, handleMeter, handleTheDay }) {
             meter={meter}
             handleIsFeed={handleIsFeed}
             unlockedStickers={[0, 1, 2, 3]}
+            advancedData={advancedData}
           />
         </div>
       ) : (

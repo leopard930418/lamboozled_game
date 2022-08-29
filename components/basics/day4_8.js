@@ -2,11 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "postcss";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Modal from "@mui/material/Modal";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
-import Tooltip from "@mui/material/Tooltip";
-import Modal from "@mui/material/Modal";
-import Router from "next/router";
 // UserApis
 import CustomImage from "../base/CustomImage";
 import MyImage from "../base/MyImage";
@@ -15,7 +13,6 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContainer } from "../dragdrop/DragDropContainer";
 import MyTimer from "../base/MyTimer";
-import stickers from "../../public/assets/sticker.json";
 import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
 import Categories from "../base/Categories";
@@ -33,12 +30,13 @@ export default function Day4_8({
   // meter = 50,
   handleIsFeed,
   unlockedStickers,
+  advancedData,
 }) {
   // game logic
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? []
   );
-  const meter = useSelector((state)=>state?.game?.meter ?? 50);
+  const meter = useSelector((state) => state?.game?.meter ?? 50);
   const article = content[curArtId];
   const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
@@ -48,8 +46,20 @@ export default function Day4_8({
   const [sceneIndex, setSceneIndex] = useState(0);
   const handleScene = (value) => setSceneIndex(value);
   const handleSceneP = () => setSceneIndex(0);
-
+  const [guideOpen, setGuideOpen] = useState(false);
+  const handleGuideOpen = () => setGuideOpen(true);
+  const handleGuideClose = () => setGuideOpen(false);
+  const [counter, setCounter] = React.useState(100);
+  React.useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 3000);
+    return () => clearInterval(timer);
+  }, [counter]);
+  console.log("countdown", counter);
   // console.log("sceneIndex:", sceneIndex);
+
+  //for source
+
   return (
     <>
       <div
@@ -90,7 +100,9 @@ export default function Day4_8({
                           lg={2}
                           className="border-2 border-black flex justify-center"
                         >
-                          <button>
+                          <button onClick={() => {
+                              handleGuideOpen();
+                            }}>
                             <CustomImage
                               src="/images/help.svg"
                               className="h-8"
@@ -176,6 +188,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[4]}
                           unlock={false}
+                          socialData={advancedData.socialData}
                         />
                         <Source
                           className={`${
@@ -185,6 +198,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[5, 6]}
                           unlock={false}
+                          sourceData={advancedData.sourceData}
                         />
                         <Fact
                           className={`${
@@ -194,6 +208,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[7, 8]}
                           unlock={false}
+                          // art_answer={article.answer_key}
                         />
                         <Reverse
                           className={`${
@@ -203,6 +218,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[9, 10]}
                           unlock={false}
+                          curArtId={curArtId}
                         />
                         <Lateral
                           className={`${
@@ -212,6 +228,7 @@ export default function Day4_8({
                           hidesourceondrag={true} //dnd props
                           stickers={[11]}
                           unlock={false}
+                          lateralData={advancedData.lateralData}
                         />
                         {/* </Adv_DragDropContainer> */}
                       </div>
@@ -278,7 +295,52 @@ export default function Day4_8({
               </Grid>
             </Grid>
           </Grid>
+          <Modal
+            open={guideOpen}
+            onClose={handleGuideClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            className="z-[1501]"
+          >
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
+              <div className="flex flex-row space-x-8">
+                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
+                  1
+                </div>
+                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
+                  2
+                </div>
+                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
+                  3
+                </div>
+              </div>
 
+              <div className="pt-6 px-4">
+                <div className="text-black text-3xl">
+                  Show GIFs one by one, player can click from top left corner to
+                  switch
+                </div>
+                <div className="text-black text-3xl">
+                  1) Drag a sticker to mark an issue
+                </div>
+                <div className="text-black text-3xl">
+                  2) Drag back to remove it
+                </div>
+                <div className="text-black text-3xl">
+                  3) Drag a sticker to the (?) to learn more about it
+                </div>
+              </div>
+
+              <div className="flex justify-end pt-4">
+                <button
+                  className="px-4 py-2 bg-white text-3xl"
+                  onClick={handleGuideClose}
+                >
+                  Got it!
+                </button>
+              </div>
+            </div>
+          </Modal>
           <IssueModal
             open={markedIssuesOpen}
             IssuClose={handleMarkedIssuesClose}

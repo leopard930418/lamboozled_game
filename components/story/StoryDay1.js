@@ -12,8 +12,7 @@ export default function StoryDay1() {
   };
   const [isFeedback, setIsFeedBack] = useState(false);
   const handleIsFeed = (value) => setIsFeedBack(value);
-  //   const [markedStickers, setMarkedStickers] = useState([]);
-  //   const handleMarkedStickers = (sti_arr) => setMarkedStickers(sti_arr);
+
 
   return (
     <>
@@ -33,9 +32,7 @@ export default function StoryDay1() {
             leftArts={articlesId.length - Number(curArtIndex) - 1}
             handleIsFeed={handleIsFeed}
             handleCurArtIndex={handleCurArtIndex}
-            // handleTheDay={handleTheDay}
-            // markedStickers={markedStickers}
-            // handleMeter={handleMeter}
+     
           />
         </div>
       )}

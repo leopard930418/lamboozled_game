@@ -6,8 +6,8 @@ export default function InfoModal(props) {
   
     const stickerData = stickers;
     const id = Number(props.stickerId);
-    console.log("dragdropcontainer:"+ props.stickerId);
-    console.log("infomodal:" + id);
+    // console.log("dragdropcontainer:"+ props.stickerId);
+    // console.log("infomodal:" + id);
     // console.log("stickerId ; " + id);
     return (
         <Modal
@@ -15,6 +15,7 @@ export default function InfoModal(props) {
         onClose={props.handleGuideClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        className="z-[1501]"
         >
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
             

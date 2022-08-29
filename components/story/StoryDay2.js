@@ -11,8 +11,7 @@ export default function StoryDay2({ meter = 50, handleMeter, handleTheDay }) {
   };
   const [isFeedback, setIsFeedBack] = useState(false);
   const handleIsFeed = (value) => setIsFeedBack(value);
-  //   const [markedStickers, setMarkedStickers] = useState([]);
-  //   const handleMarkedStickers = (sti_arr) => setMarkedStickers(sti_arr);
+
   return (
     <>
       {!isFeedback ? (

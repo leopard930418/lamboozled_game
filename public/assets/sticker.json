@@ -30,24 +30,25 @@
   {
     "index": 4,
     "image": "4.jpg",
+    "issue": "It has a questionable social media account!",
+    "description":
+      "If a social media account has few followers or posts, the sheep behind this account might not be real and traceable. Its posts might be fake then."
+  },
+  {
+    "index": 5,
+    "image": "5.jpg",
     "issue": "The domain name looks suspicious!",
     "description":
       "The domain name should be consistent with the source's name, usually without any additional character. Otherwise, it might be a phishing website despite having the official layout!"
   },
   {
-    "index": 5,
-    "image": "5.jpg",
+    "index": 6,
+    "image": "6.jpg",
     "issue": "The website link is broken!",
     "description":
       "A broken link indicates the carelessness of the publisher. They might put the wrong link or forget to update it. Such mistakes make the article less trustworthy."
   },
-  {
-    "index": 6,
-    "image": "6.jpg",
-    "issue": "It has a questionable social media account!",
-    "description":
-      "If a social media account has few followers or posts, the sheep behind this account might not be real and traceable. Its posts might be fake then."
-  },
+  
   {
     "index": 7,
     "image": "7.jpg",
@@ -79,8 +80,8 @@
   {
     "index": 11,
     "image": "11.jpg",
-    "issue": "Nobody else has written about this!",
+    "issue": "Others claim it's fake or nobody else has written about this!",
     "description":
-      "If nobody else has written about a story, perhaps it's really new or it might be fake. Reports from different sources help you verify one story from different angles."
+      "Reports from different sources help you verify one story from different angles. If nobody else has written about a story, perhaps it's really new or it might be fake."
   }
 ]
