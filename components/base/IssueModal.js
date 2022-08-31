@@ -15,7 +15,7 @@ export default function CustomImage({
     <>
       {open ? (
         // <div className="h-[60%] w-[90%] border-2 border-orange-500  bottom-0  z-[199999999] absolute">
-          <div className="fixed  left-1/2 z-[1501] -translate-x-[49%] translate-y-1 bottom-0 bg-gradient-to-b from-[#FF7575] to-[#FFD0D0] pt-6 w-[800px]">
+          <div className="fixed  left-1/2 z-[1501] -translate-x-[50%] translate-y-1 bottom-0 bg-gradient-to-b from-[#FF7575] to-[#FFD0D0] pt-6 w-[800px]">
             <img
               src="/images/MarkCloseIcon.svg"
               className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 cursor-pointer"
