@@ -206,12 +206,7 @@ export default function Day1_3({
             </Grid>
           </Grid>
 
-          <IssueModal
-            open={markedIssuesOpen}
-            IssuClose={handleMarkedIssuesClose}
-            markedStickers={markedStickers}
-            setIsFeedback={handleIsFeed}
-          />
+          
           <Modal
             open={guideOpen}
             onClose={handleGuideClose}
@@ -259,7 +254,14 @@ export default function Day1_3({
             </div>
           </Modal>
         </DndProvider>
+        
       </div>
+      <IssueModal
+            open={markedIssuesOpen}
+            IssuClose={handleMarkedIssuesClose}
+            markedStickers={markedStickers}
+            setIsFeedback={handleIsFeed}
+          />
     </>
   );
 }

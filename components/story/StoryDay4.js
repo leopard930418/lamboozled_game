@@ -4,7 +4,10 @@ import Day4_8 from "../basics/day4_8";
 import FeedBack from "../basics/FeedBack";
 import sources from "../../public/assets/sources.json";
 import content from "../../public/assets/articles.json";
-
+import { useDispatch } from "react-redux";
+import {
+  updateDataForFeedBack,
+} from "../../store/reducers/gameSlice";
 export default function StoryDay4({ meter = 50, handleMeter, handleTheDay }) {
   const [cntArt, setcntArt] = useState(3);
   const articlesId = [7, 8, 9];
@@ -14,7 +17,7 @@ export default function StoryDay4({ meter = 50, handleMeter, handleTheDay }) {
   };
   const [isFeedback, setIsFeedBack] = useState(false);
   const handleIsFeed = (value) => setIsFeedBack(value);
-
+  const dispatch = useDispatch();
   const srcContent = sources;
   const art_answer = content[articlesId[curArtIndex]].answer_key;
   //for source
@@ -61,6 +64,7 @@ export default function StoryDay4({ meter = 50, handleMeter, handleTheDay }) {
   
   //concat all
   const advancedData = { socialData: socialData, sourceData: sourceData, lateralData:lateralData };
+  dispatch(updateDataForFeedBack(advancedData));
   return (
     <>
       {!isFeedback ? (
@@ -82,6 +86,7 @@ export default function StoryDay4({ meter = 50, handleMeter, handleTheDay }) {
             leftArts={articlesId.length - Number(curArtIndex) - 1}
             handleIsFeed={handleIsFeed}
             handleCurArtIndex={handleCurArtIndex}
+            curArtId={articlesId[curArtIndex]}
           />
         </div>
       )}

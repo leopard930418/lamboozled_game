@@ -7,6 +7,7 @@ export const gameSlice = createSlice({
     meter: 50,
     markedStickers: [],
     playStatus: "landing",
+    dataForFeedback: {},
   },
   reducers: {
     appendMarkedStickers: (state, action) => {
@@ -38,6 +39,9 @@ export const gameSlice = createSlice({
     nextDay: (state) => {
       state.theDay++;
     },
+    updateDataForFeedBack: (state, action) =>{
+      state.dataForFeedback = action.payload;
+    },
   },
 });
 
@@ -48,6 +52,7 @@ export const {
   nextDay,
   initMarkedStickers,
   updatePlayStatus,
+  updateDataForFeedBack,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

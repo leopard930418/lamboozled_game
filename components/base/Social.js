@@ -9,7 +9,6 @@ export default function Social({
   handleSceneP,
   hidesourceondrag,
   stickers,
-  handlemarkedstickers,
   unlock = true,
   socialData,
   onLoad = () => {},

@@ -12,6 +12,8 @@ import Tooltip from "@mui/material/Tooltip";
 import { withStyles, makeStyles } from "@mui/styles";
 import Meter from "../base/Meter";
 import Modal from "@mui/material/Modal";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 // MODULES FOR DRAG&DROP
 import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,17 +23,25 @@ import {
   initMarkedStickers,
   updatePlayStatus,
 } from "../../store/reducers/gameSlice";
+import Social from "../base/Social";
+import Source from "../base/Source";
+import Fact from "../base/Fact";
+import Reverse from "../base/Reverse";
+import Lateral from "../base/Lateral";
 export default function FeedBack({
   curArtIndex = 0,
   // meter = 50,
   leftArts = 0,
   handleIsFeed,
   handleCurArtIndex,
-  
+  curArtId,
 }) {
   const dispatch = useDispatch();
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? []
+  );
+  const advancedData = useSelector(
+    (state) => state?.game?.dataForFeedback ?? {}
   );
   const meter = useSelector((state) => state?.game?.meter ?? 0);
   const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
@@ -41,7 +51,7 @@ export default function FeedBack({
   let wrong = [];
   let sum = 0;
   // console.log("feedback-marked stickers---", markedStickers );
-  const theDay = useSelector((state)=>state?.game?.theDay ?? 1);
+  const theDay = useSelector((state) => state?.game?.theDay ?? 1);
   const answer_key = article.answer_key;
 
   for (var i = 0; i < answer_key.length; i++) {
@@ -177,7 +187,7 @@ export default function FeedBack({
                         className="w-60 h-36"
                       />
                     </div>
-                    <div>
+                    {/* <div className="z-[1502] ">
                       {reviewSticker < 4 && (
                         <svg
                           className="absolute top-16 button"
@@ -208,57 +218,57 @@ export default function FeedBack({
                         reviewSticker == 7 ||
                         reviewSticker == 9 ||
                         reviewSticker == 11) && (
-                          <svg
-                            className="absolute top-16 button"
-                            style={{
-                              marginLeft: `${1000 - 1 * 55}` + "px",
-                            }}
-                            expanded="true"
-                            height="100px"
-                            width="100px"
-                            onClick={() => {
-                              // console.log("help clicked");
-                              handleGuideOpen();
-                            }}
-                          >
-                            <circle
-                              className="innerCircle"
-                              cx="50%"
-                              stroke="#FF4040"
-                              strokeWidth="10%"
-                              cy="50%"
-                              r="25%"
-                              fill="none"
-                            />
-                          </svg>
-                        )}
+                        <svg
+                          className="absolute top-16 button"
+                          style={{
+                            marginLeft: `${1000 - 1 * 55}` + "px",
+                          }}
+                          expanded="true"
+                          height="100px"
+                          width="100px"
+                          onClick={() => {
+                            // console.log("help clicked");
+                            handleGuideOpen();
+                          }}
+                        >
+                          <circle
+                            className="innerCircle"
+                            cx="50%"
+                            stroke="#FF4040"
+                            strokeWidth="10%"
+                            cy="50%"
+                            r="25%"
+                            fill="none"
+                          />
+                        </svg>
+                      )}
                       {(reviewSticker == 6 ||
                         reviewSticker == 8 ||
                         reviewSticker == 10) && (
-                          <svg
-                            className="absolute top-16 button"
-                            style={{
-                              marginLeft: `${1000 - 2 * 55}` + "px",
-                            }}
-                            expanded="true"
-                            height="100px"
-                            width="100px"
-                            onClick={() => {
-                              // console.log("help clicked");
-                              handleGuideOpen();
-                            }}
-                          >
-                            <circle
-                              className="innerCircle"
-                              cx="50%"
-                              stroke="#FF4040"
-                              strokeWidth="10%"
-                              cy="50%"
-                              r="25%"
-                              fill="none"
-                            />
-                          </svg>
-                        )}
+                        <svg
+                          className="absolute top-16 button"
+                          style={{
+                            marginLeft: `${1000 - 2 * 55}` + "px",
+                          }}
+                          expanded="true"
+                          height="100px"
+                          width="100px"
+                          onClick={() => {
+                            // console.log("help clicked");
+                            handleGuideOpen();
+                          }}
+                        >
+                          <circle
+                            className="innerCircle"
+                            cx="50%"
+                            stroke="#FF4040"
+                            strokeWidth="10%"
+                            cy="50%"
+                            r="25%"
+                            fill="none"
+                          />
+                        </svg>
+                      )}
                       <MyImage
                         src="/images/BossSmall.svg"
                         className={`absolute right-[55%] top-10 w-[134px] h-[170px] ${
@@ -267,17 +277,6 @@ export default function FeedBack({
                             : "scale-x-[-1] right-[30%]"
                         }`}
                       />
-                      {/* {reviewSticker < 4 ? (
-                        <MyImage
-                          src="/images/BossSmall.svg"
-                          className="absolute  top-10 w-[134px] h-[170px] right-[55%] "
-                        />
-                      ) : (
-                        <MyImage
-                          src="/images/BossSmall.svg"
-                          className="absolute  top-10 w-[134px] h-[170px] scale-x-[-1] right-[30%]"
-                        />
-                      )} */}
 
                       <MyImage
                         src="/images/AlertPanel.svg"
@@ -294,7 +293,7 @@ export default function FeedBack({
                           setReviewMode(false);
                         }}
                       />
-                    </div>
+                    </div> */}
 
                     <div className="pr-4">
                       <div className="text-2xl text-black font-bold text-center pt-2 ">
@@ -389,7 +388,6 @@ export default function FeedBack({
                               dispatch(nextDay());
                               dispatch(updateMeterByAmount(sum));
                               dispatch(initMarkedStickers());
-                              
                             }}
                           >
                             END THE DAY
@@ -402,7 +400,7 @@ export default function FeedBack({
                               handleCurArtIndex();
                               dispatch(updateMeterByAmount(sum));
                               dispatch(initMarkedStickers());
-                              if(theDay == 8){
+                              if (theDay == 8) {
                                 dispatch(updatePlayStatus("landing"));
                               }
                             }}
@@ -435,7 +433,66 @@ export default function FeedBack({
                   </>
                 )}
               </Grid>
-              <Grid item xs={5}></Grid>
+              <Grid item xs={5}>
+                {(reviewMode && reviewSticker) > 4 && (
+                  <DndProvider backend={HTML5Backend}>
+                    <div className="w-[626px] h-[377px] bg-white justify-center mt-[101px] ml-[-26px] ">
+                      <div className="w-full h-full">
+                        {reviewSticker === 4 && (
+                          <Social
+                            className={` w-full h-full`}
+                            handleSceneP={() => {}}
+                            hidesourceondrag={false} //dnd props
+                            stickers={[4]}
+                            unlock={false}
+                            socialData={advancedData.socialData}
+                          />
+                        )}
+                        {(reviewSticker === 5 || reviewSticker === 6) && (
+                          <Source
+                            className={` w-full h-full`}
+                            handleSceneP={() => {}}
+                            hidesourceondrag={false} //dnd props
+                            stickers={[5, 6]}
+                            unlock={false}
+                            sourceData={advancedData.sourceData}
+                          />
+                        )}
+                        {(reviewSticker === 7 || reviewSticker === 8) && (
+                          <Fact
+                            className={` w-full h-full`}
+                            handleSceneP={() => {}}
+                            hidesourceondrag={false} //dnd props
+                            stickers={[7, 8]}
+                            unlock={false}
+                            // art_answer={article.answer_key}
+                          />
+                        )}
+                        {(reviewSticker === 9 || reviewSticker === 10) && (
+                          <Reverse
+                            className={` w-full h-full`}
+                            handleSceneP={() => {}}
+                            hidesourceondrag={false} //dnd props
+                            stickers={[9, 10]}
+                            unlock={false}
+                            curArtId={curArtId}
+                          />
+                        )}
+                        {reviewSticker === 11 && (
+                          <Lateral
+                            className={` w-full h-full`}
+                            handleSceneP={() => {}}
+                            hidesourceondrag={false} //dnd props
+                            stickers={[11]}
+                            unlock={false}
+                            lateralData={advancedData.lateralData}
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </DndProvider>
+                )}
+              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={12}>
@@ -473,6 +530,144 @@ export default function FeedBack({
           </Grid>
         </Grid>
       </div>
+      {reviewMode && (
+        <div className="z-[1502] ">
+          {reviewSticker < 4 && (
+            <svg
+              className="absolute top-16 button"
+              style={{
+                marginLeft: `${reviewSticker * 55 + 215}` + "px",
+              }}
+              expanded="true"
+              height="100px"
+              width="100px"
+              onClick={() => {
+                // console.log("help clicked");
+                handleGuideOpen();
+              }}
+            >
+              <circle
+                className="innerCircle"
+                cx="50%"
+                stroke="#FF4040"
+                strokeWidth="10%"
+                cy="50%"
+                r="25%"
+                fill="none"
+              />
+            </svg>
+          )}
+          {(reviewSticker == 4 ||
+            reviewSticker == 5 ||
+            reviewSticker == 7 ||
+            reviewSticker == 9 ||
+            reviewSticker == 11) && (
+            <svg
+              className="absolute top-16 button"
+              style={{
+                marginLeft: `${1170 - 1 * 55}` + "px",
+                marginTop: "25px",
+              }}
+              expanded="true"
+              height="100px"
+              width="100px"
+              onClick={() => {
+                // console.log("help clicked");
+                handleGuideOpen();
+              }}
+            >
+              <circle
+                className="innerCircle"
+                cx="50%"
+                stroke="#FF4040"
+                strokeWidth="10%"
+                cy="50%"
+                r="25%"
+                fill="none"
+              />
+            </svg>
+          )}
+          {(reviewSticker == 6 ||
+            reviewSticker == 8 ||
+            reviewSticker == 10) && (
+            <svg
+              className="absolute top-16 button"
+              style={{
+                marginLeft: `${1165 - 2 * 55}` + "px",
+                marginTop: "25px",
+              }}
+              expanded="true"
+              height="100px"
+              width="100px"
+              onClick={() => {
+                // console.log("help clicked");
+                handleGuideOpen();
+              }}
+            >
+              <circle
+                className="innerCircle"
+                cx="50%"
+                stroke="#FF4040"
+                strokeWidth="10%"
+                cy="50%"
+                r="25%"
+                fill="none"
+              />
+            </svg>
+          )}
+          {reviewSticker < 4 ? (
+            <>
+              <MyImage
+                src="/images/BossSmall.svg"
+                className={`absolute right-[55%] top-10 w-[134px] h-[170px] ${
+                  reviewSticker < 4 ? "right-[55%]" : "scale-x-[-1] right-[30%]"
+                }`}
+              />
+
+              <MyImage
+                src="/images/AlertPanel.svg"
+                className="absolute right-[10%] top-48 w-[769px] h-[238px]  break-words p-8"
+              >
+                <span className=" text-3xl">
+                  {stickers[reviewSticker].description}
+                </span>
+              </MyImage>
+              <MyImage
+                src="/images/ArrowYellow.svg"
+                className="cursor-pointer absolute right-[5.5%] top-[54%]  w-[80px] h-[79px]"
+                onClick={() => {
+                  setReviewMode(false);
+                }}
+              />
+            </>
+          ) : (
+            <>
+              <MyImage
+                src="/images/BossSmall.svg"
+                className={`absolute left-[50%] top-10 w-[134px] h-[170px] ${
+                  reviewSticker < 4 ? "right-[55%]" : "scale-x-[-1] right-[30%]"
+                }`}
+              />
+
+              <MyImage
+                src="/images/AlertPanel.svg"
+                className="absolute left-[3%] top-48 w-[769px] h-[238px]  break-words p-8"
+              >
+                <span className=" text-3xl">
+                  {stickers[reviewSticker].description}
+                </span>
+              </MyImage>
+              <MyImage
+                src="/images/ArrowYellow.svg"
+                className="cursor-pointer absolute left-[57.5%] top-[54%]  w-[80px] h-[79px]"
+                onClick={() => {
+                  setReviewMode(false);
+                }}
+              />
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 }
