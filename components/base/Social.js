@@ -14,7 +14,7 @@ export default function Social({
   onLoad = () => {},
   ...props
 }) {
-  // console.log("socialdata", socialData);
+   console.log("socialdata", socialData);
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
   const handleGuideClose = () => setGuideOpen(false);

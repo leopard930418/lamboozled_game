@@ -97,7 +97,7 @@ export default function FeedBack({
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
   const [reviewSticker, setReviewSticker] = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
-  console.log("reviewSticker", reviewSticker);
+  console.log("reviewSticker", reviewSticker, reviewMode);
   return (
     <>
       <div
@@ -434,7 +434,7 @@ export default function FeedBack({
                 )}
               </Grid>
               <Grid item xs={5}>
-                {(reviewMode && reviewSticker) > 4 && (
+                {(reviewMode && reviewSticker > 3) && (
                   <DndProvider backend={HTML5Backend}>
                     <div className="w-[626px] h-[377px] bg-white justify-center mt-[101px] ml-[-26px] ">
                       <div className="w-full h-full">
