@@ -25,7 +25,7 @@ export const DragDropContainer = ({
 }) => {
   //alex added
   const markedStickers = useSelector(
-    (state) => state?.game?.markedStickers ?? []
+    (state) => state?.game?.markedStickers ?? "000000000000"
   );
   const dispatch = useDispatch();
   let stickersData = [];
@@ -39,11 +39,11 @@ export const DragDropContainer = ({
     }
   });
   // console.log("stickerData--", stickersData);
-  const [tipShowArr, setShowTipArr] = useState(
-    stickers.map((stickerId, index) => ({
-      stickerId: false,
-    }))
-  );
+  // const [tipShowArr, setShowTipArr] = useState(
+  //   stickers.map((stickerId, index) => ({
+  //     stickerId: false,
+  //   }))
+  // );
 
   //alex ended
   const [boxes, setBoxes] = useState(stickersData);
@@ -77,9 +77,9 @@ export const DragDropContainer = ({
           // console.log("normal1");
         } else if (left > 0 && left < 425 && top > 150 && top < 506) {
           //validate correct marking
-          if (markedStickers.indexOf(boxes[item.id].stickerId) < 0) {
+          // if (markedStickers.charAt(boxes[item.id].stickerId) == '0') {
             dispatch(appendMarkedStickers(boxes[item.id].stickerId));
-          }
+          // }
           moveBox(item.id, left, top);
         } else {
           // console.log("normal2");
@@ -118,7 +118,7 @@ export const DragDropContainer = ({
               top={top}
               hideSourceOnDrag={hideSourceOnDrag}
             >
-              <MyToolTip stickerId={stickerId} markedStickers={markedStickers}>
+              <MyToolTip stickerId={stickerId} markedStickers={markedStickers} onscreen={true}>
                 {unlock ? ( //unlock
                   <></>
                 ) : (

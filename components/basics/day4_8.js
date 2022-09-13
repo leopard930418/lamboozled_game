@@ -23,7 +23,10 @@ import Reverse from "../base/Reverse";
 import Lateral from "../base/Lateral";
 
 import { useSelector, useDispatch } from "react-redux";
+import {
+  updateMeterByAmount,
 
+} from "../../store/reducers/gameSlice";
 export default function Day4_8({
   curArtId = 0,
   curArtIndex = 0,
@@ -37,6 +40,8 @@ export default function Day4_8({
     (state) => state?.game?.markedStickers ?? []
   );
   const meter = useSelector((state) => state?.game?.meter ?? 50);
+  const dispatch = useDispatch();
+
   const article = content[curArtId];
   const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
@@ -56,9 +61,32 @@ export default function Day4_8({
     return () => clearInterval(timer);
   }, [counter]);
   console.log("countdown", counter);
-  // console.log("sceneIndex:", sceneIndex);
-
-  //for source
+  const calcResult = () => {
+    let correct = [];
+    let wrong = [];
+    let sum = 0;
+    const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
+    const answer_key = article.answer_key;
+    for (var i = 0; i < answer_key.length; i++) {
+      if (answer_key.charAt(i) == "1" && markedStickers.charAt(i) == "1") {
+        correct.push(i);
+      } else if (
+        (answer_key.charAt(i) == "1" && markedStickers.charAt(i) == "0") ||
+        (answer_key.charAt(i) == "0" && markedStickers.charAt(i) == "1")
+      ) {
+        wrong.push(i);
+      }
+    }
+    correct.map((stickerId) => {
+      sum += weights[stickerId];
+    });
+    
+    wrong.map((stickerId) => {
+      sum -= weights[stickerId];
+    });
+    console.log("sum", sum, "wrong", wrong,"correct", correct, "markedsticker", markedStickers, "answer_key", answer_key);
+    dispatch(updateMeterByAmount(sum));  
+  };
 
   return (
     <>
@@ -187,7 +215,7 @@ export default function Day4_8({
                           handleSceneP={handleSceneP}
                           hidesourceondrag={true} //dnd props
                           stickers={[4]}
-                          unlock={false}
+                          onscreen={sceneIndex === 1 ? true : false}
                           socialData={advancedData.socialData}
                         />
                         <Source
@@ -197,7 +225,7 @@ export default function Day4_8({
                           handleSceneP={handleSceneP}
                           hidesourceondrag={true} //dnd props
                           stickers={[5, 6]}
-                          unlock={false}
+                          onscreen={sceneIndex === 2 ? true : false}
                           sourceData={advancedData.sourceData}
                         />
                         <Fact
@@ -207,7 +235,7 @@ export default function Day4_8({
                           handleSceneP={handleSceneP}
                           hidesourceondrag={true} //dnd props
                           stickers={[7, 8]}
-                          unlock={false}
+                          onscreen={sceneIndex === 3 ? true : false}
                           // art_answer={article.answer_key}
                         />
                         <Reverse
@@ -217,7 +245,7 @@ export default function Day4_8({
                           handleSceneP={handleSceneP}
                           hidesourceondrag={true} //dnd props
                           stickers={[9, 10]}
-                          unlock={false}
+                          onscreen={sceneIndex === 4 ? true : false}
                           curArtId={curArtId}
                         />
                         <Lateral
@@ -227,7 +255,7 @@ export default function Day4_8({
                           handleSceneP={handleSceneP}
                           hidesourceondrag={true} //dnd props
                           stickers={[11]}
-                          unlock={false}
+                          onscreen={sceneIndex === 5 ? true : false}
                           lateralData={advancedData.lateralData}
                         />
                         {/* </Adv_DragDropContainer> */}
@@ -253,13 +281,13 @@ export default function Day4_8({
                   <div className={`fixed bottom-0 w-full flex flex-row `}>
                     <div className="bottom-0 flexd-bottom translate-x-28 -translate-y-1">
                       <div
-                        className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md"
+                        className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md cursor-pointer"
                         onClick={() => {
                           handleMarkedIssuesOpen();
                           //console.log(markedIssuesOpen);
                         }}
                       >
-                        <label>{markedStickers.length} issue(s)</label>
+                        <label className="cursor-pointer">{(markedStickers.match(/1/g) || []).length} issue(s)</label>
                         <MyImage
                           src="/images/eye.svg"
                           className="h-8 px-2 w-8"
@@ -272,6 +300,7 @@ export default function Day4_8({
                           // setCounter(100);
                           handleIsFeed(true);
                           //Router.push("/feedback");
+                          calcResult();
                         }}
                       >
                         SUBMIT

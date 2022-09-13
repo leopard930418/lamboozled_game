@@ -19,27 +19,23 @@ import stickers from "../../public/assets/sticker.json";
 import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
 import { useSelector, useDispatch } from "react-redux";
-// import {
-//   selectMakredStickers,
+import {
+  updateMeterByAmount,
 
-// } from "../../store/reducers/gameSlice";
+} from "../../store/reducers/gameSlice";
 export default function Day1_3({
   curArtId = 0,
   curArtIndex = 0,
-  // meter = 50,
   handleIsFeed,
-  // handleMarked,
   unlockedStickers,
 }) {
   // game logic
   const markedStickers = useSelector(
-    (state) => state?.game?.markedStickers ?? []
+    (state) => state?.game?.markedStickers ?? "000000000000"
   );
   const meter = useSelector((state) => state?.game?.meter ?? 0);
   const dispatch = useDispatch();
-  const handleResult = (value) => setMarkedResult(value);
   const article = content[curArtId];
-
   const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
@@ -47,6 +43,32 @@ export default function Day1_3({
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
   const handleGuideClose = () => setGuideOpen(false);
+  const calcResult = () => {
+    let correct = [];
+    let wrong = [];
+    let sum = 0;
+    const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
+    const answer_key = article.answer_key;
+    for (var i = 0; i < answer_key.length; i++) {
+      if (answer_key.charAt(i) == "1" && markedStickers.charAt(i) == "1") {
+        correct.push(i);
+      } else if (
+        (answer_key.charAt(i) == "1" && markedStickers.charAt(i) == "0") ||
+        (answer_key.charAt(i) == "0" && markedStickers.charAt(i) == "1")
+      ) {
+        wrong.push(i);
+      }
+    }
+    correct.map((stickerId) => {
+      sum += weights[stickerId];
+    });
+    
+    wrong.map((stickerId) => {
+      sum -= weights[stickerId];
+    });
+    console.log("sum", sum, "wrong", wrong,"correct", correct, "markedsticker", markedStickers, "answer_key", answer_key);
+    dispatch(updateMeterByAmount(sum));  
+  };
 
   return (
     <>
@@ -70,7 +92,6 @@ export default function Day1_3({
                   <DragDropContainer
                     hideSourceOnDrag={true}
                     stickers={unlockedStickers}
-                    // unlock={curArtIndex == 0 ? unlock : false}
                     unlock={false}
                     isdraging={true}
                   >
@@ -162,14 +183,16 @@ export default function Day1_3({
                 </Grid>
                 <Grid item xs={4}>
                   <div className={`fixed bottom-0 w-full flex flex-row `}>
-                    <div className="bottom-0 flexd-bottom translate-x-28 -translate-y-1">
+                    <div className="bottom-0 flexd-bottom translate-x-28 -translate-y-1 ">
                       <div
-                        className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md"
+                        className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md cursor-pointer"
                         onClick={() => {
                           handleMarkedIssuesOpen();
                         }}
                       >
-                        <label>{markedStickers.length} issue(s)</label>
+                        <label className="cursor-pointer">
+                          {(markedStickers.match(/1/g) || []).length} issue(s)
+                        </label>
                         <MyImage
                           src="/images/eye.svg"
                           className="h-8 px-2 w-8"
@@ -182,6 +205,7 @@ export default function Day1_3({
                           // setCounter(100);
                           handleIsFeed(true);
                           //Router.push("/feedback");
+                          calcResult();
                         }}
                       >
                         SUBMIT
@@ -206,7 +230,6 @@ export default function Day1_3({
             </Grid>
           </Grid>
 
-          
           <Modal
             open={guideOpen}
             onClose={handleGuideClose}
@@ -254,14 +277,13 @@ export default function Day1_3({
             </div>
           </Modal>
         </DndProvider>
-        
       </div>
       <IssueModal
-            open={markedIssuesOpen}
-            IssuClose={handleMarkedIssuesClose}
-            markedStickers={markedStickers}
-            setIsFeedback={handleIsFeed}
-          />
+        open={markedIssuesOpen}
+        IssuClose={handleMarkedIssuesClose}
+        markedStickers={markedStickers}
+        setIsFeedback={handleIsFeed}
+      />
     </>
   );
 }

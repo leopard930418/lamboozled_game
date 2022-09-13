@@ -9,7 +9,7 @@ export default function Social({
   handleSceneP,
   hidesourceondrag,
   stickers,
-  unlock = true,
+  onscreen = true,
   socialData,
   onLoad = () => {},
   ...props
@@ -24,7 +24,8 @@ export default function Social({
       <Adv_DragDropContainer
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
-        unlock={unlock}
+        onscreen ={onscreen}
+  
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">

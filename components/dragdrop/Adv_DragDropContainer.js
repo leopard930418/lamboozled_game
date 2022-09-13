@@ -20,9 +20,7 @@ export const Adv_DragDropContainer = ({
   children,
   hidesourceondrag,
   stickers = [],
-
-  unlock,
-
+  onscreen = true,
 }) => {
   //alex added
   const markedStickers = useSelector(
@@ -59,7 +57,6 @@ export const Adv_DragDropContainer = ({
     }))
   );
 
-  
   //alex ended
   const [boxes, setBoxes] = useState(stickersData);
   const moveBox = useCallback(
@@ -117,7 +114,6 @@ export const Adv_DragDropContainer = ({
   const handleGuideClose = () => setGuideOpen(false);
   const [stickerInfoId, setStickerInfoId] = useState(0);
   const handleStickerId = (value) => setStickerInfoId(value);
-
   // alex ended
   return (
     <>
@@ -133,13 +129,11 @@ export const Adv_DragDropContainer = ({
               top={top}
               hideSourceOnDrag={hidesourceondrag}
             >
-              <MyToolTip
-                stickerId={stickerId}
-                markedStickers={markedStickers}
-              >
-                {unlock ? ( //unlock
-                  <></>
-                ) : (
+                <MyToolTip
+                  stickerId={stickerId}
+                  markedStickers={markedStickers}
+                  onscreen={onscreen}
+                >
                   <MyImage
                     src={`/images/Icon${stickerId + 1}.svg`}
                     className="h-8 w-8"
@@ -148,17 +142,16 @@ export const Adv_DragDropContainer = ({
                     //   handleGuideOpen();
                     // }}
                   />
-                )}
-              </MyToolTip>
+                </MyToolTip>
             </Box_adv>
           );
         })}
         {/* {handlemarkedstickers && ( */}
-          <InfoModal
-            guideOpen={guideOpen}
-            stickerId={stickerInfoId}
-            handleGuideClose={handleGuideClose}
-          />
+        <InfoModal
+          guideOpen={guideOpen}
+          stickerId={stickerInfoId}
+          handleGuideClose={handleGuideClose}
+        />
         {/* )} */}
       </div>
     </>

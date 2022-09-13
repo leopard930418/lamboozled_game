@@ -9,7 +9,7 @@ export default function Reverse({
   handleSceneP,
   hidesourceondrag,
   stickers,
-  unlock = true,
+  onscreen = true,
   curArtId,
   onLoad = () => {},
   ...props
@@ -23,7 +23,7 @@ export default function Reverse({
       <Adv_DragDropContainer
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
-        unlock={unlock}
+        onscreen ={onscreen}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">

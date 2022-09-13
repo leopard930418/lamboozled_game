@@ -27,18 +27,20 @@ export default function CustomImage({
               MARKED ISSUES
             </div>
             <div className="pt-6 px-4 text-2xl text-center">
-              {markedStickers.map((stickerid, index) => {
-                if (stickerid > -1) {
+              {
+              [...markedStickers].map((stickerid, index) => {
+                if (stickerid == '1') {
                   return (
                     <div
                       key={index}
                       className="text-black text-xl text-center"
                     >
-                      {stickers[stickerid].issue}
+                      {stickers[index].issue}
                     </div>
                   );
                 }
-              })}
+              })
+              }
             </div>
             <div className="flex justify-center pt-12 itsok">
               <button

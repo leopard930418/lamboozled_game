@@ -18,7 +18,6 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  updateMeterByAmount,
   nextDay,
   initMarkedStickers,
   updatePlayStatus,
@@ -37,56 +36,51 @@ export default function FeedBack({
   curArtId,
 }) {
   const dispatch = useDispatch();
-  const markedStickers = useSelector(
-    (state) => state?.game?.markedStickers ?? []
-  );
+
   const advancedData = useSelector(
     (state) => state?.game?.dataForFeedback ?? {}
   );
-  const meter = useSelector((state) => state?.game?.meter ?? 0);
-  const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
-  const article = content[curArtIndex];
+
   const Stickers = stickers;
+  const theDay = useSelector((state) => state?.game?.theDay ?? 1);
+
   let correct = [];
   let wrong = [];
   let sum = 0;
-  // console.log("feedback-marked stickers---", markedStickers );
-  const theDay = useSelector((state) => state?.game?.theDay ?? 1);
+  const markedStickers = useSelector(
+    (state) => state?.game?.markedStickers ?? "000000000000"
+  );
+  const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
+  const article = content[curArtIndex];
   const answer_key = article.answer_key;
-
   for (var i = 0; i < answer_key.length; i++) {
-    if (answer_key.charAt(i) == "1") {
-      //when answer's sticker is true
-      if (markedStickers.indexOf(i) < 0) {
-        //the sticker id is not in marked stickers?
-        wrong.push(i);
-      } else {
-        correct.push(i);
-      }
-    } else {
-      //when answer's sticker is false
-      if (markedStickers.indexOf(i) > -1) {
-        //
-        wrong.push(i);
-      }
+    if (answer_key.charAt(i) == "1" && markedStickers.charAt(i) == "1") {
+      correct.push(i);
+    } else if (
+      (answer_key.charAt(i) == "1" && markedStickers.charAt(i) == "0") ||
+      (answer_key.charAt(i) == "0" && markedStickers.charAt(i) == "1")
+    ) {
+      wrong.push(i);
     }
   }
-
   correct.map((stickerId) => {
     sum += weights[stickerId];
   });
-  const correctCnt = article.answer_key.split("1").length - 1;
+  const correctCnt = (article.answer_key.match(/1/g) || []).length;
+  
   wrong.map((stickerId) => {
     sum -= weights[stickerId];
   });
-  let sumcolor = "#C7C7C7";
+    console.log("sum", sum, "wrong", wrong,"correct", correct, "markedsticker", markedStickers, "answer_key", answer_key);
+
+  let sumcolor = "#0DA71C";
   if (sum > 0) {
     sumcolor = "green";
   } else if (sum < 0) {
     sumcolor = "red";
   }
 
-  article.answer_key;
+  // article.answer_key;
   const contentData = content;
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
@@ -98,6 +92,7 @@ export default function FeedBack({
   const [reviewSticker, setReviewSticker] = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
   console.log("reviewSticker", reviewSticker, reviewMode);
+  const meter = useSelector((state) => state?.game?.meter ?? 0);
   return (
     <>
       <div
@@ -330,12 +325,15 @@ export default function FeedBack({
                           </label>
                         </div>
                         <div
-                          className={`h-2/5 max-h-56 justify-center w-full overflow-x-hidden`}
+                          className={`h-2/5  justify-center w-full overflow-x-hidden`}
                           style={{ minHeight: "150px" }}
                         >
                           {correct.map((stickerId) => {
                             return (
-                              <div className="text-lg text-[#0DA71C] font-semibold text-center py-2 w-full">
+                              <div
+                                className="text-lg text-[#0DA71C] font-semibold text-center py-2 w-full"
+                                key={stickerId}
+                              >
                                 {Stickers[stickerId].issue}
                               </div>
                             );
@@ -346,17 +344,24 @@ export default function FeedBack({
                             Missed Or Mismarked
                           </label>
                         </div>{" "}
-                        <div className="h-2/5 pl-8 max-h-56  justify-center w-full overflow-x-hidden">
+                        <div className="h-2/5 pl-8  justify-center w-full overflow-x-hidden">
                           {wrong.map((stickerId) => {
                             return (
-                              <div className="flex flex-row justify-between items-center">
+                              <div
+                                className="flex flex-row justify-between items-center"
+                                key={stickerId}
+                              >
                                 <div className="text-lg w-10/12 text-[#FC5757] font-semibold text-center py-2">
-                                  {stickers[stickerId].issue}
+                                  {Stickers[stickerId].issue}
+                                  {answer_key[stickerId] == "1"
+                                    ? "(Missed)"
+                                    : "(Mismarked)"}
                                 </div>
                                 <div className="w-2/12  text-right">
                                   <button
                                     className="bg-[#FC5757]  px-1 py-0  text-white "
                                     onClick={() => {
+                                      dispatch(initMarkedStickers());
                                       setReviewSticker(stickerId);
                                       setReviewMode(true);
                                     }}
@@ -386,7 +391,7 @@ export default function FeedBack({
                             onClick={() => {
                               // setReviewMode(true);
                               dispatch(nextDay());
-                              dispatch(updateMeterByAmount(sum));
+                              // dispatch(updateMeterByAmount(sum));
                               dispatch(initMarkedStickers());
                             }}
                           >
@@ -398,7 +403,7 @@ export default function FeedBack({
                             onClick={() => {
                               handleIsFeed(false);
                               handleCurArtIndex();
-                              dispatch(updateMeterByAmount(sum));
+                              // dispatch(updateMeterByAmount(sum));
                               dispatch(initMarkedStickers());
                               if (theDay == 8) {
                                 dispatch(updatePlayStatus("landing"));
@@ -434,7 +439,7 @@ export default function FeedBack({
                 )}
               </Grid>
               <Grid item xs={5}>
-                {(reviewMode && reviewSticker > 3) && (
+                {reviewMode && reviewSticker > 3 && (
                   <DndProvider backend={HTML5Backend}>
                     <div className="w-[626px] h-[377px] bg-white justify-center mt-[101px] ml-[-26px] ">
                       <div className="w-full h-full">
@@ -529,14 +534,13 @@ export default function FeedBack({
             </Grid>
           </Grid>
         </Grid>
-      </div>
-      {reviewMode && (
+        {reviewMode && (
         <div className="z-[1502] ">
           {reviewSticker < 4 && (
             <svg
               className="absolute top-16 button"
               style={{
-                marginLeft: `${reviewSticker * 55 + 215}` + "px",
+                marginLeft: `${reviewSticker * 55 + 170}` + "px",
               }}
               expanded="true"
               height="100px"
@@ -565,7 +569,7 @@ export default function FeedBack({
             <svg
               className="absolute top-16 button"
               style={{
-                marginLeft: `${1170 - 1 * 55}` + "px",
+                marginLeft: `${1125 - 1 * 55}` + "px",
                 marginTop: "25px",
               }}
               expanded="true"
@@ -593,7 +597,7 @@ export default function FeedBack({
             <svg
               className="absolute top-16 button"
               style={{
-                marginLeft: `${1165 - 2 * 55}` + "px",
+                marginLeft: `${1120 - 2 * 55}` + "px",
                 marginTop: "25px",
               }}
               expanded="true"
@@ -631,14 +635,15 @@ export default function FeedBack({
                 <span className=" text-3xl">
                   {stickers[reviewSticker].description}
                 </span>
-              </MyImage>
-              <MyImage
+                <MyImage
                 src="/images/ArrowYellow.svg"
-                className="cursor-pointer absolute right-[5.5%] top-[54%]  w-[80px] h-[79px]"
+                className="cursor-pointer relative ml-[101%] mt-[-4%]  w-[80px] h-[79px]"
                 onClick={() => {
                   setReviewMode(false);
                 }}
               />
+              </MyImage>
+              
             </>
           ) : (
             <>
@@ -656,18 +661,21 @@ export default function FeedBack({
                 <span className=" text-3xl">
                   {stickers[reviewSticker].description}
                 </span>
-              </MyImage>
-              <MyImage
+                <MyImage
                 src="/images/ArrowYellow.svg"
-                className="cursor-pointer absolute left-[57.5%] top-[54%]  w-[80px] h-[79px]"
+                className="cursor-pointer absolute mt-[-3%] ml-[93%] w-[80px] h-[79px]"
                 onClick={() => {
                   setReviewMode(false);
                 }}
               />
+              </MyImage>
+              
             </>
           )}
         </div>
       )}
+      </div>
+      
     </>
   );
 }

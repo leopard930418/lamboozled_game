@@ -10,7 +10,7 @@ export default function Fact({
   handleSceneP,
   hidesourceondrag,
   stickers,
-  unlock = true,
+  onscreen = true,
 
   onLoad = () => {},
   ...props
@@ -24,7 +24,7 @@ export default function Fact({
       <Adv_DragDropContainer
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
-        unlock={unlock}
+        onscreen ={onscreen}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">
@@ -64,13 +64,13 @@ export default function Fact({
                 style={{ fontFamily: "Patrick Hand" }}
               >
                 {srcContent.map((source, index) => {
-                  let width = Math.floor(source.score * 1.4);
+                  let width = Math.floor(source.score * 1.2);
                   return (
                     <div className="w-full mt-4 float-left justify">
-                      <div className="float-left w-[35%] text-[#7B7F8C] ">
+                      <div className="float-left  text-[#7B7F8C] w-3/6">
                         {source.name}
                       </div>
-                      <div className="border-2 border-black w-[140px] h-4 float-left mt-1 ml-10">
+                      <div className="border-2 border-black w-[120px] h-4 float-left mt-1 ">
                         <div
                           className={`border-2 border-black h-4 -mt-[2px] -ml-[1px] bg-[#605F5B]`}
                           style={{width:width}}

@@ -43,8 +43,9 @@ export default function StoryDay4({ meter = 50, handleMeter, handleTheDay }) {
       if (randN == 1) registerDate = false;
       else if (randN == 2) follower = false;
       else if (randN == 3) post = false;
-      else if (randN == 4) verifyIcon = false;
+      
     }
+    verifyIcon = false;
   }
   const socialData = {
     verifyIcon: verifyIcon,
