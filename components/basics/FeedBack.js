@@ -344,7 +344,7 @@ export default function FeedBack({
                             Missed Or Mismarked
                           </label>
                         </div>{" "}
-                        <div className="h-2/5 pl-8  justify-center w-full overflow-x-hidden">
+                        <div className="h-2/5 pl-8 justify-center w-full overflow-x-hidden">
                           {wrong.map((stickerId) => {
                             return (
                               <div
@@ -630,14 +630,14 @@ export default function FeedBack({
 
               <MyImage
                 src="/images/AlertPanel.svg"
-                className="absolute right-[10%] top-48 w-[769px] h-[238px]  break-words p-8"
+                className="absolute right-[10%] top-48 w-[769px]   break-words p-8"
               >
                 <span className=" text-3xl">
                   {stickers[reviewSticker].description}
                 </span>
                 <MyImage
                 src="/images/ArrowYellow.svg"
-                className="cursor-pointer relative ml-[101%] mt-[-4%]  w-[80px] h-[79px]"
+                className="cursor-pointer absolute ml-[93%] mt-[-5%]  w-[80px] h-[79px]"
                 onClick={() => {
                   setReviewMode(false);
                 }}
@@ -656,14 +656,14 @@ export default function FeedBack({
 
               <MyImage
                 src="/images/AlertPanel.svg"
-                className="absolute left-[3%] top-48 w-[769px] h-[238px]  break-words p-8"
+                className="absolute left-[3%] top-48 w-[769px]   break-words p-8"
               >
                 <span className=" text-3xl">
                   {stickers[reviewSticker].description}
                 </span>
                 <MyImage
                 src="/images/ArrowYellow.svg"
-                className="cursor-pointer absolute mt-[-3%] ml-[93%] w-[80px] h-[79px]"
+                className="cursor-pointer absolute mt-[-5%] ml-[93%] w-[80px] h-[79px]"
                 onClick={() => {
                   setReviewMode(false);
                 }}
