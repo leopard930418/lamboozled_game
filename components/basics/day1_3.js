@@ -28,6 +28,7 @@ export default function Day1_3({
   curArtIndex = 0,
   handleIsFeed,
   unlockedStickers,
+  curDay,
 }) {
   // game logic
   const markedStickers = useSelector(
@@ -177,7 +178,10 @@ export default function Day1_3({
                       <MyImage
                         src="/images/bottomlogo.svg"
                         className={`h-24 w-full`}
-                      />
+                      >
+                        <div className="font-bold text-black pl-48 pt-14">Day {curDay}</div>
+                      </MyImage>
+                      
                     </div>
                   </div>
                 </Grid>

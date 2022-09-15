@@ -77,6 +77,7 @@ export default function StoryDay4({ meter = 50, handleMeter, handleTheDay }) {
             handleIsFeed={handleIsFeed}
             unlockedStickers={[0, 1, 2, 3]}
             advancedData={advancedData}
+            curDay = {4}
           />
         </div>
       ) : (

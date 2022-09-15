@@ -23,6 +23,7 @@ export default function StoryDay1() {
             curArtIndex={curArtIndex}
             handleIsFeed={handleIsFeed}
             unlockedStickers={[0, 1]}
+            curDay = {1}
           />
         </div>
       ) : (

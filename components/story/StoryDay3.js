@@ -24,6 +24,7 @@ export default function StoryDay3({ meter = 50, handleMeter, handleTheDay }) {
             meter={meter}
             handleIsFeed={handleIsFeed}
             unlockedStickers={[0, 1, 2, 3]}
+            curDay = {3}
           />
         </div>
       ) : (
