@@ -115,3 +115,11 @@
     animation-iteration-count: infinite;
     animation-name: buttonTransition;
   }
+
+  span {
+    cursor:none !important;
+  }
+  .typed-cursor.typed-cursor--blink {
+    display: none !important;
+    
+  }

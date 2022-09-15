@@ -42,6 +42,7 @@
     "react-search-box": "^2.2.1",
     "react-slick": "^0.29.0",
     "react-tooltip": "^4.2.21",
+    "react-typed": "^1.2.0",
     "recharts": "^2.1.10",
     "rsuite": "^5.16.1",
     "sass": "^1.52.1",
