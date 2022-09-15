@@ -14,11 +14,14 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
     color: "red",
   },
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: "white",
+    backgroundColor: "#FFE0E0",
     border: "1px solid red",
     width: 128,
     color: "red",
     fontWeight: "bold",
+    fontSize:"16px",
+    lineHeight: "1.1",
+
   },
 }));
 
