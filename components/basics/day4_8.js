@@ -167,42 +167,9 @@ export default function Day4_8({
                 </Grid>
                 <Grid item xs={5}>
                   <div className="w-[626px] h-[377px] bg-white justify-center mt-[101px] ml-[-26px] ">
-                    {curArtIndex == 0 && unlock == true ? ( //
-                      <div>
-                        <MyImage
-                          src="/images/SearchBar.svg"
-                          className="w-[520px] h-[35px] ml-[53px] mt-[40px] float-left justify-between"
-                          onClick={() => {
-                            setUnlock(false);
-                          }}
-                        >
-                          <span className="ml-[20px] mt-[5px] float-left text-[#4F4F4F] ">
-                            Click the bar to begin your search
-                          </span>
-                          <MyImage
-                            src="/images/SearchIcon.svg"
-                            className="float-right w-[29px] h-[27px] mr-[9px] mt-[3px]"
-                          />
-                        </MyImage>
-                        <MyImage
-                          src="/images/BossFace1.svg"
-                          className="float-left w-[230px] h-[137px] ml-[200px] mt-[40px]"
-                        />
-                        <span className="w-[400px] float-left ml-[125px] mt-[20px]">
-                          “I put my handsome face here to give you support. I
-                          believe you can figure out how to use the computer by
-                          yourself.”
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="w-full h-full">
-                        {/* <Adv_DragDropContainer
-                          hideSourceOnDrag={true}
-                          stickers={unlockedStickers}
-                          handleMarkedStickers={handleMarkedStickers}
-                          unlock={false}
-                          sceneIndex={sceneIndex}
-                        > */}
+                   
+                    <div className="w-full h-full">
+                       
                         <Categories
                           className={`${
                             sceneIndex === 0 ? "show" : "hidden"
@@ -259,9 +226,7 @@ export default function Day4_8({
                           onscreen={sceneIndex === 5 ? true : false}
                           lateralData={advancedData.lateralData}
                         />
-                        {/* </Adv_DragDropContainer> */}
                       </div>
-                    )}
                   </div>
                 </Grid>
               </Grid>
@@ -275,7 +240,8 @@ export default function Day4_8({
                         src="/images/bottomlogo.svg"
                         className={`h-24 w-full`}
                       >
-                         <div className="font-bold text-black pl-48 pt-14">Day {curDay}</div>
+                        <div className="font-bold bg-[#333333] white pl-48 pt-14"></div>
+                        <div className="font-bold text-black pl-48 pt-14">Day {curDay}</div>
                       </MyImage>
                     </div>
                   </div>
@@ -287,7 +253,6 @@ export default function Day4_8({
                         className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md cursor-pointer"
                         onClick={() => {
                           handleMarkedIssuesOpen();
-                          //console.log(markedIssuesOpen);
                         }}
                       >
                         <label className="cursor-pointer">{(markedStickers.match(/1/g) || []).length} issue(s)</label>
@@ -300,9 +265,7 @@ export default function Day4_8({
                       <button
                         className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                         onClick={() => {
-                          // setCounter(100);
                           handleIsFeed(true);
-                          //Router.push("/feedback");
                           calcResult();
                         }}
                       >
@@ -319,7 +282,6 @@ export default function Day4_8({
                         src="/images/bottomlambmeter.svg"
                         className="h-24"
                       />
-
                       <Meter point={meter} />
                     </div>
                   </div>

@@ -34,6 +34,9 @@ export default function Day1_3({
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? "000000000000"
   );
+  const userName = useSelector(
+    (state) => state?.game?.markedStickers ?? "000000000000"
+  );
   const meter = useSelector((state) => state?.game?.meter ?? 0);
   const dispatch = useDispatch();
   const article = content[curArtId];
