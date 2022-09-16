@@ -34,6 +34,7 @@ export default function Day4_8({
   handleIsFeed,
   unlockedStickers,
   advancedData,
+  curDay,
 }) {
   // game logic
   const markedStickers = useSelector(

@@ -12,7 +12,10 @@ import Modal from "@mui/material/Modal";
 // MODULES FOR DRAG&DROP
 import Router from "next/router";
 import { useDispatch } from "react-redux";
-import { updatePlayStatus } from "../../store/reducers/gameSlice";
+import {
+  updatePlayStatus,
+  initMarkedStickers,
+} from "../../store/reducers/gameSlice";
 
 export default function introStep_4() {
   const [moveOnMode, setMoveOnMode] = useState(false);
@@ -84,7 +87,7 @@ export default function introStep_4() {
                       <button
                         className="bg-[#D8EEFB] rounded-3xl px-14 py-2 text-black font-bold text-2xl w-[80%] h-[60px]"
                         onClick={() => {
-                          setMoveOnMode(true);
+                          setMoveOnMode(false);
                         }}
                       >
                         Yes, try again
@@ -160,7 +163,9 @@ export default function introStep_4() {
                 src="/images/ArrowYellow.svg"
                 className="absolute right-[0.5%] top-[65%]  w-[80px] h-[79px] cursor-pointer"
                 onClick={() => {
-                  dispatch(updatePlayStatus("landing"));
+                  dispatch(updatePlayStatus("story"));
+                  dispatch(initMarkedStickers());
+                  
                 }}
               />
             </>

@@ -14,6 +14,7 @@ export const gameSlice = createSlice({
     markedStickers: "000000000000",
     playStatus: "landing",
     dataForFeedback: {},
+    userName: ""
   },
   reducers: {
     appendMarkedStickers: (state, action) => {
@@ -47,6 +48,9 @@ export const gameSlice = createSlice({
     updateDataForFeedBack: (state, action) => {
       state.dataForFeedback = action.payload;
     },
+    updateUserName: (state, action)=>{
+      state.userName = action.payload;
+    }
   },
 });
 
@@ -58,6 +62,7 @@ export const {
   initMarkedStickers,
   updatePlayStatus,
   updateDataForFeedBack,
+  updateUserName
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

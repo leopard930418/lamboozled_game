@@ -10,13 +10,20 @@ import { Button } from "@mui/material";
 // import MyToolTip from "../base/MyToolTip";
 import Typed from "react-typed";
 import { useDispatch } from "react-redux";
-import { updatePlayStatus } from "../../store/reducers/gameSlice";
+import {
+  updatePlayStatus,
+  updateUserName,
+} from "../../store/reducers/gameSlice";
 export default function Welcome({ handleStepId }) {
   const dispatch = useDispatch();
   const [landingStep, setLandingStep] = useState(1);
 
   const [expLevel, setExpLevel] = useState(0);
   const [isFirst, setIsFirst] = useState(0);
+  // const [userName, setUserName] = useState('');
+  const setUserName = (name) => {
+    dispatch(updateUserName(name));
+  };
   return (
     <>
       {landingStep == 1 && (
@@ -78,6 +85,7 @@ export default function Welcome({ handleStepId }) {
             type="text"
             className="relative text-4xl p-4 top-1/3 border-b-2 border-black"
             placeholder="_________________________________"
+            onChange={(event) => setUserName(event.target.value)}
           ></input>
           <MyImage
             src="/images/ArrowYellow.svg"
@@ -300,9 +308,7 @@ export default function Welcome({ handleStepId }) {
                     // onMouseEnter={() => setExpLevel(1)}
                     // onMouseLeave={() => setExpLevel(0)}
                     onClick={() => setIsFirst(1)}
-                  >
-                    
-                  </MyImage>
+                  ></MyImage>
 
                   <MyImage
                     src={
@@ -314,9 +320,7 @@ export default function Welcome({ handleStepId }) {
                     // onMouseEnter={() => setExpLevel(2)}
                     // onMouseLeave={() => setExpLevel(0)}
                     onClick={() => setIsFirst(2)}
-                  >
-                    
-                  </MyImage>
+                  ></MyImage>
                 </div>
                 <div className="w-full justify-center flex pl-28">
                   <span className="mr-10">Yes</span>
@@ -345,7 +349,9 @@ export default function Welcome({ handleStepId }) {
             className="absolute top-2/3 left-[15%]   w-[913px]  h-[186px] break-words p-6 px-16  text-center"
           >
             <Typed
-              strings={[`Since you’re the editor, tell me how you’d fact check`]}
+              strings={[
+                `Since you’re the editor, tell me how you’d fact check`,
+              ]}
               typeSpeed={75}
               className="text-3xl"
             />
@@ -354,6 +360,9 @@ export default function Welcome({ handleStepId }) {
             >
               <div className="font-bold text-lg leading-4 pt-1">
                 <div className="w-full justify-center flex pt-8 pl-4">
+                  <input></input>
+                </div>
+                <div className="w-full justify-center flex pl-28">
                   <MyImage
                     src={
                       isFirst == 1
@@ -364,15 +373,8 @@ export default function Welcome({ handleStepId }) {
                     // onMouseEnter={() => setExpLevel(1)}
                     // onMouseLeave={() => setExpLevel(0)}
                     onClick={() => setIsFirst(1)}
-                  >
-                    
-                  </MyImage>
-
-             
-                </div>
-                <div className="w-full justify-center flex pl-28">
+                  ></MyImage>
                   <span className="mr-10">Type to let me know</span>
-                  
                 </div>
               </div>
             </div>
@@ -381,7 +383,9 @@ export default function Welcome({ handleStepId }) {
               src="/images/ArrowYellow.svg"
               className="cursor-pointer absolute right-[-5.5%] top-[60%]  w-[80px] h-[79px] "
               onClick={() => {
-                dispatch(updatePlayStatus("story"));
+                if (isFirst == 1 || isFirst == 0)
+                  dispatch(updatePlayStatus("story"));
+                else if (isFirst == 2) dispatch(updatePlayStatus("tutorial"));
               }}
             />
           </MyImage>
