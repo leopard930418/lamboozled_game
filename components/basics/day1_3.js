@@ -35,7 +35,7 @@ export default function Day1_3({
     (state) => state?.game?.markedStickers ?? "000000000000"
   );
   const userName = useSelector(
-    (state) => state?.game?.markedStickers ?? "000000000000"
+    (state) => state?.game?.userName ?? "Unkown"
   );
   const meter = useSelector((state) => state?.game?.meter ?? 0);
   const dispatch = useDispatch();
@@ -182,7 +182,14 @@ export default function Day1_3({
                         src="/images/bottomlogo.svg"
                         className={`h-24 w-full`}
                       >
-                        <div className="font-bold text-black pl-48 pt-14">Day {curDay}</div>
+                        <div className="bg-white  h-12 w-3/6 translate-y-3 translate-x-36 flax-wrap">
+                          <div className="font-bold  text-[36px] leading-10 ">
+                            {userName}
+                          </div>
+                          <div className="font-bold text-black  ">
+                            Day {curDay}
+                          </div>
+                        </div>
                       </MyImage>
                       
                     </div>

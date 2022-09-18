@@ -243,7 +243,7 @@ export default function Day4_8({
                         className={`h-24 w-full`}
                       >
                         <div className="bg-white  h-12 w-3/6 translate-y-3 translate-x-36 flax-wrap">
-                        <div className="font-bold  text-[36px] ">{userName}</div>
+                        <div className="font-bold  text-[36px] leading-10 ">{userName}</div>
                         <div className="font-bold text-black  ">Day {curDay}</div>
                         </div>
                         
