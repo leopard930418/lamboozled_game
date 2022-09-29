@@ -33,6 +33,7 @@
     "npm": "^8.9.0",
     "rc-progress": "^3.4.0",
     "react": "18.1.0",
+    "react-countdown-clock": "^2.9.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "18.1.0",

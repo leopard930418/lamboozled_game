@@ -14,7 +14,7 @@ export const gameSlice = createSlice({
     markedStickers: "000000000000",
     playStatus: "landing",
     dataForFeedback: {},
-    userName: ""
+    userName: "Unkown"
   },
   reducers: {
     appendMarkedStickers: (state, action) => {
@@ -26,7 +26,7 @@ export const gameSlice = createSlice({
     initMarkedStickers: (state, action) => {
       state.markedStickers = "000000000000";
     },
-    updateMeterByAmount: (state, action) => {
+    updateMeterByAmount: (state, action) => { 
       if (
         state.meter + action.payload <= 100 &&
         state.meter + action.payload > 0

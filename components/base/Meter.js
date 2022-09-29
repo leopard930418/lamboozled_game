@@ -14,17 +14,17 @@ export default function MyImage({
   }else{
     color = '#93d58f';
   }
-  const [percent, setPercent] = useState(Math.ceil(280/100*point));
+  const [percent, setPercent] = useState(Math.ceil(230/100*point));
   // console.log("meterwidht",percent);
   return (
     <>
-    <div className={`fixed h-[30px] w-[280px] bg-white -translate-y-20 translate-x-20`} style={{width:percent+'px'}}>
+    <div className={`fixed h-[28px] w-[230px] bg-white  translate-x-28 -translate-y-20`} style={{width:percent+'px'}}>
 
     </div>
-    <div className={`fixed h-[24px]  -translate-y-20 translate-x-20`} style={{width:percent+'px', backgroundColor:color}}>
+    <div className={`fixed h-[23px]   translate-x-28 -translate-y-20`} style={{width:percent+'px', backgroundColor:color}}>
 
     </div>
-    <div className="fixed bg-[url('/images/MarkMeter.png')] w-[280px] h-[28px] bg-cover bg-no-repeat -translate-y-[5.1rem] translate-x-20">
+    <div className="fixed bg-[url('/images/MarkMeter.png')] w-[230px] h-[23px] bg-cover bg-no-repeat  translate-x-28 -translate-y-20">
 
     </div>
     </>

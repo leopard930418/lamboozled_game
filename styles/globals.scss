@@ -123,3 +123,16 @@
     display: none !important;
     
   }
+  .meter-bar {
+    margin-left: -26.5%;
+    transition: margin-left 0.2s;
+    transition-timing-function: linear;
+  }
+  .meter-bar:hover {
+    margin-left: 0%;
+    .meter-bar-arrow{
+      display:none;
+    }
+  }
+
+  

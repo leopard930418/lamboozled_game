@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Container } from "postcss";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import ReactCountdownClock from "../base/CountDownTimer";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
 import Modal from "@mui/material/Modal";
@@ -19,10 +21,7 @@ import stickers from "../../public/assets/sticker.json";
 import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  updateMeterByAmount,
-
-} from "../../store/reducers/gameSlice";
+import { updateMeterByAmount } from "../../store/reducers/gameSlice";
 export default function Day1_3({
   curArtId = 0,
   curArtIndex = 0,
@@ -34,9 +33,7 @@ export default function Day1_3({
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? "000000000000"
   );
-  const userName = useSelector(
-    (state) => state?.game?.userName ?? "Unkown"
-  );
+  const userName = useSelector((state) => state?.game?.userName ?? "Unkown");
   const meter = useSelector((state) => state?.game?.meter ?? 0);
   const dispatch = useDispatch();
   const article = content[curArtId];
@@ -66,32 +63,43 @@ export default function Day1_3({
     correct.map((stickerId) => {
       sum += weights[stickerId];
     });
-    
+
     wrong.map((stickerId) => {
       sum -= weights[stickerId];
     });
-    console.log("sum", sum, "wrong", wrong,"correct", correct, "markedsticker", markedStickers, "answer_key", answer_key);
-    dispatch(updateMeterByAmount(sum));  
+    console.log(
+      "sum",
+      sum,
+      "wrong",
+      wrong,
+      "correct",
+      correct,
+      "markedsticker",
+      markedStickers,
+      "answer_key",
+      answer_key
+    );
+    dispatch(updateMeterByAmount(sum));
   };
 
   return (
     <>
       <div
-        className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+        className="max-w-[1280px] max-h-[720px] bg-cover bg-no-repeat w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
       >
-        <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat"></div>
+        <div className="absolute  h-[740px] top-0 -left-10 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
         <DndProvider backend={HTML5Backend}>
           <Grid container className="h-full">
             <Grid item xs={12}>
               <Grid container>
-                <Grid item xs={1}>
+                {/* <Grid item xs={1}>
                   <div className="h-full">
                     <div className="w-full  bg-no-repeat bg-fill">
                       <MyTimer />
                     </div>
                   </div>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={5}>
                   <DragDropContainer
                     hideSourceOnDrag={true}
@@ -99,7 +107,7 @@ export default function Day1_3({
                     unlock={false}
                     isdraging={true}
                   >
-                    <div className="pt-24 w-11/12 px-7">
+                    <div className="pt-24 w-10/12 pl-6 translate-x-20">
                       <Grid container columns={10} className="pl-10">
                         <Grid
                           item
@@ -143,7 +151,7 @@ export default function Day1_3({
                             {article.source}
                           </div>
                         </div>
-                        <div className="text-base text-black pt-2 overflow-auto h-32">
+                        <div className="text-base text-black pt-2 overflow-auto h-44">
                           {article.content}
                         </div>
                       </div>
@@ -155,7 +163,7 @@ export default function Day1_3({
                   <div className=" justify-center pt-[30%] pl-[20%] p-20">
                     <MyImage
                       src="/images/unlock.svg"
-                      className={`h-[178px] w-[146px] ml-[25%]  ${
+                      className={`h-[178px] w-[146px] ml-[52%]  ${
                         unlock ? "" : "hidden"
                       }`}
                       onClick={() => {
@@ -164,7 +172,7 @@ export default function Day1_3({
                     ></MyImage>
                     <MyImage
                       src="/images/tobeunlocked.svg"
-                      className={` h-[27px] w-[220px] mt-[10%] ml-[15%] ${
+                      className={` h-[27px] w-[220px] mt-[10%] ml-[42%] ${
                         unlock ? "" : "hidden"
                       }`}
                     ></MyImage>
@@ -176,23 +184,28 @@ export default function Day1_3({
             <Grid item xs={12}>
               <Grid container className="h-full">
                 <Grid item xs={4}>
-                  <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
-                    <div className={`translate-y-2`}>
+                  <div className="fixed bottom-0 fixed-bottom w-[30%] h-24 bg-black -ml-[30%]"></div>
+                  <div
+                    className={`meter-bar fixed bottom-0 flexd-bottom w-[30%] `}
+                  >
+                    <MyImage
+                      src="/images/bottomlogo.svg"
+                      className={`h-24 w-full`}
+                    >
                       <MyImage
-                        src="/images/bottomlogo.svg"
-                        className={`h-24 w-full`}
-                      >
-                        <div className="bg-white  h-12 w-3/6 translate-y-3 translate-x-36 flax-wrap">
-                          <div className="font-bold  text-[36px] leading-10 ">
-                            {userName}
-                          </div>
-                          <div className="font-bold text-black  ">
-                            Day {curDay}
-                          </div>
-                        </div>
-                      </MyImage>
-                      
-                    </div>
+                        src="/images/Calendar.svg"
+                        className={`h-16 w-16 translate-y-5 ml-5`}
+                      ></MyImage>
+
+                      <MyImage
+                        src="/images/MeterTitle.svg"
+                        className={`h-12 w-48 -translate-y-7 ml-28`}
+                      ></MyImage>
+                      <Meter point={meter} />
+                      <div className="-translate-y-[75px] absolute right-10">
+                        <ArrowForwardIosOutlinedIcon className="fixed meter-bar-arrow" />
+                      </div>
+                    </MyImage>
                   </div>
                 </Grid>
                 <Grid item xs={4}>
@@ -229,7 +242,7 @@ export default function Day1_3({
                 </Grid>
 
                 <Grid item xs={4}>
-                  <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
+                  {/* <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
                     <div className="translate-y-2 translate-x-11">
                       <MyImage
                         src="/images/bottomlambmeter.svg"
@@ -238,12 +251,11 @@ export default function Day1_3({
 
                       <Meter point={meter} />
                     </div>
-                  </div>
+                  </div> */}
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-
           <Modal
             open={guideOpen}
             onClose={handleGuideClose}
@@ -291,13 +303,24 @@ export default function Day1_3({
             </div>
           </Modal>
         </DndProvider>
+       
+
+        <IssueModal
+          open={markedIssuesOpen}
+          IssuClose={handleMarkedIssuesClose}
+          markedStickers={markedStickers}
+          setIsFeedback={handleIsFeed}
+        />
       </div>
-      <IssueModal
-        open={markedIssuesOpen}
-        IssuClose={handleMarkedIssuesClose}
-        markedStickers={markedStickers}
-        setIsFeedback={handleIsFeed}
-      />
+      <div className="top-1/2 left-1/2  ">
+          <ReactCountdownClock
+            seconds={20}
+            color="#DC694A"
+            alpha={0.5}
+            size={100}
+            // onComplete={myCallback}
+          />
+        </div>
     </>
   );
 }
