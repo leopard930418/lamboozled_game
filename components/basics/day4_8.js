@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 // UserApis
 import CustomImage from "../base/CustomImage";
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import MyImage from "../base/MyImage";
 import content from "../../public/assets/articles.json";
 import { DndProvider } from "react-dnd";
@@ -104,18 +105,18 @@ export default function Day4_8({
         className="max-w-[1280px] max-h-[720px] bg-cover bg-no-repeat w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
       >
-        <div className="absolute  h-[740px] top-0 left-0 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
+        <div className="absolute  h-[740px] top-0 -left-10 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
         <DndProvider backend={HTML5Backend}>
           <Grid container className="h-full">
             <Grid item xs={12}>
               <Grid container>
-                <Grid item xs={1}>
+                {/* <Grid item xs={1}>
                   <div className="h-full">
                     <div className="w-full  bg-no-repeat bg-fill">
-                      {/* <MyTimer /> */}
+                      <MyTimer />
                     </div>
                   </div>
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={5}>
                   <DragDropContainer
@@ -124,7 +125,7 @@ export default function Day4_8({
                     unlock={false}
                     isdraging={true}
                   >
-                    <div className="pt-24 w-11/12 px-7">
+                    <div className="pt-24 w-10/12 pl-6 translate-x-20">
                       <Grid container columns={10} className="pl-10">
                         <Grid
                           item
@@ -176,7 +177,9 @@ export default function Day4_8({
                   </DragDropContainer>
                 </Grid>
                 <Grid item xs={5}>
-                  <div className="w-[626px] h-[377px] bg-white justify-center mt-[101px] ml-[-26px] ">
+                  <div className="w-[650px] h-[377px] bg-white justify-center mt-[101px] ml-[11%] ">
+                  {/* <div className=" justify-center pt-[30%] pl-[20%] p-20"> */}
+
                     <div className="w-full h-full">
                       <Categories
                         className={`${
