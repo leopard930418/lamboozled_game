@@ -28,12 +28,12 @@ export default function Welcome({ handleStepId }) {
     <>
       {landingStep == 1 && (
         <div
-          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-cover bg-no-repeat h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/landing_bg1.svg')] `}
         >
           <div className=" justify-center mt-[37.5%]">
             <Button
-              className=""
+              
               onClick={() => {
                 // dispatch(updatePlayStatus("story"));
                 setLandingStep(2);
@@ -55,7 +55,7 @@ export default function Welcome({ handleStepId }) {
       )}
       {landingStep == 2 && (
         <div
-          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-cover bg-no-repeat h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-centermax-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/landing_bg2.svg')] `}
         >
           <div className=" justify-center mt-[37.5%] bg-[url('/images/landing_dialogue.svg')] w-full h-52 translate-x-4">
@@ -78,7 +78,7 @@ export default function Welcome({ handleStepId }) {
       )}
       {landingStep == 3 && (
         <div
-          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-cover bg-no-repeat h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/landing_bg2.svg')] justify-center`}
         >
           <input
@@ -104,7 +104,7 @@ export default function Welcome({ handleStepId }) {
       )}
       {landingStep == 4 && (
         <div
-          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-cover bg-no-repeat h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center`}
         >
           <MyImage
@@ -136,7 +136,7 @@ export default function Welcome({ handleStepId }) {
 
       {landingStep == 5 && (
         <div
-          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-cover bg-no-repeat h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                        -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center`}
         >
           <MyImage
@@ -167,7 +167,7 @@ export default function Welcome({ handleStepId }) {
 
       {landingStep == 6 && (
         <div
-          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-cover bg-no-repeat h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                          -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center`}
         >
           <MyImage
@@ -199,7 +199,7 @@ export default function Welcome({ handleStepId }) {
       )}
       {landingStep == 7 && (
         <div
-          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-cover bg-no-repeat h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                         -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center`}
         >
           <MyImage
@@ -281,7 +281,7 @@ export default function Welcome({ handleStepId }) {
       )}
       {landingStep == 8 && (
         <div
-          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-cover bg-no-repeat h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                         -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center`}
         >
           <MyImage
@@ -341,7 +341,7 @@ export default function Welcome({ handleStepId }) {
       )}
       {landingStep == 9 && (
         <div
-          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-cover bg-no-repeat h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-center max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                         -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center`}
         >
           <MyImage
