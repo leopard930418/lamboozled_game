@@ -18,7 +18,7 @@ export default function MyImage({
   // console.log("meterwidht",percent);
   return (
     <>
-    <div className={`fixed h-[28px] w-[280px] bg-white  translate-x-2 -translate-y-20`} style={{width:percent+'px'}}>
+    <div className={`fixed h-[28px] w-[240px] bg-white  translate-x-[115px] -translate-y-20`} style={{width:percent+'px'}}>
 
     </div>
     <div className={`fixed h-[23px]   translate-x-28 -translate-y-20`} style={{width:percent+'px', backgroundColor:color}}>

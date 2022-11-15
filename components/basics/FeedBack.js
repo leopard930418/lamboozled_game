@@ -96,7 +96,7 @@ export default function FeedBack({
   return (
     <>
       <div
-        className={`max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+        className={`max-w-[1280px] max-h-[712px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-${
                               reviewMode
                                 ? "[url('/images/backgroundBasic.svg')]"
