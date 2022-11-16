@@ -314,9 +314,9 @@ export default function Day1_3({
       </div>
       <div className="top-1/2 left-1/2  ">
           <ReactCountdownClock
-            seconds={20}
-            color="#DC694A"
-            alpha={0.5}
+            seconds={120}
+            color="white"
+            alpha={1}
             size={100}
             // onComplete={myCallback}
           />

@@ -24,15 +24,15 @@ export default function Welcome({ handleStepId }) {
   useEffect(() => {
     dispatch(updateUserName(userName));
   }, [userName]);
-  
+
   const nameInput = useRef(null);
   const factInput = useRef(null);
-  
+
   useEffect(() => {
     // current property is refered to input element
     if (landingStep == 3) {
       nameInput.current.focus();
-    }else if(landingStep == 8){
+    } else if (landingStep == 8) {
       factInput.current.focus();
     }
   }, [landingStep]);
@@ -359,10 +359,10 @@ export default function Welcome({ handleStepId }) {
       )}
       {landingStep == 9 && (
         <div
-        className={`text-center max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+          className={`text-center max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                    -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center flex`}
-        style={{ fontFamily: "Patrick Hand" }}
-      >
+          style={{ fontFamily: "Patrick Hand" }}
+        >
           <MyImage
             src="/images/Boss2_C.svg"
             className="absolute w-[485px] h-[633px] top-[81px] left-[590px] "
@@ -408,11 +408,40 @@ export default function Welcome({ handleStepId }) {
               src="/images/ArrowBlack.svg"
               className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
               onClick={() => {
-                if(isFirst == 1){
+                if(isFirst != 0) setLandingStep(10);
+              }}
+            />
+          </div>
+        </div>
+      )}
+      {landingStep == 10 && (
+        <div
+          className={`text-center max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+                            -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center flex`}
+          style={{ fontFamily: "Patrick Hand" }}
+        >
+          <MyImage
+            src="/images/Boss2_C.svg"
+            className="absolute w-[485px] h-[633px] top-[81px] left-[590px] "
+          />
+          <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4">
+            <div className="text-[41px] w-8/12 break-words  pt-16 ml-48 ">
+              <Typed
+                strings={["Oops, you’re right. Just start working then."]}
+                typeSpeed={75}
+                className="cursor-none"
+              />
+            </div>
+            <MyImage
+              src="/images/ArrowBlack.svg"
+              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              onClick={() => {
+                if (isFirst == 1) {
                   dispatch(updatePlayStatus("tutorial"));
-                }else if(isFirst == 2){
-                dispatch(updatePlayStatus("story"));
-              }}}
+                } else if (isFirst == 2) {
+                  dispatch(updatePlayStatus("story"));
+                }
+              }}
             />
           </div>
         </div>

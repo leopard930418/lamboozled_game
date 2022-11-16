@@ -68,9 +68,13 @@
                 (this._radius = this.props.size / 2),
                 (this._fraction = 2 / this._seconds),
                 (this._tickPeriod = this._calculateTick()),
+                // (this._innerRadius = this.props.weight
+                //   ? this._radius - this.props.weight
+                //   : this._radius / 1.8)
                 (this._innerRadius = this.props.weight
                   ? this._radius - this.props.weight
-                  : this._radius / 1.8)
+                  : 0)
+                
               );
             },
             _calculateTick: function () {
@@ -160,20 +164,27 @@
               return (
                 this._clearBackground(),
                 this._background.beginPath(),
-                (this._background.globalAlpha = this.props.alpha / 3),
+                (this._background.globalAlpha = this.props.alpha / 3),//
                 (this._background.fillStyle = this.props.color),
                 this._background.arc(
-                  this._radius,
-                  this._radius,
-                  this._radius,
+                  // this._radius,
+                  // this._radius,
+                  // this._radius,
+                  this.props.size/2,
+                  this.props.size/2,
+                  this.props.size/2,
+
                   0,
                   2 * Math.PI,
                   !1
                 ),
                 this._background.arc(
-                  this._radius,
-                  this._radius,
-                  this._innerRadius,
+                  // this._radius,
+                  // this._radius,
+                  // this._innerRadius,
+                  this.props.size/2,
+                  this.props.size/2,
+                  this.props.size/2,
                   2 * Math.PI,
                   0,
                   !0
@@ -227,7 +238,8 @@
               var t, e, i;
               return (
                 (e = this._fraction * this._seconds + 1.5),
-                (t = this._formattedTime()),
+                // (t = this._formattedTime()),
+                (t = ""),
                 (i =
                   this.props.paused && null != this.props.pausedText
                     ? this.props.pausedText
@@ -268,8 +280,8 @@
                     width: this.props.size,
                     height: this.props.size,
                   },
-                  height: this.props.size * this._scale,
-                  width: this.props.size * this._scale,
+                  height: this.props.size ,
+                  width: this.props.size ,
                 }),
                 n.createElement(
                   "div",
