@@ -164,27 +164,29 @@
               return (
                 this._clearBackground(),
                 this._background.beginPath(),
-                (this._background.globalAlpha = this.props.alpha / 3),//
-                (this._background.fillStyle = this.props.color),
+                // (this._background.globalAlpha = this.props.alpha / 3),//
+                (this._background.globalAlpha = 1),//
+                // (this._background.fillStyle = this.props.color),
+                (this._background.fillStyle = "#dc694a"),
                 this._background.arc(
-                  // this._radius,
-                  // this._radius,
-                  // this._radius,
-                  this.props.size/2,
-                  this.props.size/2,
-                  this.props.size/2,
+                  this._radius,
+                  this._radius,
+                  this._radius,
+                  // this.props.size/2,
+                  // this.props.size/2,
+                  // this.props.size/2,
 
                   0,
                   2 * Math.PI,
                   !1
                 ),
                 this._background.arc(
-                  // this._radius,
-                  // this._radius,
-                  // this._innerRadius,
-                  this.props.size/2,
-                  this.props.size/2,
-                  this.props.size/2,
+                  this._radius,
+                  this._radius,
+                  this._innerRadius,
+                  // this.props.size/2,
+                  // this.props.size/2,
+                  // this.props.size/2,
                   2 * Math.PI,
                   0,
                   !0
@@ -246,6 +248,7 @@
                     : t),
                 (this._timer.globalAlpha = this.props.alpha),
                 (this._timer.fillStyle = this.props.color),
+                // (this._timer.fillStyle = "red"),
                 (this._timer.font = `bold ${this._fontSize(t)} ${
                   this.props.font
                 }`),
@@ -316,7 +319,8 @@
           (r.defaultProps = {
             seconds: 60,
             size: 300,
-            color: "#000",
+            // color: "#000",
+            color: "red",
             alpha: 1,
             timeFormat: "hms",
             fontSize: "auto",
