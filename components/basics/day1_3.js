@@ -205,8 +205,10 @@ export default function Day1_3({
                     >
                       <MyImage
                         src="/images/Calendar.svg"
-                        className={`h-16 w-16 translate-y-5 ml-5`}
-                      ></MyImage>
+                        className={`h-16 w-16 translate-y-5 ml-5 flex justify-center`}
+                      >
+                        <span className="text-[22px] font-bold mt-[22px]" style={{ fontFamily: "Patrick Hand" }}>{curDay}</span>
+                      </MyImage>
 
                       <MyImage
                         src="/images/MeterTitle.svg"
@@ -219,11 +221,13 @@ export default function Day1_3({
                     </MyImage>
                   </div>
                 </Grid>
+                <Grid item xs={4}></Grid>
+
                 <Grid item xs={4}>
-                  <div className={`fixed bottom-0 w-full flex flex-row `}>
-                    <div className="bottom-0 flexd-bottom translate-x-28 -translate-y-1 ">
+                  <div className={`fixed bottom-20 -right-[76%] w-full flex flex-row `}>
+                    <div className="bottom-0 ">
                       <div
-                        className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md cursor-pointer"
+                        className="translate-x-6 h-2/4 w-3/4 bg-white flex flex-row items-center justify-center cursor-pointer"
                         onClick={() => {
                           handleMarkedIssuesOpen();
                         }}
@@ -238,7 +242,7 @@ export default function Day1_3({
                       </div>
 
                       <button
-                        className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                        className="bg-[#dc694a] rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                         onClick={() => {
                           // setCounter(100);
                           handleIsFeed(true);
@@ -250,19 +254,6 @@ export default function Day1_3({
                       </button>
                     </div>
                   </div>
-                </Grid>
-
-                <Grid item xs={4}>
-                  {/* <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
-                    <div className="translate-y-2 translate-x-11">
-                      <MyImage
-                        src="/images/bottomlambmeter.svg"
-                        className="h-24"
-                      />
-
-                      <Meter point={meter} />
-                    </div>
-                  </div> */}
                 </Grid>
               </Grid>
             </Grid>
