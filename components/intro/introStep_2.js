@@ -12,6 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import { withStyles, makeStyles } from "@mui/styles";
 import Modal from "@mui/material/Modal";
 import Router from "next/router";
+import Typed from "react-typed";
 
 // MODULES FOR DRAG&DROP
 import { DndProvider } from "react-dnd";
@@ -23,16 +24,18 @@ export default function IntroStep_2({ handleStepId }) {
   const [alertShow, setAlertShow] = useState(true);
   const handleAlertClose = () => setAlertShow(false);
 
-  const markedStickers = useSelector((state)=>state?.game?.markedStickers ?? []);
+  const markedStickers = useSelector(
+    (state) => state?.game?.markedStickers ?? []
+  );
   let nextStage = false;
-  if(markedStickers.length > 0){
+  if (markedStickers.length > 0) {
     nextStage = true;
   }
   return (
     <>
       <div
-        className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
-                            -translate-y-1/2 bg-[url('/images/IntroBackground.svg')]"
+        className={`max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+                            -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]`}
       >
         {/* background image mapping */}
         <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat"></div>
@@ -53,6 +56,7 @@ export default function IntroStep_2({ handleStepId }) {
                     hideSourceOnDrag={true}
                     stickers={[1, 2]}
                     isdraging={true}
+                    isIssueShow={false}
                   >
                     <div className="pt-24 w-11/12 px-7">
                       <Grid container columns={10} className="pl-10">
@@ -108,14 +112,14 @@ export default function IntroStep_2({ handleStepId }) {
           <Grid item xs={12}>
             <Grid container className="h-full">
               <Grid item xs={4}>
-                <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
+                {/* <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
                   <div className={`translate-y-2`}>
                     <MyImage
                       src="/images/bottomlogo.svg"
                       className={`h-24 w-full`}
                     />
                   </div>
-                </div>
+                </div> */}
               </Grid>
               <Grid item xs={4}></Grid>
 
@@ -163,7 +167,7 @@ export default function IntroStep_2({ handleStepId }) {
             </MyImage>
           ) : (
             <>
-              <MyImage
+              {/* <MyImage
                 src="/images/AlertPanel.svg"
                 className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
               >
@@ -178,7 +182,29 @@ export default function IntroStep_2({ handleStepId }) {
                 onClick={() => {
                   handleStepId(3);
                 }}
-              />
+              /> */}
+              <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 flex justify-center">
+                <img
+                  src="/images/BossFace1.svg"
+                  className="w-[239px] h-[137px] mt-10 ml-6"
+                />
+                <div className="text-[34px] w-7/12 break-words  pt-12 ml-4 leading-10">
+                  <Typed
+                    strings={[
+                      "Good job! Sometimes you need to drag multiple stickers to mark out all the issues. Sometimes the article has no issue at all.",
+                    ]}
+                    typeSpeed={75}
+                    className="cursor-none"
+                  />
+                </div>
+                <MyImage
+                  src="/images/ArrowBlack.svg"
+                  className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+                  onClick={() => {
+                    handleStepId(3);
+                  }}
+                />
+              </div>
             </>
           )}
         </div>

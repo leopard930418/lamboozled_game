@@ -94,7 +94,7 @@ export default function Day1_3({
         className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
       >
-        <div className="absolute top-1 right-0 flex justify-center">
+       <div className="absolute top-1 right-0 flex justify-center">
           <ReactCountdownClock
             seconds={120}
             color="#fbfbfb"
@@ -102,7 +102,7 @@ export default function Day1_3({
             size={100}
             // onComplete={myCallback}
           />
-          <div className="w-[80px] h-[80px] absolute -top-[2px] right-[22px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
+          <div className="w-[95px] h-[95px] absolute -top-[2px] right-[8px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
         </div>
 
         <div className="absolute  h-[740px] top-0 -left-10 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
