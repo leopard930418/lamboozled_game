@@ -547,12 +547,15 @@ export default function FeedBack({
               <Grid item xs={4}>
                 {!reviewMode && (
                   <div className={` fixed bottom-0 flexd-bottom w-[30%] `}>
-                    <div className="translate-y-2 translate-x-11">
+                    <div className="translate-x-11">
                       <MyImage
                         src="/images/bottomlambmeter.svg"
                         className="h-24"
                       />
+                      <div className="bg-white w-80 h-10 absolute -mt-20 ml-12"></div>
+                      <div className="mt-1 -ml-4">
                       <Meter point={meter} />
+                      </div>
                     </div>
                   </div>
                 )}
