@@ -85,7 +85,7 @@ export default function Day1_3({
   return (
     <>
       <div
-        className="max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+        className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
       >
         <div className="absolute top-1 right-0 ">
@@ -96,7 +96,7 @@ export default function Day1_3({
             size={100}
             // onComplete={myCallback}
           />
-          <div className="w-[98px] h-[98px] absolute -top-1 right-[6px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
+          <div className="w-[97px] h-[97px] absolute -top-[4px] right-[6px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
         </div>
 
         <div className="absolute  h-[740px] top-0 -left-10 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
