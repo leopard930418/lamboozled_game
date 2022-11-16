@@ -8,6 +8,7 @@ import Grid from "@mui/material/Grid";
 // UserApis
 import CustomImage from "../base/CustomImage";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import ReactCountdownClock from "../base/CountDownTimer";
 import MyImage from "../base/MyImage";
 import content from "../../public/assets/articles.json";
 import { DndProvider } from "react-dnd";
@@ -45,6 +46,11 @@ export default function Day4_8({
   const article = content[curArtId];
   const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
+  const ToggleSidebar = () => {
+    markedIssuesOpen === true
+      ? setMarkedIssuesOpen(false)
+      : setMarkedIssuesOpen(true);
+  };
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
 
@@ -101,10 +107,20 @@ export default function Day4_8({
 
   return (
     <>
-       <div
-        className="max-w-[1280px] max-h-[790px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+      <div
+        className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
       >
+        <div className="absolute top-1 right-0 flex justify-center">
+          <ReactCountdownClock
+            seconds={120}
+            color="#fbfbfb"
+            alpha={1}
+            size={100}
+            // onComplete={myCallback}
+          />
+          <div className="w-[80px] h-[80px] absolute -top-[2px] right-[22px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
+        </div>
         <div className="absolute  h-[740px] top-0 -left-10 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
         <DndProvider backend={HTML5Backend}>
           <Grid container className="h-full">
@@ -124,6 +140,7 @@ export default function Day4_8({
                     stickers={unlockedStickers}
                     unlock={false}
                     isdraging={true}
+                    isIssueShow={markedIssuesOpen}
                   >
                     <div className="pt-24 w-10/12 pl-6 translate-x-20">
                       <Grid container columns={10} className="pl-10">
@@ -178,7 +195,7 @@ export default function Day4_8({
                 </Grid>
                 <Grid item xs={5}>
                   <div className="w-[650px] h-[377px] bg-white justify-center mt-[101px] ml-[11%] ">
-                  {/* <div className=" justify-center pt-[30%] pl-[20%] p-20"> */}
+                    {/* <div className=" justify-center pt-[30%] pl-[20%] p-20"> */}
 
                     <div className="w-full h-full">
                       <Categories
@@ -194,7 +211,7 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[4]}
-                        onscreen={sceneIndex === 1 ? true : false}
+                        onscreen={(sceneIndex === 1 ? true&&!markedIssuesOpen : false)}
                         socialData={advancedData.socialData}
                       />
                       <Source
@@ -204,7 +221,7 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[5, 6]}
-                        onscreen={sceneIndex === 2 ? true : false}
+                        onscreen={sceneIndex === 2 ? true&&!markedIssuesOpen : false}
                         sourceData={advancedData.sourceData}
                       />
                       <Fact
@@ -214,7 +231,7 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[7, 8]}
-                        onscreen={sceneIndex === 3 ? true : false}
+                        onscreen={sceneIndex === 3 ? true&&!markedIssuesOpen : false}
                         // art_answer={article.answer_key}
                       />
                       <Reverse
@@ -224,7 +241,7 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[9, 10]}
-                        onscreen={sceneIndex === 4 ? true : false}
+                        onscreen={sceneIndex === 4 ? true&&!markedIssuesOpen : false}
                         curArtId={curArtId}
                       />
                       <Lateral
@@ -234,7 +251,7 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[11]}
-                        onscreen={sceneIndex === 5 ? true : false}
+                        onscreen={sceneIndex === 5 ? true&&!markedIssuesOpen : false}
                         lateralData={advancedData.lateralData}
                       />
                     </div>
@@ -255,8 +272,15 @@ export default function Day4_8({
                     >
                       <MyImage
                         src="/images/Calendar.svg"
-                        className={`h-16 w-16 translate-y-5 ml-5`}
-                      ></MyImage>
+                        className={`h-16 w-16 translate-y-5 ml-5 flex justify-center`}
+                      >
+                        <span
+                          className="text-[22px] font-bold mt-[22px]"
+                          style={{ fontFamily: "Patrick Hand" }}
+                        >
+                          {curDay}
+                        </span>
+                      </MyImage>
 
                       <MyImage
                         src="/images/MeterTitle.svg"
@@ -269,13 +293,18 @@ export default function Day4_8({
                     </MyImage>
                   </div>
                 </Grid>
+                <Grid item xs={4}></Grid>
+
                 <Grid item xs={4}>
-                  <div className={`fixed bottom-0 w-full flex flex-row `}>
-                    <div className="bottom-0 flexd-bottom translate-x-28 -translate-y-1">
+                  <div
+                    className={`fixed bottom-20 -right-[76%] w-full flex flex-row `}
+                  >
+                    <div className="bottom-0 ">
                       <div
-                        className="Alex_btn_gra_1 translate-x-6 h-2/4 w-3/4 bg-red-300 flex flex-row items-center justify-center rounded-md cursor-pointer"
+                        className="translate-x-6 h-2/4 w-3/4 bg-white flex flex-row items-center justify-center cursor-pointer"
                         onClick={() => {
-                          handleMarkedIssuesOpen();
+                          // handleMarkedIssuesOpen();
+                          ToggleSidebar();
                         }}
                       >
                         <label className="cursor-pointer">
@@ -288,9 +317,11 @@ export default function Day4_8({
                       </div>
 
                       <button
-                        className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                        className="bg-[#dc694a] rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                         onClick={() => {
+                          // setCounter(100);
                           handleIsFeed(true);
+                          //Router.push("/feedback");
                           calcResult();
                         }}
                       >
@@ -298,18 +329,6 @@ export default function Day4_8({
                       </button>
                     </div>
                   </div>
-                </Grid>
-
-                <Grid item xs={4}>
-                  {/* <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
-                    <div className="translate-y-2 translate-x-11">
-                      <MyImage
-                        src="/images/bottomlambmeter.svg"
-                        className="h-24"
-                      />
-                      <Meter point={meter} />
-                    </div>
-                  </div> */}
                 </Grid>
               </Grid>
             </Grid>
@@ -361,12 +380,20 @@ export default function Day4_8({
             </div>
           </Modal>
         </DndProvider>
-        <IssueModal
-          open={markedIssuesOpen}
-          IssuClose={handleMarkedIssuesClose}
-          markedStickers={markedStickers}
-          setIsFeedback={handleIsFeed}
-        />
+        <div className={`sidebar ${markedIssuesOpen === true ? "active" : ""}`}>
+          <IssueModal
+            open={markedIssuesOpen}
+            IssuClose={handleMarkedIssuesClose}
+            markedStickers={markedStickers}
+            setIsFeedback={handleIsFeed}
+          />
+        </div>
+        <div
+          className={`z-[1550] sidebar-overlay ${
+            markedIssuesOpen == true ? "active" : ""
+          }`}
+          onClick={ToggleSidebar}
+        ></div>
       </div>
     </>
   );

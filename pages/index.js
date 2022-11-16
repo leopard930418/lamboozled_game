@@ -19,7 +19,7 @@ export default function Home() {
       </Head>
       
       {/* temp test */}
-      {playStatus=="landing"&&(
+      {/* {playStatus=="landing"&&(
         <Landing />
       )}
       {playStatus=="story"&&(
@@ -27,11 +27,11 @@ export default function Home() {
       )}
       {playStatus=="tutorial"&&(
         <Intro />
-      )}
+      )} */}
         {/* <Story /> */}
 
       
-      {/* <Intro /> */}
+      <Intro />
     </div>
   );
 }

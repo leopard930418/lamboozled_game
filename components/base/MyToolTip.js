@@ -21,13 +21,13 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
     fontWeight: "bold",
     fontSize:"16px",
     lineHeight: "1.1",
-
+    
   },
 }));
 
 export default function MyToolTip(props) {
   const stickerData = stickers;
-
+  
   return (
     <>
       {props.markedStickers.charAt(props.stickerId) == "1" ? (

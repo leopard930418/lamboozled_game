@@ -75,7 +75,7 @@ export default function StoryDay7({ meter = 50, handleMeter, handleTheDay }) {
             unlockedStickers={[0, 1, 2, 3]}
             advancedData={advancedData}
             curDay = {7}
-          />
+            />
         </div>
       ) : (
         <div>
@@ -85,6 +85,7 @@ export default function StoryDay7({ meter = 50, handleMeter, handleTheDay }) {
             leftArts={articlesId.length - Number(curArtIndex) - 1}
             handleIsFeed={handleIsFeed}
             handleCurArtIndex={handleCurArtIndex}
+            curDay = {7}
           />
         </div>
       )}

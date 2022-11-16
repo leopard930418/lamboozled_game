@@ -89,6 +89,7 @@ export default function StoryDay4({ meter = 50, handleMeter, handleTheDay }) {
             handleIsFeed={handleIsFeed}
             handleCurArtIndex={handleCurArtIndex}
             curArtId={articlesId[curArtIndex]}
+            curDay = {4}
           />
         </div>
       )}

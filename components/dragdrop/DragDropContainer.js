@@ -22,8 +22,10 @@ export const DragDropContainer = ({
   stickers = [],
   unlock,
   isdraging = false,
+  isIssueShow,
 }) => {
   //alex added
+  console.log(isIssueShow);
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? "000000000000"
   );
@@ -118,7 +120,7 @@ export const DragDropContainer = ({
               top={top}
               hideSourceOnDrag={hideSourceOnDrag}
             >
-              <MyToolTip stickerId={stickerId} markedStickers={markedStickers} onscreen={true}>
+              <MyToolTip stickerId={stickerId} markedStickers={markedStickers} onscreen={true && !isIssueShow}>
                 {unlock ? ( //unlock
                   <></>
                 ) : (

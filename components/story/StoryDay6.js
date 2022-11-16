@@ -54,7 +54,7 @@ export default function StoryDay6({ meter = 50, handleMeter, handleTheDay }) {
   const lateralData = {
     lateral: art_answer.charAt(11) == "1" ? true : false,
     curArtId: articlesId[curArtIndex],
-    curArt:content[articlesId[curArtIndex]],
+    curArt: content[articlesId[curArtIndex]],
   };
 
   //concat all
@@ -74,7 +74,7 @@ export default function StoryDay6({ meter = 50, handleMeter, handleTheDay }) {
             handleIsFeed={handleIsFeed}
             unlockedStickers={[0, 1, 2, 3]}
             advancedData={advancedData}
-            curDay = {6}
+            curDay={6}
           />
         </div>
       ) : (
@@ -85,6 +85,7 @@ export default function StoryDay6({ meter = 50, handleMeter, handleTheDay }) {
             leftArts={articlesId.length - Number(curArtIndex) - 1}
             handleIsFeed={handleIsFeed}
             handleCurArtIndex={handleCurArtIndex}
+            curDay={6}
           />
         </div>
       )}

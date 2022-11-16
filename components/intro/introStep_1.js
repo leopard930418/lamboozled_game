@@ -4,34 +4,13 @@ import CustomImage from "../base/CustomImage";
 import MyImage from "../base/MyImage";
 // FOR IMPORTING ARITCLE DATA
 import content from "../../public/assets/articles.json";
-import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/IconButton";
+import Typed from "react-typed";
 import Grid from "@mui/material/Grid";
-import Tooltip from "@mui/material/Tooltip";
 import { withStyles, makeStyles } from "@mui/styles";
 import LinearProgress from "@mui/material/LinearProgress";
 import Modal from "@mui/material/Modal";
 // MODULES FOR DRAG&DROP
 import Router from "next/router";
-// import MyToolTip from "../base/MyToolTip";
-
-const BorderLinearProgress = withStyles((theme) => {
-  return {
-    root: {
-      width: 30,
-      height: "100%",
-    },
-    colorPrimary: {
-      backgroundColor: "rgba(0, 0, 0, 0.25);",
-    },
-    bar: {
-      transform: ({ value }) => {
-        return `translateY(${value}%) !important`;
-      },
-      backgroundColor: "#FC5757",
-    },
-  };
-})(LinearProgress);
 
 const useStyles = makeStyles({
   root: {
@@ -59,8 +38,8 @@ export default function IntroStep_1({ handleStepId }) {
     <>
       <div></div>
       <div
-        className={`max-w-[1280px] max-h-[790px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
-                            -translate-y-1/2 bg-[url('/images/IntroBackground.svg')]`}
+        className={`max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+                            -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]`}
       >
         <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
         {/* background image mapping */}
@@ -68,14 +47,14 @@ export default function IntroStep_1({ handleStepId }) {
           <Grid item xs={12}>
             <Grid container>
               <Grid item xs={1}>
-                <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
+                {/* <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
                   <div className={`translate-y-2`}>
                     <MyImage
                       src="/images/bottomlogo.svg"
                       className={`h-24 w-full`}
                     />
                   </div>
-                </div>
+                </div> */}
               </Grid>
               <Grid item xs={5}>
                 <div className="pt-24 w-11/12 px-7">
@@ -189,14 +168,14 @@ export default function IntroStep_1({ handleStepId }) {
           <Grid item xs={12}>
             <Grid container className="h-full">
               <Grid item xs={4}>
-                <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
+                {/* <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
                   <div className={`translate-y-2`}>
                     <MyImage
                       src="/images/bottomlogo.svg"
                       className={`h-24 w-full`}
                     />
                   </div>
-                </div>
+                </div> */}
               </Grid>
               <Grid item xs={4}></Grid>
               <Grid item xs={4}></Grid>
@@ -227,20 +206,22 @@ export default function IntroStep_1({ handleStepId }) {
                   fill="none"
                 />
               </svg>
-              <MyImage
-                src="/images/BossMedium.svg"
-                className="absolute right-[15%] bottom-32 w-[310px] h-[395px]"
-              />
-              <MyImage
-                src="/images/AlertPanel.svg"
-                className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
-              >
-                <span className=" text-3xl">
-                  This is your desk, and you’ll be able to use the computer
-                  after you get promoted. For now, please click the question
-                  mark to see your task.
-                </span>
-              </MyImage>
+
+              <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 flex justify-center">
+                <img
+                  src="/images/BossFace1.svg"
+                  className="w-[239px] h-[137px] mt-10 ml-6"
+                />
+                <div className="text-[34px] w-7/12 break-words  pt-12 ml-4 leading-10">
+                  <Typed
+                    strings={[
+                      "This is your desk, and you’ll be able to use the computer after you get promoted. For now, please click the question mark to see your task.",
+                    ]}
+                    typeSpeed={75}
+                    className="cursor-none"
+                  />
+                </div>
+              </div>
             </>
           )}
         </div>

@@ -384,7 +384,7 @@ export default function Welcome({ handleStepId }) {
                           ? `/images/BlackHead.svg`
                           : `/images/WhiteHead.svg`
                       }
-                      className=" w-[47px]  h-[47px] text-center -mt-5 "
+                      className=" w-[47px]  h-[47px] text-center -mt-5 cursor-pointer"
                       onClick={() => setIsFirst(1)}
                     ></MyImage>
                     <span className="ml-4">Ok.(1st time player)</span>
@@ -396,7 +396,7 @@ export default function Welcome({ handleStepId }) {
                           ? `/images/BlackHead.svg`
                           : `/images/WhiteHead.svg`
                       }
-                      className=" w-[47px]  h-[47px] text-center -mt-5"
+                      className=" w-[47px]  h-[47px] text-center -mt-5 "
                       onClick={() => setIsFirst(2)}
                     ></MyImage>
                     <span className="ml-4">I worked here before</span>
@@ -408,7 +408,8 @@ export default function Welcome({ handleStepId }) {
               src="/images/ArrowBlack.svg"
               className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
               onClick={() => {
-                if(isFirst != 0) setLandingStep(10);
+                if (isFirst == 1) dispatch(updatePlayStatus("tutorial"));
+                else if (isFirst == 2) setLandingStep(10);
               }}
             />
           </div>
@@ -436,11 +437,7 @@ export default function Welcome({ handleStepId }) {
               src="/images/ArrowBlack.svg"
               className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
               onClick={() => {
-                if (isFirst == 1) {
-                  dispatch(updatePlayStatus("tutorial"));
-                } else if (isFirst == 2) {
-                  dispatch(updatePlayStatus("story"));
-                }
+                dispatch(updatePlayStatus("story"));
               }}
             />
           </div>

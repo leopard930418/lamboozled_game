@@ -22,6 +22,7 @@ import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
 import { useSelector, useDispatch } from "react-redux";
 import { updateMeterByAmount } from "../../store/reducers/gameSlice";
+
 export default function Day1_3({
   curArtId = 0,
   curArtIndex = 0,
@@ -39,6 +40,11 @@ export default function Day1_3({
   const article = content[curArtId];
   const [unlock, setUnlock] = useState(true);
   const [markedIssuesOpen, setMarkedIssuesOpen] = useState(false);
+  const ToggleSidebar = () => {
+    markedIssuesOpen === true
+      ? setMarkedIssuesOpen(false)
+      : setMarkedIssuesOpen(true);
+  };
   const handleMarkedIssuesOpen = () => setMarkedIssuesOpen(true);
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
   const [guideOpen, setGuideOpen] = useState(false);
@@ -88,7 +94,7 @@ export default function Day1_3({
         className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
       >
-        <div className="absolute top-1 right-0 ">
+        <div className="absolute top-1 right-0 flex justify-center">
           <ReactCountdownClock
             seconds={120}
             color="#fbfbfb"
@@ -96,7 +102,7 @@ export default function Day1_3({
             size={100}
             // onComplete={myCallback}
           />
-          <div className="w-[97px] h-[97px] absolute -top-[4px] right-[6px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
+          <div className="w-[80px] h-[80px] absolute -top-[2px] right-[22px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
         </div>
 
         <div className="absolute  h-[740px] top-0 -left-10 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
@@ -117,6 +123,7 @@ export default function Day1_3({
                     stickers={unlockedStickers}
                     unlock={false}
                     isdraging={true}
+                    isIssueShow={markedIssuesOpen}
                   >
                     <div className="pt-24 w-10/12 pl-6 translate-x-20">
                       <Grid container columns={10} className="pl-10">
@@ -207,7 +214,12 @@ export default function Day1_3({
                         src="/images/Calendar.svg"
                         className={`h-16 w-16 translate-y-5 ml-5 flex justify-center`}
                       >
-                        <span className="text-[22px] font-bold mt-[22px]" style={{ fontFamily: "Patrick Hand" }}>{curDay}</span>
+                        <span
+                          className="text-[22px] font-bold mt-[22px]"
+                          style={{ fontFamily: "Patrick Hand" }}
+                        >
+                          {curDay}
+                        </span>
                       </MyImage>
 
                       <MyImage
@@ -224,12 +236,15 @@ export default function Day1_3({
                 <Grid item xs={4}></Grid>
 
                 <Grid item xs={4}>
-                  <div className={`fixed bottom-20 -right-[76%] w-full flex flex-row `}>
+                  <div
+                    className={`fixed bottom-20 -right-[76%] w-full flex flex-row `}
+                  >
                     <div className="bottom-0 ">
                       <div
                         className="translate-x-6 h-2/4 w-3/4 bg-white flex flex-row items-center justify-center cursor-pointer"
                         onClick={() => {
-                          handleMarkedIssuesOpen();
+                          // handleMarkedIssuesOpen();
+                          ToggleSidebar();
                         }}
                       >
                         <label className="cursor-pointer">
@@ -306,12 +321,20 @@ export default function Day1_3({
           </Modal>
         </DndProvider>
 
-        <IssueModal
-          open={markedIssuesOpen}
-          IssuClose={handleMarkedIssuesClose}
-          markedStickers={markedStickers}
-          setIsFeedback={handleIsFeed}
-        />
+        <div className={`sidebar ${markedIssuesOpen === true ? "active" : ""}`}>
+          <IssueModal
+            open={markedIssuesOpen}
+            IssuClose={handleMarkedIssuesClose}
+            markedStickers={markedStickers}
+            setIsFeedback={handleIsFeed}
+          />
+        </div>
+        <div
+          className={`z-[40] sidebar-overlay ${
+            markedIssuesOpen == true ? "active" : ""
+          }`}
+          onClick={ToggleSidebar}
+        ></div>
       </div>
     </>
   );
