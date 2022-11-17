@@ -38,27 +38,27 @@ export default function IntroStep_2({ handleStepId }) {
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]`}
       >
         {/* background image mapping */}
-        <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat"></div>
-        {/* background image mapping */}
-        <Grid container className="h-full">
-          <Grid item xs={12}>
-            <Grid container>
-              <Grid item xs={1}>
-                <div className="h-full">
-                  <div className="w-full  bg-no-repeat bg-fill">
-                    <div></div>
+        <div className="absolute  h-[740px] top-0 -left-10 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
+        <DndProvider backend={HTML5Backend}>
+          {/* background image mapping */}
+          <Grid container className="h-full">
+            <Grid item xs={12}>
+              <Grid container>
+                {/* <Grid item xs={1}>
+                  <div className="h-full">
+                    <div className="w-full  bg-no-repeat bg-fill">
+                      <div></div>
+                    </div>
                   </div>
-                </div>
-              </Grid>
-              <Grid item xs={5}>
-                <DndProvider backend={HTML5Backend}>
+                </Grid> */}
+                <Grid item xs={5}>
                   <DragDropContainer
                     hideSourceOnDrag={true}
-                    stickers={[1, 2]}
+                    stickers={[0, 1]}
                     isdraging={true}
                     isIssueShow={false}
                   >
-                    <div className="pt-24 w-11/12 px-7">
+                     <div className="pt-24 w-10/12 pl-6 translate-x-20">
                       <Grid container columns={10} className="pl-10">
                         <Grid
                           item
@@ -104,15 +104,14 @@ export default function IntroStep_2({ handleStepId }) {
                       </div>
                     </div>
                   </DragDropContainer>
-                </DndProvider>
+                </Grid>
+                <Grid item xs={5}></Grid>
               </Grid>
-              <Grid item xs={5}></Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container className="h-full">
-              <Grid item xs={4}>
-                {/* <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
+            <Grid item xs={12}>
+              <Grid container className="h-full">
+                <Grid item xs={4}>
+                  {/* <div className={`fixed bottom-0 flexd-bottom w-[30%] `}>
                   <div className={`translate-y-2`}>
                     <MyImage
                       src="/images/bottomlogo.svg"
@@ -120,54 +119,54 @@ export default function IntroStep_2({ handleStepId }) {
                     />
                   </div>
                 </div> */}
-              </Grid>
-              <Grid item xs={4}></Grid>
+                </Grid>
+                <Grid item xs={4}></Grid>
 
-              <Grid item xs={4}></Grid>
+                <Grid item xs={4}></Grid>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-        <div>
-          $
-          {alertShow && (
-            <svg
-              className="absolute top-12 left-[12.5%] button"
-              expanded="true"
-              height="150px"
-              width="150px"
-              onClick={() => {
-                // console.log("Alert clicked");
-                handleAlertClose();
-                // console.log(alertShow);
-              }}
-            >
-              <circle
-                className="innerCircle"
-                cx="50%"
-                stroke="#FF4040"
-                strokeWidth="10%"
-                cy="50%"
-                r="25%"
-                fill="none"
-              />
-            </svg>
-          )}
-          <MyImage
-            src="/images/BossMedium.svg"
-            className="absolute right-[15%] bottom-32 w-[310px] h-[395px]"
-          />
-          {!nextStage ? (
+          <div>
+            $
+            {alertShow && (
+              <svg
+                className="absolute top-12 left-[11%] button"
+                expanded="true"
+                height="150px"
+                width="150px"
+                onClick={() => {
+                  // console.log("Alert clicked");
+                  handleAlertClose();
+                  // console.log(alertShow);
+                }}
+              >
+                <circle
+                  className="innerCircle"
+                  cx="50%"
+                  stroke="#FF4040"
+                  strokeWidth="10%"
+                  cy="50%"
+                  r="25%"
+                  fill="none"
+                />
+              </svg>
+            )}
             <MyImage
-              src="/images/AlertPanel.svg"
-              className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
-            >
-              <span className=" text-3xl">
-                You learn fast! Try dragging a sticker to mark out an issue.
-              </span>
-            </MyImage>
-          ) : (
-            <>
-              {/* <MyImage
+              src="/images/BossMedium.svg"
+              className="absolute right-[15%] bottom-32 w-[310px] h-[395px]"
+            />
+            {!nextStage ? (
+              <MyImage
+                src="/images/AlertPanel.svg"
+                className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
+              >
+                <span className=" text-3xl">
+                  You learn fast! Try dragging a sticker to mark out an issue.
+                </span>
+              </MyImage>
+            ) : (
+              <>
+                {/* <MyImage
                 src="/images/AlertPanel.svg"
                 className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
               >
@@ -183,31 +182,32 @@ export default function IntroStep_2({ handleStepId }) {
                   handleStepId(3);
                 }}
               /> */}
-              <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 flex justify-center">
-                <img
-                  src="/images/BossFace1.svg"
-                  className="w-[239px] h-[137px] mt-10 ml-6"
-                />
-                <div className="text-[34px] w-7/12 break-words  pt-12 ml-4 leading-10">
-                  <Typed
-                    strings={[
-                      "Good job! Sometimes you need to drag multiple stickers to mark out all the issues. Sometimes the article has no issue at all.",
-                    ]}
-                    typeSpeed={75}
-                    className="cursor-none"
+                <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 flex justify-center">
+                  <img
+                    src="/images/BossFace1.svg"
+                    className="w-[239px] h-[137px] mt-10 ml-6"
+                  />
+                  <div className="text-[34px] w-7/12 break-words  pt-12 ml-4 leading-10">
+                    <Typed
+                      strings={[
+                        "Good job! Sometimes you need to drag multiple stickers to mark out all the issues. Sometimes the article has no issue at all.",
+                      ]}
+                      typeSpeed={75}
+                      className="cursor-none"
+                    />
+                  </div>
+                  <MyImage
+                    src="/images/ArrowBlack.svg"
+                    className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+                    onClick={() => {
+                      handleStepId(3);
+                    }}
                   />
                 </div>
-                <MyImage
-                  src="/images/ArrowBlack.svg"
-                  className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
-                  onClick={() => {
-                    handleStepId(3);
-                  }}
-                />
-              </div>
-            </>
-          )}
-        </div>
+              </>
+            )}
+          </div>
+        </DndProvider>
       </div>
     </>
   );
