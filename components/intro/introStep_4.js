@@ -88,7 +88,7 @@ export default function introStep_4() {
                             : `/images/WhiteHead.svg`
                         }
                         className=" w-[47px]  h-[47px] text-center -mt-5 cursor-pointer"
-                        onClick={() => setIsFirst(1)}
+                        onClick={() => setIsFirst(2)}
                       ></MyImage>
                       <span className="ml-4">Nope, Let's move on</span>
                     </div>
@@ -100,7 +100,7 @@ export default function introStep_4() {
                             : `/images/WhiteHead.svg`
                         }
                         className=" w-[47px]  h-[47px] text-center -mt-5 "
-                        onClick={() => setIsFirst(2)}
+                        onClick={() => setIsFirst(1)}
                       ></MyImage>
                       <span className="ml-4">Yes, try again</span>
                     </div>
@@ -111,7 +111,7 @@ export default function introStep_4() {
                 src="/images/ArrowBlack.svg"
                 className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
                 onClick={() => {
-                  if (isFirst == 1) setMoveOnMode(false);
+                  if (isFirst == 1) handleStepId(1);
                   else if (isFirst == 2) setMoveOnMode(true);
                 }}
               />
