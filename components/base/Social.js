@@ -71,7 +71,8 @@ export default function Social({
               {socialData.registerDate ? (
                 <div>Registered a year ago</div>
               ) : (
-                <div className="text-[#FC5757]">Registered a day ago</div>
+                // <div className="text-[#FC5757]">Registered a day ago</div>
+                <div className="">Registered a day ago</div>
               )}
               {socialData.follower ? (
                 <div className="mt-4">Followers: {socialData.fake_follows}</div>
@@ -92,7 +93,8 @@ export default function Social({
               <div className="w-[100px] h-[17px] mt-4 ml-3 bg-[#EAEAEA]"></div>
             </div>
           ) : (
-            <div className="h-[90%] w-[30%] float-left mt-7 text-[#FC5757]">
+            // <div className="h-[90%] w-[30%] float-left mt-7 text-[#FC5757]">
+            <div className="h-[90%] w-[30%] float-left mt-7 ">
               <div className="w-[120px] h-[17px] ml-3 ">No Posts</div>
             </div>
           )}
