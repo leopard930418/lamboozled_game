@@ -396,7 +396,7 @@ export default function Welcome({ handleStepId }) {
                           ? `/images/BlackHead.svg`
                           : `/images/WhiteHead.svg`
                       }
-                      className=" w-[47px]  h-[47px] text-center -mt-5 "
+                      className=" w-[47px]  h-[47px] text-center -mt-5 cursor-pointer"
                       onClick={() => setIsFirst(2)}
                     ></MyImage>
                     <span className="ml-4">I worked here before</span>

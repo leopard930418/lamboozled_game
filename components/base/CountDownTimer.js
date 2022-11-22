@@ -21,10 +21,10 @@
             _content: null,
             _canvas: null,
             _timeoutIds: [],
-            _scale:
-              ("undefined" != typeof window && null !== window
-                ? window.devicePixelRatio
-                : void 0) || 1,
+            _scale: 1,
+              // ("undefined" != typeof window && null !== window
+              //   ? window.devicePixelRatio
+              //   : void 0) || 1,
             displayName: "ReactCountdownClock",
             componentDidUpdate: function (t) {
               if (
@@ -82,6 +82,7 @@
               return (t = 1.8 * this._seconds) > 1e3 ? 1e3 : t;
             },
             _setupCanvases: function () {
+              console.log("Alex------------",this._scale);
               if (!this._background || !this._timer)
                 return (
                   (this._background = this.refs.background.getContext("2d")),

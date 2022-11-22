@@ -116,10 +116,10 @@ export default function Day4_8({
             seconds={120}
             color="#fbfbfb"
             alpha={1}
-            size={100}
+            size={96}
             // onComplete={myCallback}
           />
-          <div className="w-[95px] h-[95px] absolute -top-[2px] right-[8px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
+          <div className="w-[100px] h-[100px] absolute -top-[2px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
         </div>
         <div className="absolute  h-[740px] top-0 -left-10 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
         <DndProvider backend={HTML5Backend}>

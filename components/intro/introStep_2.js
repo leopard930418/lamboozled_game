@@ -151,10 +151,7 @@ export default function IntroStep_2({ handleStepId }) {
                 />
               </svg>
             )}
-            <MyImage
-              src="/images/BossMedium.svg"
-              className="absolute right-[15%] bottom-32 w-[310px] h-[395px]"
-            />
+          
             {!nextStage ? (
               <MyImage
                 src="/images/AlertPanel.svg"

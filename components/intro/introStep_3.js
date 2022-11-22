@@ -35,10 +35,10 @@ export default function IntroStep_3({ handleStepId }) {
             seconds={120}
             color="#fbfbfb"
             alpha={1}
-            size={100}
+            size={96}
             // onComplete={myCallback}
           />
-          <div className="w-[95px] h-[95px] absolute -top-[2px] right-[8px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
+          <div className="w-[100px] h-[100px] absolute -top-[2px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
         </div>
         {/* background image mapping */}
         <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat"></div>

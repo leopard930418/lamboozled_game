@@ -19,7 +19,7 @@ import {
   initMarkedStickers,
 } from "../../store/reducers/gameSlice";
 
-export default function introStep_4() {
+export default function introStep_4({handleStepId}) {
   const [moveOnMode, setMoveOnMode] = useState(false);
   const dispatch = useDispatch();
   const [isFirst, setIsFirst] = useState(0);
@@ -83,7 +83,7 @@ export default function introStep_4() {
                     <div className="flex pl-4 w-1/2">
                       <MyImage
                         src={
-                          isFirst == 1
+                          isFirst == 2
                             ? `/images/BlackHead.svg`
                             : `/images/WhiteHead.svg`
                         }
@@ -95,7 +95,7 @@ export default function introStep_4() {
                     <div className="flex pl-4 w-1/2">
                       <MyImage
                         src={
-                          isFirst == 2
+                          isFirst == 1
                             ? `/images/BlackHead.svg`
                             : `/images/WhiteHead.svg`
                         }
