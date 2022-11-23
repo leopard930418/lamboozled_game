@@ -38,14 +38,14 @@ export const Adv_DragDropContainer = ({
     ) {
       stickersData.push({
         top: 25,
-        left: 490,
+        left: 515,
         stickerId: stickerId,
       });
     }
     if (stickerId == 6 || stickerId == 8 || stickerId == 10) {
       stickersData.push({
         top: 25,
-        left: 430,
+        left: 455,
         stickerId: stickerId,
       });
     }
