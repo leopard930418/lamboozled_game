@@ -13,12 +13,14 @@ import { withStyles, makeStyles } from "@mui/styles";
 import Modal from "@mui/material/Modal";
 import Router from "next/router";
 import Typed from "react-typed";
-
+import {
+  initMarkedStickers,
+} from "../../store/reducers/gameSlice";
 // MODULES FOR DRAG&DROP
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContainer } from "../dragdrop/DragDropContainer";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 export default function IntroStep_2({ handleStepId }) {
   const contentData = content;
   const [alertShow, setAlertShow] = useState(true);
@@ -27,10 +29,15 @@ export default function IntroStep_2({ handleStepId }) {
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? []
   );
-  let nextStage = false;
-  if (markedStickers.length > 0) {
-    nextStage = true;
-  }
+  const dispatch = useDispatch();
+  // console.log(markedStickers);
+  // const [nextStage, setNextStage] = useState(false);
+
+
+
+  // if (markedStickers == "000000000000") {
+  //   setNextStage(true);
+  // }
   return (
     <>
       <div
@@ -58,7 +65,7 @@ export default function IntroStep_2({ handleStepId }) {
                     isdraging={true}
                     isIssueShow={false}
                   >
-                     <div className="pt-24 w-10/12 pl-6 translate-x-20">
+                    <div className="pt-24 w-10/12 pl-6 translate-x-20">
                       <Grid container columns={10} className="pl-10">
                         <Grid
                           item
@@ -151,16 +158,22 @@ export default function IntroStep_2({ handleStepId }) {
                 />
               </svg>
             )}
-          
-            {!nextStage ? (
-              <MyImage
-                src="/images/AlertPanel.svg"
-                className="absolute right-[10%] bottom-5 w-[769px] h-[238px]  break-words p-8"
-              >
-                <span className=" text-3xl">
-                  You learn fast! Try dragging a sticker to mark out an issue.
-                </span>
-              </MyImage>
+            {(markedStickers == "000000000000") ? (
+              <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 flex justify-center">
+                <img
+                  src="/images/BossFace1.svg"
+                  className="w-[239px] h-[137px] mt-10 ml-6"
+                />
+                <div className="text-[34px] w-7/12 break-words  pt-12 ml-4 leading-10">
+                  <Typed
+                    strings={[
+                      "You learn fast! Try dragging a sticker to mark out an issue.",
+                    ]}
+                    typeSpeed={35}
+                    className="cursor-none"
+                  />
+                </div>
+              </div>
             ) : (
               <>
                 {/* <MyImage
@@ -189,15 +202,18 @@ export default function IntroStep_2({ handleStepId }) {
                       strings={[
                         "Good job! Sometimes you need to drag multiple stickers to mark out all the issues. Sometimes the article has no issue at all.",
                       ]}
-                      typeSpeed={75}
+                      typeSpeed={35}
                       className="cursor-none"
                     />
                   </div>
+
                   <MyImage
                     src="/images/ArrowBlack.svg"
                     className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
                     onClick={() => {
                       handleStepId(3);
+                      dispatch(initMarkedStickers());
+
                     }}
                   />
                 </div>

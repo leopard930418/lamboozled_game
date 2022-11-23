@@ -66,12 +66,7 @@ export default function IntroStep_1({ handleStepId }) {
                       className="border-2 border-black flex justify-center p-1"
                     >
                       <Grid item lg={3}>
-                        <div>
-                          <CustomImage
-                            src="/images/Icon1.svg"
-                            className="h-8 "
-                          />
-                        </div>
+                        <CustomImage src="/images/Icon1.svg" className="h-8 " />
                       </Grid>
                       <Grid item lg={3}>
                         <CustomImage src="/images/Icon2.svg" className="h-8 " />
@@ -217,7 +212,7 @@ export default function IntroStep_1({ handleStepId }) {
                     strings={[
                       "This is your desk, and you’ll be able to use the computer after you get promoted. For now, please click the question mark to see your task.",
                     ]}
-                    typeSpeed={75}
+                    typeSpeed={35}
                     className="cursor-none"
                   />
                 </div>

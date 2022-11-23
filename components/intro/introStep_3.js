@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
 import ReactCountdownClock from "../base/CountDownTimer";
-
+import Meter from "../base/Meter";
 import Typed from "react-typed";
 
 // import Modal from "@mui/material/Modal";
@@ -39,21 +39,52 @@ export default function IntroStep_3({ handleStepId }) {
             // onComplete={myCallback}
           />
           <div className="w-[100px] h-[100px] absolute -top-[2px] bg-[length:100%_100%] bg-[url('/images/ClockMeter.png')]"></div>
+          <svg
+                className="absolute left-[-45%] button"
+                expanded="true"
+                height="100px"
+                width="100px"
+                onClick={() => {
+                  // console.log("help clicked");
+                  handleGuideOpen();
+                }}
+              >
+                <circle
+                  className="innerCircle"
+                  cx="50%"
+                  stroke="#FF4040"
+                  strokeWidth="10%"
+                  cy="50%"
+                  r="25%"
+                  fill="none"
+                />
+              </svg>
         </div>
+       
+
         {/* background image mapping */}
-        <div className="absolute  h-[720px] top-0 left-0 bg-[length:700px_700px]  w-6/12 -z-10 object-cover bg-[url('/images/tabletlayout.svg')] ,bg-no-repeat"></div>
-        {/* background image mapping */}
-        <Grid container className="h-full">
-          <Grid item xs={12}>
-            <Grid container>
-              <Grid item xs={1}></Grid>
-              <Grid item xs={5}>
-                <div className="pt-24 w-11/12 px-7">
-                  <DndProvider backend={HTML5Backend}>
-                    <DragDropContainer
-                      hideSourceOnDrag={true}
-                      stickers={[1, 2]}
-                    >
+        <div className="absolute  h-[740px] top-0 -left-10 bg-[length:700px_720px]  w-6/12 -z-10 bg-[url('/images/tabletlayout.svg')] bg-no-repeat"></div>
+
+        <DndProvider backend={HTML5Backend}>
+          {/* background image mapping */}
+          <Grid container className="h-full">
+            <Grid item xs={12}>
+              <Grid container>
+                {/* <Grid item xs={1}>
+                  <div className="h-full">
+                    <div className="w-full  bg-no-repeat bg-fill">
+                      <div></div>
+                    </div>
+                  </div>
+                </Grid> */}
+                <Grid item xs={5}>
+                  <DragDropContainer
+                    hideSourceOnDrag={true}
+                    stickers={[0, 1]}
+                    isdraging={true}
+                    isIssueShow={false}
+                  >
+                    <div className="pt-24 w-10/12 pl-6 translate-x-20">
                       <Grid container columns={10} className="pl-10">
                         <Grid
                           item
@@ -74,13 +105,13 @@ export default function IntroStep_3({ handleStepId }) {
                           </button>
                         </Grid>
                       </Grid>
-
                       <div className="flex justify-center pt-4">
                         <MyImage
                           src="/images/contentImage1.svg"
                           className="w-60 h-36"
                         />
                       </div>
+
                       <div className="pr-4">
                         <div className="text-2xl text-black font-bold text-center pt-2 ">
                           {contentData[0].title}
@@ -97,82 +128,85 @@ export default function IntroStep_3({ handleStepId }) {
                           {contentData[0].content}
                         </div>
                       </div>
-                    </DragDropContainer>
-                  </DndProvider>
-                </div>
+                    </div>
+                  </DragDropContainer>
+                </Grid>
+                <Grid item xs={5}></Grid>
               </Grid>
-              <Grid item xs={5}></Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container className="h-full">
-              <Grid item xs={4}>
-                <div className="fixed bottom-0 fixed-bottom w-[30%] h-24 bg-black -ml-[30%]"></div>
-                <div
-                  className={`meter-bar fixed bottom-0 flexd-bottom w-[30%] `}
-                >
-                  <MyImage
-                    src="/images/bottomlogo.svg"
-                    className={`h-24 w-full`}
+            <Grid item xs={12}>
+              <Grid container className="h-full">
+                <Grid item xs={4}>
+                  <div className="fixed bottom-0 fixed-bottom w-[30%] h-24 bg-black -ml-[30%]"></div>
+                  <div
+                    className={`meter-bar fixed bottom-0 flexd-bottom w-[30%] `}
                   >
                     <MyImage
-                      src="/images/Calendar.svg"
-                      className={`h-16 w-16 translate-y-5 ml-5 flex justify-center`}
+                      src="/images/bottomlogo.svg"
+                      className={`h-24 w-full`}
                     >
-                      <span
-                        className="text-[22px] font-bold mt-[22px]"
-                        style={{ fontFamily: "Patrick Hand" }}
+                      <MyImage
+                        src="/images/Calendar.svg"
+                        className={`h-16 w-16 translate-y-5 ml-5 flex justify-center`}
                       >
-                        1
-                      </span>
+                        <span
+                          className="text-[22px] font-bold mt-[22px]"
+                          style={{ fontFamily: "Patrick Hand" }}
+                        >
+                          1
+                        </span>
+                      </MyImage>
+
+                      <MyImage
+                        src="/images/MeterTitle.svg"
+                        className={`h-12 w-48 -translate-y-7 ml-28`}
+                      ></MyImage>
+                      <Meter point={50} />
+                      <div className="-translate-y-[75px] absolute right-10">
+                        <ArrowForwardIosOutlinedIcon className="fixed meter-bar-arrow" />
+                      </div>
                     </MyImage>
-
-                    <MyImage
-                      src="/images/MeterTitle.svg"
-                      className={`h-12 w-48 -translate-y-7 ml-28`}
-                    ></MyImage>
-                    {/* <Meter point={meter} /> */}
-                    <div className="-translate-y-[75px] absolute right-10">
-                      <ArrowForwardIosOutlinedIcon className="fixed meter-bar-arrow" />
-                    </div>
-                  </MyImage>
-                </div>
-              </Grid>
-              <Grid item xs={4}></Grid>
-
-              <Grid item xs={4}>
-                <div
-                  className={`fixed bottom-20 -right-[76%] w-full flex flex-row `}
-                >
-                  <div className="bottom-0 ">
-                    <div
-                      className="translate-x-6 h-2/4 w-3/4 bg-white flex flex-row items-center justify-center cursor-pointer"
-                      onClick={() => {
-                        // handleMarkedIssuesOpen();
-                        ToggleSidebar();
-                      }}
-                    >
-                      <label className="cursor-pointer">0 issue(s)</label>
-                      <MyImage src="/images/eye.svg" className="h-8 px-2 w-8" />
-                    </div>
-
-                    <button
-                      className="bg-[#dc694a] rounded-3xl px-14 py-2 text-white font-bold text-2xl"
-                      onClick={() => {
-                        // setCounter(100);
-                        handleIsFeed(true);
-                        //Router.push("/feedback");
-                        calcResult();
-                      }}
-                    >
-                      SUBMIT
-                    </button>
                   </div>
-                </div>
+                </Grid>
+                <Grid item xs={4}></Grid>
+
+                <Grid item xs={4}>
+                  <div
+                    className={`fixed bottom-20 -right-[76%] w-full flex flex-row `}
+                  >
+                    <div className="bottom-0 ">
+                      <div
+                        className="translate-x-6 h-2/4 w-3/4 bg-white flex flex-row items-center justify-center cursor-pointer"
+                        onClick={() => {
+                          // handleMarkedIssuesOpen();
+                          ToggleSidebar();
+                        }}
+                      >
+                        <label className="cursor-pointer">0 issue(s)</label>
+                        <MyImage
+                          src="/images/eye.svg"
+                          className="h-8 px-2 w-8"
+                        />
+                      </div>
+
+                      <button
+                        className="bg-[#dc694a] rounded-3xl px-14 py-2 text-white font-bold text-2xl"
+                        onClick={() => {
+                          // setCounter(100);
+                          handleIsFeed(true);
+                          //Router.push("/feedback");
+                          calcResult();
+                        }}
+                      >
+                        SUBMIT
+                      </button>
+                    </div>
+                  </div>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        </DndProvider>
         <div>
           {/* ${alertShow&&(
                         <svg  className="absolute top-12 left-[12.5%] button" expanded = "true" height = "150px" width = "150px" 
@@ -216,7 +250,7 @@ export default function IntroStep_3({ handleStepId }) {
                 strings={[
                   "Great! As you start the real job, you need to review each article in 5min. The timer is on the top-right corner. Easy for now, don’t worry!",
                 ]}
-                typeSpeed={75}
+                typeSpeed={35}
                 className="cursor-none"
               />
             </div>

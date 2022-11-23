@@ -66,7 +66,7 @@ export default function Welcome({ handleStepId }) {
             <div className="text-[41px] w-8/12 break-words  pt-16 ml-48 ">
               <Typed
                 strings={["Welcome to Green Meadows, young lamb. "]}
-                typeSpeed={75}
+                typeSpeed={35}
                 className="cursor-none"
               />
             </div>
@@ -109,7 +109,7 @@ export default function Welcome({ handleStepId }) {
             <div className="text-[41px] w-8/12 break-words  pt-16 ml-48 ">
               <Typed
                 strings={["Your name is..."]}
-                typeSpeed={75}
+                typeSpeed={35}
                 className="cursor-none"
               />
             </div>
@@ -137,7 +137,7 @@ export default function Welcome({ handleStepId }) {
                 strings={[
                   `Great, ${userName}. Welcome to the best (and, well, only) newsroom in Green Meadows!`,
                 ]}
-                typeSpeed={75}
+                typeSpeed={35}
               />
               {/* <br /> */}
               {/* <Typed
@@ -180,7 +180,7 @@ export default function Welcome({ handleStepId }) {
                 strings={[
                   `Your job is to look closely at local news stories and determine if they’re true. Based on your investigation...`,
                 ]}
-                typeSpeed={75}
+                typeSpeed={35}
               />
             </div>
             <MyImage
@@ -211,7 +211,7 @@ export default function Welcome({ handleStepId }) {
                   `We’ll decide whether we should publish them or not. 
                   Understand?`,
                 ]}
-                typeSpeed={75}
+                typeSpeed={35}
               />
             </div>
             <MyImage
@@ -374,7 +374,7 @@ export default function Welcome({ handleStepId }) {
               >
                 <Typed
                   strings={[`I see. Let me show you how things work here...`]}
-                  typeSpeed={75}
+                  typeSpeed={35}
                 />
                 <div className="leading-4 pt-10 flex pb-4 ml-8">
                   <div className="flex pl-4 w-1/2">
@@ -429,7 +429,7 @@ export default function Welcome({ handleStepId }) {
             <div className="text-[41px] w-8/12 break-words  pt-16 ml-48 ">
               <Typed
                 strings={["Oops, you’re right. Just start working then."]}
-                typeSpeed={75}
+                typeSpeed={35}
                 className="cursor-none"
               />
             </div>

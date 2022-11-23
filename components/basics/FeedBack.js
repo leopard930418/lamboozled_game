@@ -55,6 +55,7 @@ export default function FeedBack({
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? "000000000000"
   );
+  console.log("markedStickers==",markedStickers);
   const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
   const article = content[curArtIndex];
   const answer_key = article.answer_key;
@@ -401,7 +402,7 @@ export default function FeedBack({
                                   <button
                                     className="bg-[#FC5757]  px-1 py-0  text-white "
                                     onClick={() => {
-                                      dispatch(initMarkedStickers());
+                                      // dispatch(initMarkedStickers());
                                       setReviewSticker(stickerId);
                                       setReviewMode(true);
                                     }}
@@ -709,7 +710,7 @@ export default function FeedBack({
               <div className="text-[34px] w-8/12 break-words  pt-16 ml-48 ">
                 <Typed
                   strings={[stickers[reviewSticker].description]}
-                  typeSpeed={75}
+                  typeSpeed={35}
                   className="cursor-none"
                 />
               </div>
