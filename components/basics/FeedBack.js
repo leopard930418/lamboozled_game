@@ -430,10 +430,10 @@ export default function FeedBack({
                           <button
                             className="bg-black rounded-3xl px-14 py-2 text-white font-bold text-2xl"
                             onClick={() => {
-                              // setReviewMode(true);
-                              dispatch(nextDay());
-                              // dispatch(updateMeterByAmount(sum));
+                              // dispatch(nextDay());
+                              dispatch(updatePlayStatus("endofday"));
                               dispatch(initMarkedStickers());
+                              
                             }}
                           >
                             END THE DAY
