@@ -23,7 +23,7 @@ export default function EndOfDay_2() {
           style={{ fontFamily: "Patrick Hand" }}
         >
           <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 justify-center flex">
-            <div className="text-[41px] w-8/12 break-words  pt-12 ">
+            <div className="text-[41px] w-8/12 break-words  pt-16 ">
               <Typed
                 strings={[
                   "Lunch place, you see news about election on cafeteria tv  ",

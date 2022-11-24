@@ -12,6 +12,7 @@ export default function Lateral({
   stickers,
   onscreen = true,
   lateralData,
+  reviewMode,
   onLoad = () => {},
   ...props
 }) {
@@ -31,6 +32,7 @@ export default function Lateral({
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
         onscreen ={onscreen}
+        reviewMode={reviewMode}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">

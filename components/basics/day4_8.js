@@ -213,6 +213,7 @@ export default function Day4_8({
                         stickers={[4]}
                         onscreen={(sceneIndex === 1 ? true&&!markedIssuesOpen : false)}
                         socialData={advancedData.socialData}
+                        
                       />
                       <Source
                         className={`${
@@ -232,7 +233,6 @@ export default function Day4_8({
                         hidesourceondrag={true} //dnd props
                         stickers={[7, 8]}
                         onscreen={sceneIndex === 3 ? true&&!markedIssuesOpen : false}
-                        // art_answer={article.answer_key}
                       />
                       <Reverse
                         className={`${

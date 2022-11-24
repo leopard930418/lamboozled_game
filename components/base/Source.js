@@ -10,6 +10,7 @@ export default function Source({
   stickers,
   onscreen = true,
   sourceData,
+  reviewMode,
   onLoad = () => {},
   ...props
 }) {
@@ -22,6 +23,7 @@ export default function Source({
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
         onscreen ={onscreen}
+        reviewMode={reviewMode}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">

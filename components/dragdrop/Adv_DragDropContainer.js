@@ -21,6 +21,7 @@ export const Adv_DragDropContainer = ({
   hidesourceondrag,
   stickers = [],
   onscreen = true,
+  reviewMode,
 }) => {
   //alex added
   const markedStickers = useSelector(
@@ -79,7 +80,7 @@ export const Adv_DragDropContainer = ({
         const left = Math.round(item.left + delta.x);
         const top = Math.round(item.top + delta.y);
         // console.log(left, "x-y", top);
-
+        if(reviewMode) return undefined;
         // console.log("tempArr------------------", tempArr);
         if (left > 550 && left < 600 && top > 0 && top < 50) {
           //validate question marking
@@ -121,14 +122,25 @@ export const Adv_DragDropContainer = ({
         {children}
         {Object.keys(boxes).map((key) => {
           const { left, top, stickerId } = boxes[key];
+          
           return (
             <Box_adv
               key={key}
-              id={key}
+              id={key }
               left={left}
               top={top}
               hideSourceOnDrag={hidesourceondrag}
             >
+              {reviewMode ? (
+                <MyImage
+                  src={`/images/Icon${stickerId + 1}.svg`}
+                  className="h-8 w-8 -ml-4"
+                  // onClick={() => {
+                  //   handleStickerId(stickerId);
+                  //   handleGuideOpen();
+                  // }}
+                />
+              ) : (
                 <MyToolTip
                   stickerId={stickerId}
                   markedStickers={markedStickers}
@@ -143,6 +155,7 @@ export const Adv_DragDropContainer = ({
                     // }}
                   />
                 </MyToolTip>
+              )}
             </Box_adv>
           );
         })}

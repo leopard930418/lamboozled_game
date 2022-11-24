@@ -11,6 +11,7 @@ export default function Social({
   stickers,
   onscreen = true,
   socialData,
+  reviewMode,
   onLoad = () => {},
   ...props
 }) {
@@ -25,6 +26,7 @@ export default function Social({
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
         onscreen ={onscreen}
+        reviewMode={reviewMode}
   
       >
         <div className="h-[20%] w-full float-left ">

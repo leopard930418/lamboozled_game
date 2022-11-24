@@ -11,6 +11,7 @@ export default function Reverse({
   stickers,
   onscreen = true,
   curArtId,
+  reviewMode,
   onLoad = () => {},
   ...props
 }) {
@@ -24,6 +25,7 @@ export default function Reverse({
         hidesourceondrag={hidesourceondrag}
         stickers={stickers}
         onscreen ={onscreen}
+        reviewMode={reviewMode}
       >
         <div className="h-[20%] w-full float-left ">
           <div className="h-full w-[50%] float-left">

@@ -18,6 +18,7 @@ import {
 export default function EndOfDay_4() {
   const dispatch = useDispatch();
   const [landingStep, setLandingStep] = useState(1);
+  const [isFirst, setIsFirst] = useState(0);
 
   return (
     <>
@@ -28,14 +29,14 @@ export default function EndOfDay_4() {
           style={{ fontFamily: "Patrick Hand" }}
         >
           <MyImage
-            src="/images/Boss2_C.svg"
-            className="absolute w-[485px] h-[633px] top-[81px] left-[590px] "
+            src="/images/endofday/AngryBoss_ch.svg"
+            className="absolute w-[485px] h-[633px] top-[40px] left-[200px] "
           />
           <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 justify-center flex">
             <div className="text-[41px] w-6/12 break-words  pt-12 ">
               <Typed
                 strings={[
-                  "Hey rookie, grab a coffee with me.   I want to hear abour your first day...",
+                  "I just got back from the police station  Lucy’s missing!!!",
                 ]}
                 typeSpeed={35}
                 className="cursor-none"
@@ -54,14 +55,18 @@ export default function EndOfDay_4() {
       {landingStep == 2 && (
         <div
           className={`text-center max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
-                            -translate-y-1/2 bg-[url('/images/endofday/OfficePantry_bg.svg')] justify-center flex`}
+          -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center flex`}
           style={{ fontFamily: "Patrick Hand" }}
         >
-          <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 justify-center flex">
-            <div className="text-[41px] w-6/12 break-words  pt-12 ">
+          <MyImage
+            src="/images/endofday/AngryBoss_ch.svg"
+            className="absolute w-[485px] h-[633px] top-[40px] left-[200px] "
+          />
+          <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat h-[226px] w-[1236px] absolute bottom-4 justify-center flex">
+            <div className="text-[30px] w-9/12 break-words  pt-12 ">
               <Typed
                 strings={[
-                  "When you two get to the door of the office pantry, you hear sheep gossiping inside...",
+                  "I know we’re all worried about her and it’s hard to think about work right now, but also we’re in the midle of an election... Lucy just interviewed both of the candidates and we need somebody to organize the interview reports right away.",
                 ]}
                 typeSpeed={35}
                 className="cursor-none"
@@ -80,28 +85,58 @@ export default function EndOfDay_4() {
       {landingStep == 3 && (
         <div
           className={`text-center max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
-                            -translate-y-1/2 bg-[url('/images/endofday/OfficePantry_bg.svg')] justify-center flex`}
+                   -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center flex`}
           style={{ fontFamily: "Patrick Hand" }}
         >
           <MyImage
-            src="/images/endofday/CoworkerFemale_ch.svg"
-            className="absolute w-[235px] h-[633px] top-[81px] left-[400px] "
+            src="/images/BossFace1.svg"
+            className="absolute w-[900px] h-[650px] top-[70px] left-[380px] "
           />
-          <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 justify-center flex">
-            <div className="text-[41px] w-6/12 break-words  pt-12 ">
-              <Typed
-                strings={[
-                  " One of them asked, “So what do you think about the big election for mayor?”",
-                ]}
-                typeSpeed={35}
-                className="cursor-none"
-              />
+          <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4">
+            <div className="text-[30px] w-9/12 break-words  pt-10 ml-[165px] ">
+              <div
+                className={`rounded-[40px] w-[99%] bg-white h-[80%] border-2 border-black pt-1 pb-3`}
+              >
+                <Typed
+                  strings={[`What do you do?`]}
+                  typeSpeed={35}
+                />
+                <div className="leading-4 pt-10 flex pb-4 ml-8">
+                  <div className="flex pl-4 w-1/2">
+                    <MyImage
+                      src={
+                        isFirst == 1
+                          ? `/images/BlackHead.svg`
+                          : `/images/WhiteHead.svg`
+                      }
+                      className=" w-[47px]  h-[47px] text-center -mt-5 cursor-pointer"
+                      onClick={() => setIsFirst(1)}
+                    ></MyImage>
+                    <span className="ml-4">Offer to help</span>
+                  </div>
+                  <div className="flex pl-4 w-1/2">
+                    <MyImage
+                      src={
+                        isFirst == 2
+                          ? `/images/BlackHead.svg`
+                          : `/images/WhiteHead.svg`
+                      }
+                      className=" w-[47px]  h-[47px] text-center -mt-5 cursor-pointer"
+                      onClick={() => setIsFirst(2)}
+                    ></MyImage>
+                    <span className="ml-4">Stay silent</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
               className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
               onClick={() => {
-                setLandingStep(4);
+                if (isFirst == 1) {
+                  dispatch(nextDay());
+                  dispatch(updatePlayStatus("story"));
+                } else if (isFirst == 2) setLandingStep(4);
               }}
             />
           </div>
@@ -110,19 +145,13 @@ export default function EndOfDay_4() {
       {landingStep == 4 && (
         <div
           className={`text-center max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
-                            -translate-y-1/2 bg-[url('/images/endofday/OfficePantry_bg.svg')] justify-center flex`}
+                            -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center flex`}
           style={{ fontFamily: "Patrick Hand" }}
         >
-          <MyImage
-            src="/images/endofday/CoworkerMale_ch.svg"
-            className="absolute w-[235px] h-[633px] top-[81px] left-[400px] "
-          />
           <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 justify-center flex">
-            <div className="text-[41px] w-6/12 break-words  pt-12 ">
+            <div className="text-[41px] w-6/12 break-words  pt-16 ">
               <Typed
-                strings={[
-                  "  Another replied, “I don’t know...I mean, we shouldn’t take sides,        but our newsroom definitely has a favorite candidate...” ",
-                ]}
+                strings={["Co-worker 1 takes on the role."]}
                 typeSpeed={35}
                 className="cursor-none"
               />
@@ -131,42 +160,13 @@ export default function EndOfDay_4() {
               src="/images/ArrowBlack.svg"
               className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
               onClick={() => {
-                setLandingStep(5);
+                dispatch(nextDay());
+                dispatch(updatePlayStatus("story"));
               }}
             />
           </div>
         </div>
       )}
-     {landingStep == 5 && (
-        <div
-          className={`text-center max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
-                            -translate-y-1/2 bg-[url('/images/endofday/OfficePantry_bg.svg')] justify-center flex`}
-          style={{ fontFamily: "Patrick Hand" }}
-        >
-        
-          <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 justify-center flex">
-            <div className="text-[41px] w-7/12 break-words  pt-12 ">
-              <Typed
-                strings={[
-                  " As you enter, the co-workers quickly become silent. They smile politely and leave.",
-                ]}
-                typeSpeed={35}
-                className="cursor-none"
-              />
-            </div>
-            <MyImage
-              src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
-              onClick={() => {
-                 dispatch(nextDay());
-                 dispatch(updatePlayStatus("story"));
-              }}
-            />
-          </div>
-        </div>
-      )}
-
-     
     </>
   );
 }

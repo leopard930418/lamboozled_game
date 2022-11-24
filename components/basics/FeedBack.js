@@ -55,7 +55,7 @@ export default function FeedBack({
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? "000000000000"
   );
-  console.log("markedStickers==",markedStickers);
+  console.log("markedStickers==", markedStickers);
   const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
   const article = content[curArtIndex];
   const answer_key = article.answer_key;
@@ -223,10 +223,10 @@ export default function FeedBack({
                         className="w-60 h-36"
                       />
                     </div>
-                    {/* <div className="z-[1502] ">
+                    <div className="z-[1502] ">
                       {reviewSticker < 4 && (
                         <svg
-                          className="absolute top-16 button"
+                          className="absolute top-20 button"
                           style={{
                             marginLeft: `${reviewSticker * 55 + 35}` + "px",
                           }}
@@ -255,7 +255,7 @@ export default function FeedBack({
                         reviewSticker == 9 ||
                         reviewSticker == 11) && (
                         <svg
-                          className="absolute top-16 button"
+                          className="absolute top-20 button z-[9999999]"
                           style={{
                             marginLeft: `${1000 - 1 * 55}` + "px",
                           }}
@@ -282,7 +282,7 @@ export default function FeedBack({
                         reviewSticker == 8 ||
                         reviewSticker == 10) && (
                         <svg
-                          className="absolute top-16 button"
+                          className="absolute top-16 button z-[9999999]"
                           style={{
                             marginLeft: `${1000 - 2 * 55}` + "px",
                           }}
@@ -313,23 +313,7 @@ export default function FeedBack({
                             : "scale-x-[-1] right-[30%]"
                         }`}
                       />
-
-                      <MyImage
-                        src="/images/AlertPanel.svg"
-                        className="absolute right-[10%] top-48 w-[769px] h-[238px]  break-words p-8"
-                      >
-                        <span className=" text-3xl">
-                          {stickers[reviewSticker].description}
-                        </span>
-                      </MyImage>
-                      <MyImage
-                        src="/images/ArrowYellow.svg"
-                        className="cursor-pointer absolute right-[5.5%] top-[54%]  w-[80px] h-[79px]"
-                        onClick={() => {
-                          setReviewMode(false);
-                        }}
-                      />
-                    </div> */}
+                    </div>
 
                     <div className="pr-4">
                       <div className="text-2xl text-black font-bold text-center pt-2 ">
@@ -433,7 +417,6 @@ export default function FeedBack({
                               // dispatch(nextDay());
                               dispatch(updatePlayStatus("endofday"));
                               dispatch(initMarkedStickers());
-                              
                             }}
                           >
                             END THE DAY
@@ -492,6 +475,7 @@ export default function FeedBack({
                             stickers={[4]}
                             unlock={false}
                             socialData={advancedData.socialData}
+                            reviewMode = {reviewMode}
                           />
                         )}
                         {(reviewSticker === 5 || reviewSticker === 6) && (
@@ -502,6 +486,7 @@ export default function FeedBack({
                             stickers={[5, 6]}
                             unlock={false}
                             sourceData={advancedData.sourceData}
+                            reviewMode = {reviewMode}
                           />
                         )}
                         {(reviewSticker === 7 || reviewSticker === 8) && (
@@ -511,7 +496,7 @@ export default function FeedBack({
                             hidesourceondrag={false} //dnd props
                             stickers={[7, 8]}
                             unlock={false}
-                            // art_answer={article.answer_key}
+                            reviewMode = {reviewMode}
                           />
                         )}
                         {(reviewSticker === 9 || reviewSticker === 10) && (
@@ -522,6 +507,7 @@ export default function FeedBack({
                             stickers={[9, 10]}
                             unlock={false}
                             curArtId={curArtId}
+                            reviewMode = {reviewMode}
                           />
                         )}
                         {reviewSticker === 11 && (
@@ -532,6 +518,7 @@ export default function FeedBack({
                             stickers={[11]}
                             unlock={false}
                             lateralData={advancedData.lateralData}
+                            reviewMode = {reviewMode}
                           />
                         )}
                       </div>
@@ -555,7 +542,7 @@ export default function FeedBack({
                       />
                       <div className="bg-white w-80 h-10 absolute -mt-20 ml-12"></div>
                       <div className="mt-1 -ml-4">
-                      <Meter point={meter} />
+                        <Meter point={meter} />
                       </div>
                     </div>
                   </div>
@@ -706,8 +693,12 @@ export default function FeedBack({
           //   )}
           // </div>
           <>
-            <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4">
-              <div className="text-[34px] w-8/12 break-words  pt-16 ml-48 ">
+            <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 flex justify-center">
+              <img
+                src="/images/BossFace1.svg"
+                className="w-[239px] h-[137px] mt-10 ml-6"
+              />
+              <div className="text-[34px] w-7/12 break-words  pt-12 ml-4 leading-10">
                 <Typed
                   strings={[stickers[reviewSticker].description]}
                   typeSpeed={35}
