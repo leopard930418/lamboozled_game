@@ -161,3 +161,19 @@
     opacity: 1;
     visibility: visible;
 }
+//blackbutton animation]
+.next-btn {
+  width: 80px;
+  height: 79px;
+  animation-name: next-btn;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes next-btn {
+  0% {width: 80px;
+    height: 79px;}
+  50% {width: 85px;
+    height: 83px;}
+  100% {width: 80px;
+    height: 79px;}
+}

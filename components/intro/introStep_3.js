@@ -256,7 +256,7 @@ export default function IntroStep_3({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 next-btn"
               onClick={() => {
                 handleStepId(4);
               }}

@@ -72,7 +72,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 right-10   next-btn"
               onClick={() => {
                 setLandingStep(3);
               }}
@@ -98,7 +98,7 @@ export default function Welcome({ handleStepId }) {
             ></input>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute  -right-[5%] top-[15%]  w-[80px] h-[79px]"
+              className="cursor-pointer absolute  -right-[5%] top-[15%]  next-btn"
               onClick={() => {
                 setLandingStep(4);
               }}
@@ -150,7 +150,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 next-btn"
               onClick={() => {
                 setLandingStep(5);
               }}
@@ -185,7 +185,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 next-btn"
               onClick={() => {
                 setLandingStep(6);
               }}
@@ -216,7 +216,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 next-btn"
               onClick={() => {
                 setLandingStep(7);
               }}
@@ -305,7 +305,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 next-btn"
               onClick={() => {
                 setLandingStep(8);
               }}
@@ -349,7 +349,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 next-btn"
               onClick={() => {
                 setLandingStep(9);
               }}
@@ -406,7 +406,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 next-btn"
               onClick={() => {
                 if (isFirst == 1) dispatch(updatePlayStatus("tutorial"));
                 else if (isFirst == 2) setLandingStep(10);
@@ -435,7 +435,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 next-btn"
               onClick={() => {
                 dispatch(updatePlayStatus("story"));
               }}

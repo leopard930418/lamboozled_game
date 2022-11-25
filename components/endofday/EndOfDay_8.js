@@ -135,7 +135,7 @@ export default function EndOfDay_8() {
               </div>
               <MyImage
                 src="/images/ArrowBlack.svg"
-                className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+                className="cursor-pointer absolute bottom-4 next-btn"
                 onClick={() => {
                   setLandingStep(2);
                 }}

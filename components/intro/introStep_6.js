@@ -80,7 +80,7 @@ export default function introStep_5({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 right-10  w-[80px] h-[79px]"
+              className="cursor-pointer absolute bottom-4 next-btn"
               onClick={() => {
                 if (isFirst == 1) handleStepId(1);
                 else if (isFirst == 2) {
