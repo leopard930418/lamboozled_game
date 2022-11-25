@@ -96,15 +96,15 @@ export default function Welcome({ handleStepId }) {
               onChange={(event) => setUserName(event.target.value)}
               ref={nameInput}
             ></input>
+            <MyImage
+              src="/images/ArrowBlack.svg"
+              className="cursor-pointer absolute  -right-[5%] top-[15%]  w-[80px] h-[79px]"
+              onClick={() => {
+                setLandingStep(4);
+              }}
+            />
           </MyImage>
 
-          <MyImage
-            src="/images/ArrowBlack.svg"
-            className="cursor-pointer absolute  right-[28%] top-[45%]  w-[80px] h-[79px]"
-            onClick={() => {
-              setLandingStep(4);
-            }}
-          />
           <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4">
             <div className="text-[41px] w-8/12 break-words  pt-16 ml-48 ">
               <Typed
