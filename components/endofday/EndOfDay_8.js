@@ -10,11 +10,8 @@ import { Button } from "@mui/material";
 // import MyToolTip from "../base/MyToolTip";
 import Typed from "react-typed";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  updatePlayStatus,
-  updateUserName,
-  nextDay,
-} from "../../store/reducers/gameSlice";
+import { updatePlayStatus } from "../../store/reducers/gameSlice";
+
 export default function EndOfDay_8() {
   const dispatch = useDispatch();
   const meter = useSelector((state) => state?.game?.meter ?? 0);
@@ -161,7 +158,7 @@ export default function EndOfDay_8() {
               </div>
               <MyImage
                 src="/images/ArrowBlack.svg"
-                className="cursor-pointer absolute bottom-4 right-24  w-[80px] h-[79px]"
+                className="cursor-pointer absolute bottom-4 right-24 next-btn"
                 onClick={() => {
                   setLandingStep(3);
                 }}
@@ -189,17 +186,17 @@ export default function EndOfDay_8() {
                   className="cursor-none"
                 />
               </div>
-              {/* <MyImage
+              <MyImage
                 src="/images/ArrowBlack.svg"
-                className="cursor-pointer absolute bottom-4 right-24  w-[80px] h-[79px]"
+                className="cursor-pointer absolute bottom-4 right-24  next-btn"
                 onClick={() => {
-                  setLandingStep(4);
+                  dispatch(updatePlayStatus("landing"));
                 }}
-              /> */}
+              />
             </div>
           </div>
         )}
-       </>
+      </>
     );
   } else if (meter >= 25) {
     return (
@@ -226,7 +223,7 @@ export default function EndOfDay_8() {
               </div>
               <MyImage
                 src="/images/ArrowBlack.svg"
-                className="cursor-pointer absolute bottom-4 right-24  w-[80px] h-[79px]"
+                className="cursor-pointer absolute bottom-4 right-24  next-btn"
                 onClick={() => {
                   setLandingStep(2);
                 }}
@@ -252,7 +249,7 @@ export default function EndOfDay_8() {
               </div>
               <MyImage
                 src="/images/ArrowBlack.svg"
-                className="cursor-pointer absolute bottom-4 right-24 w-[80px] h-[79px]"
+                className="cursor-pointer absolute bottom-4 right-24 next-btn"
                 onClick={() => {
                   setLandingStep(3);
                 }}
@@ -280,17 +277,16 @@ export default function EndOfDay_8() {
                   className="cursor-none"
                 />
               </div>
-              {/* <MyImage
+              <MyImage
                 src="/images/ArrowBlack.svg"
-                className="cursor-pointer absolute bottom-4 right-24  w-[80px] h-[79px]"
+                className="cursor-pointer absolute bottom-4 right-24 next-btn"
                 onClick={() => {
-                  setLandingStep(4);
+                  dispatch(updatePlayStatus("landing"));
                 }}
-              /> */}
+              />
             </div>
           </div>
         )}
-
       </>
     );
   } else {
@@ -306,7 +302,10 @@ export default function EndOfDay_8() {
               src="/images/Boss2_C.svg"
               className="absolute w-[485px] h-[633px] top-[81px] left-[590px] "
             /> */}
-            <img src='/images/landing_dialogue.svg' className="fixed bottom-4 w-[1100px] -ml-96" />
+            <img
+              src="/images/landing_dialogue.svg"
+              className="fixed bottom-4 w-[1100px] -ml-96"
+            />
 
             <div className=" h-[226px] w-[1236px] absolute bottom-4 justify-center flex -ml-80">
               <div className="text-[35px] w-8/12 break-words  pt-12 ">
@@ -320,7 +319,7 @@ export default function EndOfDay_8() {
               </div>
               <MyImage
                 src="/images/ArrowBlack.svg"
-                className="cursor-pointer absolute bottom-4 right-48  w-[80px] h-[79px]"
+                className="cursor-pointer absolute bottom-4 right-48  next-btn"
                 onClick={() => {
                   setLandingStep(2);
                 }}
@@ -374,17 +373,16 @@ export default function EndOfDay_8() {
                   className="cursor-none"
                 />
               </div>
-              {/* <MyImage
+              <MyImage
                 src="/images/ArrowBlack.svg"
-                className="cursor-pointer absolute bottom-4 right-24  w-[80px] h-[79px]"
+                className="cursor-pointer absolute bottom-4 right-10  next-btn"
                 onClick={() => {
-                  setLandingStep(4);
+                  dispatch(updatePlayStatus("landing"));
                 }}
-              /> */}
+              />
             </div>
           </div>
         )}
-       
       </>
     );
   }
