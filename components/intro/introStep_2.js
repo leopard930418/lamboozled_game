@@ -209,7 +209,7 @@ export default function IntroStep_2({ handleStepId }) {
 
                   <MyImage
                     src="/images/ArrowBlack.svg"
-                    className="cursor-pointer absolute bottom-4 next-btn"
+                    className="cursor-pointer absolute bottom-4 next-btn right-10"
                     onClick={() => {
                       handleStepId(3);
                       dispatch(initMarkedStickers());

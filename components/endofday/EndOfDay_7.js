@@ -44,7 +44,7 @@ export default function EndOfDay_7() {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 setLandingStep(2);
               }}
@@ -102,7 +102,7 @@ export default function EndOfDay_7() {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 if (isFirst == 1) setLandingStep(3);
                 else if (isFirst == 2) setLandingStep(4);
@@ -129,7 +129,7 @@ export default function EndOfDay_7() {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 dispatch(nextDay());
                 dispatch(updatePlayStatus("story"));
@@ -156,7 +156,7 @@ export default function EndOfDay_7() {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 dispatch(nextDay());
                 dispatch(updatePlayStatus("story"));

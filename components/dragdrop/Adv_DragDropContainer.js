@@ -25,7 +25,7 @@ export const Adv_DragDropContainer = ({
 }) => {
   //alex added
   const markedStickers = useSelector(
-    (state) => state?.game?.markedStickers ?? []
+    (state) => state?.game?.markedStickers ?? "000000000000"
   );
   const dispatch = useDispatch();
   let stickersData = [];

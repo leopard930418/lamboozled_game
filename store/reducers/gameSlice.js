@@ -38,7 +38,7 @@ export const gameSlice = createSlice({
       state.playStatus = action.payload;
       if (action.payload == "landing") {
         state.meter = 50;
-        state.markedStickers = [];
+        state.markedStickers = "000000000000";
         state.theDay = 1;
       }
     },

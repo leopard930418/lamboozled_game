@@ -49,7 +49,7 @@ export default function introStep_5({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 handleStepId(6);
               }}

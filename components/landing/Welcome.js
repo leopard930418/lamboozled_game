@@ -150,7 +150,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 setLandingStep(5);
               }}
@@ -185,7 +185,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 setLandingStep(6);
               }}
@@ -216,7 +216,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 setLandingStep(7);
               }}
@@ -305,7 +305,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 setLandingStep(8);
               }}
@@ -349,7 +349,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 setLandingStep(9);
               }}
@@ -406,7 +406,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 if (isFirst == 1) dispatch(updatePlayStatus("tutorial"));
                 else if (isFirst == 2) setLandingStep(10);
@@ -435,7 +435,7 @@ export default function Welcome({ handleStepId }) {
             </div>
             <MyImage
               src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
               onClick={() => {
                 dispatch(updatePlayStatus("story"));
               }}

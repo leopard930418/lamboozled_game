@@ -27,7 +27,7 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
 
 export default function MyToolTip(props) {
   const stickerData = stickers;
-  
+  console.log("props.markedStickers",props.markedStickers)  ;
   return (
     <>
       {props.markedStickers.charAt(props.stickerId) == "1" ? (

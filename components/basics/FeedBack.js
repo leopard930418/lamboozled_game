@@ -429,9 +429,9 @@ export default function FeedBack({
                               handleCurArtIndex();
                               // dispatch(updateMeterByAmount(sum));
                               dispatch(initMarkedStickers());
-                              if (theDay == 8) {
-                                dispatch(updatePlayStatus("landing"));
-                              }
+                              // if (theDay == 9) {
+                              //   dispatch(updatePlayStatus("landing"));
+                              // }
                             }}
                           >
                             NEXT
