@@ -36,7 +36,6 @@ export default function EndOfDay_8() {
                     "You went to the factory and found Lucy’s recorder. You handed it to the police.",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -62,7 +61,6 @@ export default function EndOfDay_8() {
                     "You reveal the truth about Bruce to the public! Turns out he is a wolf and has been secretly eating sheeps! Bruce is certainly going to jail.",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -92,7 +90,6 @@ export default function EndOfDay_8() {
                     "The police have found the missing journalist. Justice eventually wins!",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               {/* <MyImage
@@ -127,7 +124,6 @@ export default function EndOfDay_8() {
                     "You went to the factory and found Lucy’s recorder. You handed it to the police.",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -153,7 +149,6 @@ export default function EndOfDay_8() {
                     "A significant amount of Sheep wool was spotted in the factory. After the DNA test, that's Lucy's...",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -183,7 +178,6 @@ export default function EndOfDay_8() {
                     " Turns out Bruce is a wolf and you successfully protected the Green Meadow!! However, Lucy’s missing remains a myth...",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -218,7 +212,6 @@ export default function EndOfDay_8() {
                     "You went to the factory and found Lucy’s recorder. You handed it to the police.",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -244,7 +237,6 @@ export default function EndOfDay_8() {
                     "However, it was already too late. Bruce won the election and took control of the press. ",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -274,7 +266,6 @@ export default function EndOfDay_8() {
                     " Luckily, you and Lucy were able to escape the town. But Green Meadow has changed forever...",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -314,7 +305,6 @@ export default function EndOfDay_8() {
                     "You read about many missing sheep reports recently. You told the mayoral candidates, and Bruce offered to help after the election.",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -340,7 +330,6 @@ export default function EndOfDay_8() {
                     " You support Bruce during the election and he wins. After that, he invites you to the factory to investigate as promised. ",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage
@@ -370,7 +359,6 @@ export default function EndOfDay_8() {
                     "Right after entering the factory, you felt a strong hit. The next day, you are announced to be the second missing journalist in town.",
                   ]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage

@@ -535,7 +535,7 @@ export default function FeedBack({
               <Grid item xs={4}>
                 {!reviewMode && (
                   <div className={` fixed bottom-0 flexd-bottom w-[30%] `}>
-                    <div className="translate-x-11">
+                    <div className="translate-x-11 translate-y-1">
                       <MyImage
                         src="/images/bottomlambmeter.svg"
                         className="h-24"
@@ -702,7 +702,6 @@ export default function FeedBack({
                 <Typed
                   strings={[stickers[reviewSticker].description]}
                   typeSpeed={35}
-                  className="cursor-none"
                 />
               </div>
               <MyImage

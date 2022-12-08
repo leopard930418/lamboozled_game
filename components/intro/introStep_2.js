@@ -170,7 +170,6 @@ export default function IntroStep_2({ handleStepId }) {
                       "You learn fast! Try dragging a sticker to mark out an issue.",
                     ]}
                     typeSpeed={35}
-                    className="cursor-none"
                   />
                 </div>
               </div>
@@ -203,7 +202,6 @@ export default function IntroStep_2({ handleStepId }) {
                         "Good job! Sometimes you need to drag multiple stickers to mark out all the issues. Sometimes the article has no issue at all.",
                       ]}
                       typeSpeed={35}
-                      className="cursor-none"
                     />
                   </div>
 

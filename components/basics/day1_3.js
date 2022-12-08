@@ -94,7 +94,7 @@ export default function Day1_3({
         className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
       >
-       <div className="absolute top-1 right-0 flex justify-center">
+        <div className="absolute top-1 right-0 flex justify-center">
           <ReactCountdownClock
             seconds={120}
             color="#fbfbfb"
@@ -170,7 +170,7 @@ export default function Day1_3({
                           </div>
                         </div>
                         <div className="text-base text-black pt-2 overflow-auto h-44">
-                          {article.content}
+                          {article.content.replace(`[Player's username]`, userName)}
                         </div>
                       </div>
                     </div>
@@ -281,23 +281,10 @@ export default function Day1_3({
             className="z-[1501]"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
-              <div className="flex flex-row space-x-8">
-                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                  1
-                </div>
-                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                  2
-                </div>
-                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                  3
-                </div>
-              </div>
+              <div className="flex flex-row space-x-8"></div>
 
               <div className="pt-6 px-4">
-                <div className="text-black text-3xl">
-                  Show GIFs one by one, player can click from top left corner to
-                  switch
-                </div>
+                <div className="text-black text-3xl">&nbsp;</div>
                 <div className="text-black text-3xl">
                   1) Drag a sticker to mark an issue
                 </div>

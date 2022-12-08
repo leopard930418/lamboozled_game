@@ -29,7 +29,6 @@ export default function EndOfDay_2() {
                   "Lunch place, you see news about election on cafeteria tv  ",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div> 
             <MyImage
@@ -60,7 +59,6 @@ export default function EndOfDay_2() {
                   "  I’m still looking into this, but weird stuff has been happening recently in Green Meadows, and I think it might be related to the election... Just be extra careful with the news stories you’re looking at, ok? Something doesn’t feel right...",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage

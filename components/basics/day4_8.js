@@ -111,7 +111,7 @@ export default function Day4_8({
         className="max-w-[1280px] max-h-[720px] w-full h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/backgroundBasic.svg')]"
       >
-         <div className="absolute top-1 right-0 flex justify-center">
+        <div className="absolute top-1 right-0 flex justify-center">
           <ReactCountdownClock
             seconds={120}
             color="#fbfbfb"
@@ -211,9 +211,10 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[4]}
-                        onscreen={(sceneIndex === 1 ? true&&!markedIssuesOpen : false)}
+                        onscreen={
+                          sceneIndex === 1 ? true && !markedIssuesOpen : false
+                        }
                         socialData={advancedData.socialData}
-                        
                       />
                       <Source
                         className={`${
@@ -222,7 +223,9 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[5, 6]}
-                        onscreen={sceneIndex === 2 ? true&&!markedIssuesOpen : false}
+                        onscreen={
+                          sceneIndex === 2 ? true && !markedIssuesOpen : false
+                        }
                         sourceData={advancedData.sourceData}
                       />
                       <Fact
@@ -232,7 +235,9 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[7, 8]}
-                        onscreen={sceneIndex === 3 ? true&&!markedIssuesOpen : false}
+                        onscreen={
+                          sceneIndex === 3 ? true && !markedIssuesOpen : false
+                        }
                       />
                       <Reverse
                         className={`${
@@ -241,7 +246,9 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[9, 10]}
-                        onscreen={sceneIndex === 4 ? true&&!markedIssuesOpen : false}
+                        onscreen={
+                          sceneIndex === 4 ? true && !markedIssuesOpen : false
+                        }
                         curArtId={curArtId}
                       />
                       <Lateral
@@ -251,7 +258,9 @@ export default function Day4_8({
                         handleSceneP={handleSceneP}
                         hidesourceondrag={true} //dnd props
                         stickers={[11]}
-                        onscreen={sceneIndex === 5 ? true&&!markedIssuesOpen : false}
+                        onscreen={
+                          sceneIndex === 5 ? true && !markedIssuesOpen : false
+                        }
                         lateralData={advancedData.lateralData}
                       />
                     </div>
@@ -341,23 +350,10 @@ export default function Day4_8({
             className="z-[1501]"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
-              <div className="flex flex-row space-x-8">
-                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                  1
-                </div>
-                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                  2
-                </div>
-                <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                  3
-                </div>
-              </div>
+              <div className="flex flex-row space-x-8"></div>
 
               <div className="pt-6 px-4">
-                <div className="text-black text-3xl">
-                  Show GIFs one by one, player can click from top left corner to
-                  switch
-                </div>
+                <div className="text-black text-3xl">&nbsp;</div>
                 <div className="text-black text-3xl">
                   1) Drag a sticker to mark an issue
                 </div>

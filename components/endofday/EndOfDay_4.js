@@ -39,7 +39,6 @@ export default function EndOfDay_4() {
                   "I just got back from the police station  Lucy’s missing!!!",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -69,7 +68,6 @@ export default function EndOfDay_4() {
                   "I know we’re all worried about her and it’s hard to think about work right now, but also we’re in the midle of an election... Lucy just interviewed both of the candidates and we need somebody to organize the interview reports right away.",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -97,10 +95,7 @@ export default function EndOfDay_4() {
               <div
                 className={`rounded-[40px] w-[99%] bg-white h-[80%] border-2 border-black pt-1 pb-3`}
               >
-                <Typed
-                  strings={[`What do you do?`]}
-                  typeSpeed={35}
-                />
+                <Typed strings={[`What do you do?`]} typeSpeed={35} />
                 <div className="leading-4 pt-10 flex pb-4 ml-8">
                   <div className="flex pl-4 w-1/2">
                     <MyImage
@@ -129,16 +124,18 @@ export default function EndOfDay_4() {
                 </div>
               </div>
             </div>
-            <MyImage
-              src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn right-10"
-              onClick={() => {
-                if (isFirst == 1) {
-                  dispatch(nextDay());
-                  dispatch(updatePlayStatus("story"));
-                } else if (isFirst == 2) setLandingStep(4);
-              }}
-            />
+            {isFirst != 0 && (
+              <MyImage
+                src="/images/ArrowBlack.svg"
+                className="cursor-pointer absolute bottom-4 next-btn right-10"
+                onClick={() => {
+                  if (isFirst == 1) {
+                    dispatch(nextDay());
+                    dispatch(updatePlayStatus("story"));
+                  } else if (isFirst == 2) setLandingStep(4);
+                }}
+              />
+            )}
           </div>
         </div>
       )}
@@ -153,7 +150,6 @@ export default function EndOfDay_4() {
               <Typed
                 strings={["Co-worker 1 takes on the role."]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage

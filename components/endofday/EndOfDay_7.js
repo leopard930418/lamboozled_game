@@ -39,7 +39,6 @@ export default function EndOfDay_7() {
                   "Great work so far, young lamb... But maybe it’s time to get off the computer and do some old-school investigating...",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -100,14 +99,16 @@ export default function EndOfDay_7() {
                 </div>
               </div>
             </div>
-            <MyImage
-              src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn right-10"
-              onClick={() => {
-                if (isFirst == 1) setLandingStep(3);
-                else if (isFirst == 2) setLandingStep(4);
-              }}
-            />
+            {isFirst != 0 && (
+              <MyImage
+                src="/images/ArrowBlack.svg"
+                className="cursor-pointer absolute bottom-4 next-btn right-10"
+                onClick={() => {
+                  if (isFirst == 1) setLandingStep(3);
+                  else if (isFirst == 2) setLandingStep(4);
+                }}
+              />
+            )}
           </div>
         </div>
       )}
@@ -124,7 +125,6 @@ export default function EndOfDay_7() {
                   " You find Lucy’s voice recorder pen near the backdoor of the factory. What could this mean...?",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -151,7 +151,6 @@ export default function EndOfDay_7() {
                   "You find old pictures of young Goldie with co-workers and customers, holding bread and smiling .What could this mean...?",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage

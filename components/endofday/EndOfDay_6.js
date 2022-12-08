@@ -38,7 +38,35 @@ export default function EndOfDay_6() {
                   "I had a good day today. Let me help you to boost ur lamboozled meter again. I’m the best boss.",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
+              />
+            </div>
+            <MyImage
+              src="/images/ArrowBlack.svg"
+              className="cursor-pointer absolute bottom-4 next-btn right-10"
+              onClick={() => {
+                setLandingStep(2);
+              }}
+            />
+          </div>
+        </div>
+      )}
+      {landingStep == 2 && (
+        <div
+          className={`text-center max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
+                            -translate-y-1/2 bg-[url('/images/feedback.svg')] justify-center flex`}
+          style={{ fontFamily: "Patrick Hand" }}
+        >
+          <MyImage
+            src="/images/Boss2_C.svg"
+            className="absolute w-[485px] h-[633px] top-[81px] left-[590px] "
+          />
+          <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 justify-center flex">
+            <div className="text-[41px] w-8/12 break-words  pt-12 ">
+              <Typed
+                strings={[
+                  "Again, nothing happens today. But some news articles stand out to you...",
+                ]}
+                typeSpeed={35}
               />
             </div>
             <MyImage
@@ -52,7 +80,7 @@ export default function EndOfDay_6() {
           </div>
         </div>
       )}
-      {landingStep == 2 && (
+      {landingStep == 3 && (
         <div
           className={`text-center max-w-[1280px] max-h-[720px] w-full bg-[length:100%_100%] h-full fixed top-1/2 left-1/2 -translate-x-1/2 
                             -translate-y-1/2 bg-[url('/images/endofday/OfficePantry_bg.svg')] justify-center flex`}
@@ -65,7 +93,6 @@ export default function EndOfDay_6() {
                   "When you two get to the door of the office pantry, you hear sheep gossiping inside...",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -95,7 +122,6 @@ export default function EndOfDay_6() {
                   " One of them asked, “So what do you think about the big election for mayor?”",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -125,7 +151,6 @@ export default function EndOfDay_6() {
                   "  Another replied, “I don’t know...I mean, we shouldn’t take sides,        but our newsroom definitely has a favorite candidate...” ",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -152,7 +177,6 @@ export default function EndOfDay_6() {
                   " As you enter, the co-workers quickly become silent. They smile politely and leave.",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage

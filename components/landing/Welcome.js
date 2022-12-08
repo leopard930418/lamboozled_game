@@ -21,6 +21,7 @@ export default function Welcome({ handleStepId }) {
   const [expLevel, setExpLevel] = useState(-1);
   const [isFirst, setIsFirst] = useState(0);
   const [userName, setUserName] = useState("");
+  const [howToCheck, setHowToCheck] = useState("");
   useEffect(() => {
     dispatch(updateUserName(userName));
   }, [userName]);
@@ -67,7 +68,6 @@ export default function Welcome({ handleStepId }) {
               <Typed
                 strings={["Welcome to Green Meadows, young lamb. "]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -96,22 +96,20 @@ export default function Welcome({ handleStepId }) {
               onChange={(event) => setUserName(event.target.value)}
               ref={nameInput}
             ></input>
-            <MyImage
-              src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute  -right-[5%] top-[15%]  next-btn"
-              onClick={() => {
-                setLandingStep(4);
-              }}
-            />
+            {userName != "" && (
+              <MyImage
+                src="/images/ArrowBlack.svg"
+                className="cursor-pointer absolute  -right-[5%] top-[15%]  next-btn"
+                onClick={() => {
+                  setLandingStep(4);
+                }}
+              />
+            )}
           </MyImage>
 
           <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4">
             <div className="text-[41px] w-8/12 break-words  pt-16 ml-48 ">
-              <Typed
-                strings={["Your name is..."]}
-                typeSpeed={35}
-                className="cursor-none"
-              />
+              <Typed strings={["Your name is..."]} typeSpeed={35} />
             </div>
           </div>
         </div>
@@ -239,7 +237,7 @@ export default function Welcome({ handleStepId }) {
               <div
                 className={`rounded-[40px] w-[99%] bg-white h-[90%] border-2 border-black`}
               >
-                <div className="pt-1">Yike, not sure</div>
+                <div className="pt-0"> &nbsp; </div>
                 <div className="flex   leading-4 pt-3 pb-6 justify-between space-x-4 ">
                   <div className="text-center leading-10 -mt-6">
                     I'm not sure I can do this on my own
@@ -303,13 +301,15 @@ export default function Welcome({ handleStepId }) {
                 </div>
               </div>
             </div>
-            <MyImage
-              src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn right-10"
-              onClick={() => {
-                setLandingStep(8);
-              }}
-            />
+            {expLevel != -1 && (
+              <MyImage
+                src="/images/ArrowBlack.svg"
+                className="cursor-pointer absolute bottom-4 next-btn right-10"
+                onClick={() => {
+                  setLandingStep(8);
+                }}
+              />
+            )}
           </div>
         </div>
       )}
@@ -340,20 +340,22 @@ export default function Welcome({ handleStepId }) {
                     <input
                       type="text"
                       className="text-4xl top-[260px] outline-none  text-center mt-3 w-full"
-                      // onChange={(event) => setUserName(event.target.value)}
+                      onChange={(event) => setHowToCheck(event.target.value)}
                       ref={factInput}
                     ></input>
                   </div>
                 </div>
               </div>
             </div>
-            <MyImage
-              src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn right-10"
-              onClick={() => {
-                setLandingStep(9);
-              }}
-            />
+            {howToCheck != "" && (
+              <MyImage
+                src="/images/ArrowBlack.svg"
+                className="cursor-pointer absolute bottom-4 next-btn right-10"
+                onClick={() => {
+                  setLandingStep(9);
+                }}
+              />
+            )}
           </div>
         </div>
       )}
@@ -404,14 +406,16 @@ export default function Welcome({ handleStepId }) {
                 </div>
               </div>
             </div>
-            <MyImage
-              src="/images/ArrowBlack.svg"
-              className="cursor-pointer absolute bottom-4 next-btn right-10"
-              onClick={() => {
-                if (isFirst == 1) dispatch(updatePlayStatus("tutorial"));
-                else if (isFirst == 2) setLandingStep(10);
-              }}
-            />
+            {isFirst != 0 && (
+              <MyImage
+                src="/images/ArrowBlack.svg"
+                className="cursor-pointer absolute bottom-4 next-btn right-10"
+                onClick={() => {
+                  if (isFirst == 1) dispatch(updatePlayStatus("tutorial"));
+                  else if (isFirst == 2) setLandingStep(10);
+                }}
+              />
+            )}
           </div>
         </div>
       )}
@@ -430,7 +434,6 @@ export default function Welcome({ handleStepId }) {
               <Typed
                 strings={["Oops, you’re right. Just start working then."]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage

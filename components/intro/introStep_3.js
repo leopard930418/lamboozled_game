@@ -251,7 +251,6 @@ export default function IntroStep_3({ handleStepId }) {
                   "Great! As you start the real job, you need to review each article in 5min. The timer is on the top-right corner. Easy for now, don’t worry!",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage

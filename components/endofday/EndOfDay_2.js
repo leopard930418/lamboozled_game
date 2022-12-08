@@ -29,7 +29,6 @@ export default function EndOfDay_2() {
                   "The chat you overheard yesterday is still on your mind... Maybe Lucy can tell you more...",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -55,7 +54,6 @@ export default function EndOfDay_2() {
                   "Lucy is not at her desk, but you see this in her office...",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -81,7 +79,6 @@ export default function EndOfDay_2() {
                   " But you can tell that there are many pics and notes about the  two candidates...And there is a wolf picture in the middle!",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -111,7 +108,6 @@ export default function EndOfDay_2() {
                   "  Oh hi there, I remember you! Welcome to our newsroom.I gotta run now, but let’s chat soon about the upcoming election.There might be something going on... Let’s meet for lunch tomorrow and i’ll tell you all about it....",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage

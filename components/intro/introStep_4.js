@@ -261,7 +261,6 @@ export default function IntroStep_3({ handleStepId }) {
                   "When you think you’ve marked out all the issues, click “SUBMIT” here.",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage

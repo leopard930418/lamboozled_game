@@ -40,7 +40,7 @@ export default function EndOfDay_1() {
                   "Hey rookie, grab a coffee with me.   I want to hear abour your first day...",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
+                
               />
             </div>
             <MyImage
@@ -66,7 +66,6 @@ export default function EndOfDay_1() {
                   "When you two get to the door of the office pantry, you hear sheep gossiping inside...",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -96,7 +95,6 @@ export default function EndOfDay_1() {
                   " One of them asked, “So what do you think about the big election for mayor?”",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -120,13 +118,12 @@ export default function EndOfDay_1() {
             className="absolute w-[235px] h-[633px] top-[81px] left-[400px] "
           />
           <div className="bg-[url('/images/landing_dialogue.svg')] bg-no-repeat  h-[226px] w-[1236px] absolute bottom-4 justify-center flex">
-            <div className="text-[41px] w-6/12 break-words  pt-12 ">
+            <div className="text-[41px] w-9/12 break-words  pt-12 ">
               <Typed
                 strings={[
                   "  Another replied, “I don’t know...I mean, we shouldn’t take sides,        but our newsroom definitely has a favorite candidate...” ",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
@@ -153,7 +150,6 @@ export default function EndOfDay_1() {
                   " As you enter, the co-workers quickly become silent. They smile politely and leave.",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage

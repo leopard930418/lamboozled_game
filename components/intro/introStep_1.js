@@ -91,23 +91,10 @@ export default function IntroStep_1({ handleStepId }) {
                     aria-describedby="modal-modal-description"
                   >
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#C4C4C4] p-4">
-                      <div className="flex flex-row space-x-8">
-                        <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                          1
-                        </div>
-                        <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                          2
-                        </div>
-                        <div className="rounded-[50%] p-2 w-12 h-12 text-center bg-white text-black text-3xl">
-                          3
-                        </div>
-                      </div>
+                      <div className="flex flex-row space-x-8"></div>
 
                       <div className="pt-6 px-4">
-                        <div className="text-black text-3xl">
-                          Show GIFs one by one, player can click from top left
-                          corner to switch
-                        </div>
+                        <div className="text-black text-3xl">&nbsp;</div>
                         <div className="text-black text-3xl">
                           1) Drag a sticker to mark an issue
                         </div>
@@ -213,7 +200,6 @@ export default function IntroStep_1({ handleStepId }) {
                       "This is your desk, and you’ll be able to use the computer after you get promoted. For now, please click the question mark to see your task.",
                     ]}
                     typeSpeed={35}
-                    className="cursor-none"
                   />
                 </div>
               </div>

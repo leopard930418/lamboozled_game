@@ -44,7 +44,6 @@ export default function introStep_5({ handleStepId }) {
                   " Your correct marks will increase the Lamboozled Meter, and the wrong ones will decrease it. The higher it is, the better you did!",
                 ]}
                 typeSpeed={35}
-                className="cursor-none"
               />
             </div>
             <MyImage
