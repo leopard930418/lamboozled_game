@@ -23,6 +23,7 @@ import Source from "../base/Source";
 import Fact from "../base/Fact";
 import Reverse from "../base/Reverse";
 import Lateral from "../base/Lateral";
+import axios from "axios";
 
 import { useSelector, useDispatch } from "react-redux";
 import { updateMeterByAmount } from "../../store/reducers/gameSlice";
@@ -38,6 +39,9 @@ export default function Day4_8({
   // game logic
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? []
+  );
+  const user_id = useSelector(
+    (state) => state?.game?.userID ?? null
   );
   const userName = useSelector((state) => state?.game?.userName ?? "Unkown");
   const meter = useSelector((state) => state?.game?.meter ?? 50);
@@ -60,13 +64,13 @@ export default function Day4_8({
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
   const handleGuideClose = () => setGuideOpen(false);
+  const apiURL = process.env.apiURL;
   const [counter, setCounter] = React.useState(100);
   React.useEffect(() => {
     const timer =
       counter > 0 && setInterval(() => setCounter(counter - 1), 3000);
     return () => clearInterval(timer);
   }, [counter]);
-  console.log("countdown", counter);
   const calcResult = () => {
     let correct = [];
     let wrong = [];
@@ -103,6 +107,18 @@ export default function Day4_8({
       answer_key
     );
     dispatch(updateMeterByAmount(sum));
+    axios
+      .post(apiURL+"history/save-result", {
+        register_id: user_id,  
+        day_num: curDay,
+        article_index: curArtId,
+        result: markedStickers,
+        sample: article.answer_key,
+      })
+      .then((response) => {
+        console.log(response.data._id);
+        
+      });
   };
 
   return (

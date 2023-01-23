@@ -55,7 +55,6 @@ export default function FeedBack({
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? "000000000000"
   );
-  console.log("markedStickers==", markedStickers);
   const weights = [1, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3, 3];
   const article = content[curArtIndex];
   const answer_key = article.answer_key;
@@ -108,7 +107,6 @@ export default function FeedBack({
   const handleMarkedIssuesClose = () => setMarkedIssuesOpen(false);
   const [reviewSticker, setReviewSticker] = useState(0);
   const [reviewMode, setReviewMode] = useState(false);
-  console.log("reviewSticker", reviewSticker, reviewMode);
   const meter = useSelector((state) => state?.game?.meter ?? 0);
   return (
     <>

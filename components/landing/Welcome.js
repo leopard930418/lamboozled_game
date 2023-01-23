@@ -10,9 +10,12 @@ import { Button } from "@mui/material";
 // import MyToolTip from "../base/MyToolTip";
 import Typed from "react-typed";
 import { useDispatch } from "react-redux";
+import axios from "axios";
+
 import {
   updatePlayStatus,
   updateUserName,
+  setUserId,
 } from "../../store/reducers/gameSlice";
 export default function Welcome({ handleStepId }) {
   const dispatch = useDispatch();
@@ -22,17 +25,27 @@ export default function Welcome({ handleStepId }) {
   const [isFirst, setIsFirst] = useState(0);
   const [userName, setUserName] = useState("");
   const [howToCheck, setHowToCheck] = useState("");
+  
   useEffect(() => {
     dispatch(updateUserName(userName));
   }, [userName]);
 
   const nameInput = useRef(null);
   const factInput = useRef(null);
-
+  const apiURL = process.env.apiURL;
   useEffect(() => {
     // current property is refered to input element
     if (landingStep == 3) {
       nameInput.current.focus();
+    } else if (landingStep == 4) {
+      axios
+      .post(apiURL+"register/in-game", {
+        name: userName,
+      })
+      .then((response) => {
+        dispatch(setUserId(response.data._id));
+      });
+  
     } else if (landingStep == 8) {
       factInput.current.focus();
     }

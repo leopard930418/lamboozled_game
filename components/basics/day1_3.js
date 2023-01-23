@@ -22,6 +22,7 @@ import IssueModal from "../base/IssueModal";
 import Meter from "../base/Meter";
 import { useSelector, useDispatch } from "react-redux";
 import { updateMeterByAmount } from "../../store/reducers/gameSlice";
+import axios from "axios";
 
 export default function Day1_3({
   curArtId = 0,
@@ -33,6 +34,9 @@ export default function Day1_3({
   // game logic
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? "000000000000"
+  );
+  const user_id = useSelector(
+    (state) => state?.game?.userID ?? null
   );
   const userName = useSelector((state) => state?.game?.userName ?? "Unkown");
   const meter = useSelector((state) => state?.game?.meter ?? 0);
@@ -50,6 +54,7 @@ export default function Day1_3({
   const [guideOpen, setGuideOpen] = useState(false);
   const handleGuideOpen = () => setGuideOpen(true);
   const handleGuideClose = () => setGuideOpen(false);
+  const apiURL = process.env.apiURL;
   const calcResult = () => {
     let correct = [];
     let wrong = [];
@@ -86,6 +91,19 @@ export default function Day1_3({
       answer_key
     );
     dispatch(updateMeterByAmount(sum));
+   
+    axios
+      .post(apiURL+"history/save-result", {
+        register_id: user_id,  
+        day_num: curDay,
+        article_index: curArtId,
+        result: markedStickers,
+        sample: article.answer_key,
+      })
+      .then((response) => {
+        console.log(response.data._id);
+        
+      });
   };
 
   return (

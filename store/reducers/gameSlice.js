@@ -14,7 +14,9 @@ export const gameSlice = createSlice({
     markedStickers: "000000000000",
     playStatus: "landing",
     dataForFeedback: {},
-    userName: "Unkown"
+    userName: "Unkown",
+    userID: null,
+
   },
   reducers: {
     appendMarkedStickers: (state, action) => {
@@ -50,6 +52,9 @@ export const gameSlice = createSlice({
     },
     updateUserName: (state, action)=>{
       state.userName = action.payload;
+    },
+    setUserId: (state, action)=>{
+      state.userID = action.payload;
     }
   },
 });
@@ -62,7 +67,8 @@ export const {
   initMarkedStickers,
   updatePlayStatus,
   updateDataForFeedBack,
-  updateUserName
+  updateUserName,
+  setUserId,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

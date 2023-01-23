@@ -63,7 +63,6 @@ export default function StoryDay5({ meter = 50, handleMeter, handleTheDay }) {
     sourceData: sourceData,
     lateralData: lateralData,
   };
-  console.log("advancedData", advancedData);
   return (
     <>
       {!isFeedback ? (

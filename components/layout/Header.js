@@ -51,7 +51,6 @@ export default function Header({ color = false, ...props }) {
   }));
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  console.log("leopard test anchorE1",anchorEl,open)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -232,7 +231,6 @@ export default function Header({ color = false, ...props }) {
             className=" pr-2 flex justify-end"
             onClick={() => {
               setPhoneMenuShow(!phoneMenuShow);
-              console.log("PhoneMenushow", phoneMenuShow);
             }}
           >
             <MenuIcon />

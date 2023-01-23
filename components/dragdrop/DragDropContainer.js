@@ -25,7 +25,6 @@ export const DragDropContainer = ({
   isIssueShow,
 }) => {
   //alex added
-  console.log(isIssueShow);
   const markedStickers = useSelector(
     (state) => state?.game?.markedStickers ?? "000000000000"
   );
