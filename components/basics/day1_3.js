@@ -101,7 +101,7 @@ export default function Day1_3({
         sample: article.answer_key,
       })
       .then((response) => {
-        console.log(response.data._id);
+        console.log(response.data.id);
         
       });
   };

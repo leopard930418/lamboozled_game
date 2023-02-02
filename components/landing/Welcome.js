@@ -38,12 +38,17 @@ export default function Welcome({ handleStepId }) {
     if (landingStep == 3) {
       nameInput.current.focus();
     } else if (landingStep == 4) {
-      axios
-      .post(apiURL+"register/in-game", {
-        name: userName,
+      axios.request({
+        method:'POST',
+        url:apiURL+"register/in-game",
+        data:{
+          name: userName,
+          xxx : 'yyy'
+          }
       })
       .then((response) => {
-        dispatch(setUserId(response.data._id));
+        
+        dispatch(setUserId(response.data.id));
       });
   
     } else if (landingStep == 8) {
