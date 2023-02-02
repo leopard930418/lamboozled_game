@@ -35,9 +35,11 @@ export default function Welcome({ handleStepId }) {
   const apiURL = process.env.apiURL;
   useEffect(() => {
     // current property is refered to input element
+    console.log("landingStep", landingStep);
     if (landingStep == 3) {
       nameInput.current.focus();
     } else if (landingStep == 4) {
+      console.log("landingStep4", landingStep);
       axios.request({
         method:'POST',
         url:apiURL+"register/in-game",
